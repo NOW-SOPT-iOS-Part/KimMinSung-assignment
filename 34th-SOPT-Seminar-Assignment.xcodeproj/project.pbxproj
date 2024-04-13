@@ -10,12 +10,12 @@
 		4EBDEBDD2BCAC2720061986D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */; };
 		4EBDEBDF2BCAC2720061986D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */; };
 		4EBDEBE12BCAC2720061986D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBE02BCAC2720061986D /* ViewController.swift */; };
-		4EBDEBE42BCAC2720061986D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEBE22BCAC2720061986D /* Main.storyboard */; };
 		4EBDEBE62BCAC2720061986D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEBE52BCAC2720061986D /* Assets.xcassets */; };
 		4EBDEBE92BCAC2720061986D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEBE72BCAC2720061986D /* LaunchScreen.storyboard */; };
 		4EBDEBF42BCAC2730061986D /* _4th_SOPT_Seminar_AssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBF32BCAC2730061986D /* _4th_SOPT_Seminar_AssignmentTests.swift */; };
 		4EBDEBFE2BCAC2730061986D /* _4th_SOPT_Seminar_AssignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBFD2BCAC2730061986D /* _4th_SOPT_Seminar_AssignmentUITests.swift */; };
 		4EBDEC002BCAC2730061986D /* _4th_SOPT_Seminar_AssignmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBFF2BCAC2730061986D /* _4th_SOPT_Seminar_AssignmentUITestsLaunchTests.swift */; };
+		4EBDEC0D2BCAC7980061986D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEC0C2BCAC7980061986D /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +40,6 @@
 		4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4EBDEBE02BCAC2720061986D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4EBDEBE32BCAC2720061986D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4EBDEBE52BCAC2720061986D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4EBDEBE82BCAC2720061986D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EBDEBEA2BCAC2720061986D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		4EBDEBF92BCAC2730061986D /* 34th-SOPT-Seminar-AssignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "34th-SOPT-Seminar-AssignmentUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBDEBFD2BCAC2730061986D /* _4th_SOPT_Seminar_AssignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _4th_SOPT_Seminar_AssignmentUITests.swift; sourceTree = "<group>"; };
 		4EBDEBFF2BCAC2730061986D /* _4th_SOPT_Seminar_AssignmentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _4th_SOPT_Seminar_AssignmentUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4EBDEC0C2BCAC7980061986D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +79,7 @@
 		4EBDEBD02BCAC2710061986D = {
 			isa = PBXGroup;
 			children = (
+				4EBDEC0C2BCAC7980061986D /* .gitignore */,
 				4EBDEBDB2BCAC2720061986D /* 34th-SOPT-Seminar-Assignment */,
 				4EBDEBF22BCAC2730061986D /* 34th-SOPT-Seminar-AssignmentTests */,
 				4EBDEBFC2BCAC2730061986D /* 34th-SOPT-Seminar-AssignmentUITests */,
@@ -102,7 +103,6 @@
 				4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */,
 				4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */,
 				4EBDEBE02BCAC2720061986D /* ViewController.swift */,
-				4EBDEBE22BCAC2720061986D /* Main.storyboard */,
 				4EBDEBE52BCAC2720061986D /* Assets.xcassets */,
 				4EBDEBE72BCAC2720061986D /* LaunchScreen.storyboard */,
 				4EBDEBEA2BCAC2720061986D /* Info.plist */,
@@ -232,8 +232,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBDEBE92BCAC2720061986D /* LaunchScreen.storyboard in Resources */,
+				4EBDEC0D2BCAC7980061986D /* .gitignore in Resources */,
 				4EBDEBE62BCAC2720061986D /* Assets.xcassets in Resources */,
-				4EBDEBE42BCAC2720061986D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +297,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4EBDEBE22BCAC2720061986D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4EBDEBE32BCAC2720061986D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4EBDEBE72BCAC2720061986D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -447,7 +439,6 @@
 				INFOPLIST_FILE = "34th-SOPT-Seminar-Assignment/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -475,7 +466,6 @@
 				INFOPLIST_FILE = "34th-SOPT-Seminar-Assignment/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
