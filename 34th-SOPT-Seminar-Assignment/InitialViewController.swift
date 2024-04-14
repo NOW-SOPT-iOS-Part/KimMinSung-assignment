@@ -38,8 +38,8 @@ class InitialViewController: UIViewController {
     private func setLayout() {
         self.loginButton.translatesAutoresizingMaskIntoConstraints = false
         self.loginButton.snp.makeConstraints { btn in
-            btn.leading.equalToSuperview().offset(16)
-            btn.trailing.equalToSuperview().offset(-16)
+            btn.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(20)
+            btn.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-20)
             btn.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-27)
             btn.height.equalTo(52)
         }

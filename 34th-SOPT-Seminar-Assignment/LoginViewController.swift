@@ -85,6 +85,47 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    lazy var makeAccountButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("아직 계정이 없으신가요?", for: UIControl.State.normal)
+        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
+        button.setTitleColor(UIColor(named: "gray3"), for: UIControl.State.normal)
+        button.setTitleColor(UIColor(named: "gray4"), for: UIControl.State.highlighted)
+        button.addTarget(self, action: #selector(makeAccountButtonDidTapped), for: UIControl.Event.touchUpInside)
+        return button
+    }()
+    
+    lazy var makeNicknameButton: UIButton = {
+        let button = UIButton()
+        let attributedStirng1 = NSAttributedString(
+            string: "닉네임 만들러가기",
+            attributes: [ .foregroundColor: UIColor(named: "gray2")!, .underlineStyle: 1 ]
+        )
+        
+        let attributedStirng2 = NSAttributedString(
+            string: "닉네임 만들러가기",
+            attributes: [ .foregroundColor: UIColor(named: "gray3")!, .underlineStyle: 1 ]
+        )
+        button.setAttributedTitle(attributedStirng1, for: UIControl.State.normal)
+        button.setAttributedTitle(attributedStirng2, for: UIControl.State.highlighted)
+        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 400)
+        //button.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.normal)
+        //button.setTitleColor(UIColor(named: "gray3"), for: UIControl.State.highlighted)
+        button.addTarget(self, action: #selector(makeNicknameButtonDidTapped), for: UIControl.Event.touchUpInside)
+        return button
+    }()
+    
+    
+    lazy var stackView: UIStackView = {
+        let stView = UIStackView(arrangedSubviews: [self.makeAccountButton, self.makeNicknameButton])
+        stView.axis = .horizontal
+        stView.distribution = .fillProportionally
+        stView.spacing = 35
+        return stView
+    }()
+    
+    
+    
     let seperator: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "gray4")
@@ -107,7 +148,8 @@ class LoginViewController: UIViewController {
          self.loginButton,
          self.findIDButton,
          self.findPWButton,
-         self.seperator
+         self.seperator,
+         self.stackView
         ].forEach { view in
             self.view.addSubview(view)
         }
@@ -120,7 +162,8 @@ class LoginViewController: UIViewController {
          self.loginButton,
          self.findIDButton,
          self.findPWButton,
-         self.seperator
+         self.seperator,
+         self.stackView
         ].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -133,26 +176,26 @@ class LoginViewController: UIViewController {
         }
         
         self.idTextField.snp.makeConstraints { tf in
-            tf.centerX.equalToSuperview()
+            //tf.centerX.equalToSuperview()
             tf.top.equalTo(self.titleLabel.snp.bottom).offset(30)
-            tf.leading.equalToSuperview().offset(20)
-            tf.trailing.equalToSuperview().offset(-20)
+            tf.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(20)
+            tf.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-20)
             tf.height.equalTo(50)
         }
         
         self.passwordTextField.snp.makeConstraints { tf in
-            tf.centerX.equalToSuperview()
+            //tf.centerX.equalToSuperview()
             tf.top.equalTo(self.idTextField.snp.bottom).offset(10)
-            tf.leading.equalToSuperview().offset(20)
-            tf.trailing.equalToSuperview().offset(-20)
+            tf.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(20)
+            tf.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-20)
             tf.height.equalTo(52)
         }
         
         self.loginButton.snp.makeConstraints { btn in
             btn.centerX.equalToSuperview()
             btn.top.equalTo(self.passwordTextField.snp.bottom).offset(21)
-            btn.leading.equalToSuperview().offset(16)
-            btn.trailing.equalToSuperview().offset(-16)
+            btn.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(20)
+            btn.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-20)
             btn.height.equalTo(52)
         }
         
@@ -173,12 +216,16 @@ class LoginViewController: UIViewController {
             btn.leading.equalTo(self.seperator.snp.trailing).offset(33)
         }
         
+        self.stackView.snp.makeConstraints { view in
+            view.centerX.equalToSuperview()
+            view.top.equalTo(self.seperator.snp.bottom).offset(28)
+        }
+        
     }
     
     @objc func loginButtonDidTapped() {
         print(#function)
     }
-    
     
     @objc private func findIDButtonDidTapped() {
         print(#function)
@@ -188,6 +235,12 @@ class LoginViewController: UIViewController {
         print(#function)
     }
     
+    @objc private func makeAccountButtonDidTapped() {
+        print(#function)
+    }
     
+    @objc private func makeNicknameButtonDidTapped() {
+        print(#function)
+    }
     
 }
