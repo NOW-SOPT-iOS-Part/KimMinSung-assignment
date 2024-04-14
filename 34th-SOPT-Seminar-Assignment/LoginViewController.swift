@@ -13,7 +13,7 @@ class LoginViewController: UIViewController {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "TVING ID 로그인"
-        label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
+        label.font = UIFont.pretendardFont(ofSize: 23, weight: CGFloat(500))
         label.textAlignment = .center
         label.textColor = .white
         return label
@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "아이디",
-            attributes: [.foregroundColor: UIColor.lightGray]
+            attributes: [.foregroundColor: UIColor.lightGray, .font: UIFont.pretendardFont(ofSize: 15, weight: 600)]
         )
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "비밀번호", 
-            attributes: [.foregroundColor: UIColor.lightGray]
+            attributes: [.foregroundColor: UIColor.lightGray, .font: UIFont.pretendardFont(ofSize: 15, weight: 600)]
         )
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
@@ -54,6 +54,7 @@ class LoginViewController: UIViewController {
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("로그인하기", for: UIControl.State.normal)
+        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
         button.backgroundColor = .clear
         button.clipsToBounds = true
         button.layer.cornerRadius = 3

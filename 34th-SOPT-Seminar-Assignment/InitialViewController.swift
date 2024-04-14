@@ -16,6 +16,7 @@ class InitialViewController: UIViewController {
         button.backgroundColor = .systemRed
         button.clipsToBounds = true
         button.layer.cornerRadius = 3
+        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
         button.addTarget(self, action: #selector(loginButtonDidTapped), for: UIControl.Event.touchUpInside)
         return button
     }()
