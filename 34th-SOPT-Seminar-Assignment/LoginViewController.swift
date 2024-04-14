@@ -115,7 +115,6 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    
     lazy var stackView: UIStackView = {
         let stView = UIStackView(arrangedSubviews: [self.makeAccountButton, self.makeNicknameButton])
         stView.axis = .horizontal
@@ -123,8 +122,6 @@ class LoginViewController: UIViewController {
         stView.spacing = 35
         return stView
     }()
-    
-    
     
     let seperator: UIView = {
         let view = UIView()
@@ -140,6 +137,9 @@ class LoginViewController: UIViewController {
         self.setLayout()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     private func configureHierachy() {
         [self.titleLabel,
