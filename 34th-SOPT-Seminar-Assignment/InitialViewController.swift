@@ -47,10 +47,9 @@ class InitialViewController: UIViewController {
     
     
     @objc private func loginButtonDidTapped() {
-        print(#function)
-        //let loginVC = LoginViewController()
-        //loginVC.modalPresentationStyle = .fullScreen
-        //self.present(loginVC, animated: true)
+        let loginVC = LoginViewController()
+        loginVC.modalPresentationStyle = .fullScreen
+        self.present(loginVC, animated: true)
     }
 
 }
