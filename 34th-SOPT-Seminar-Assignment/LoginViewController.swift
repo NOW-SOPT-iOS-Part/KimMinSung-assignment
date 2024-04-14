@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    let idTextField: UITextField = {
+    lazy var idTextField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "아이디",
@@ -31,11 +31,13 @@ class LoginViewController: UIViewController {
         textField.rightViewMode = .always
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 3
-        textField.backgroundColor = .darkGray
+        textField.layer.borderColor = UIColor(named: "gray2")?.cgColor
+        textField.backgroundColor = UIColor(named: "gray4")
+        textField.delegate = self
         return textField
     }()
     
-    let passwordTextField: UITextField = {
+    lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "비밀번호", 
@@ -47,7 +49,9 @@ class LoginViewController: UIViewController {
         textField.rightViewMode = .always
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 3
-        textField.backgroundColor = .darkGray
+        textField.layer.borderColor = UIColor(named: "gray2")?.cgColor
+        textField.backgroundColor = UIColor(named: "gray4")
+        textField.delegate = self
         return textField
     }()
     
@@ -241,6 +245,21 @@ class LoginViewController: UIViewController {
     
     @objc private func makeNicknameButtonDidTapped() {
         print(#function)
+    }
+    
+}
+
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.layer.borderWidth = 1
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        textField.layer.borderWidth = 0
+        return true
     }
     
 }
