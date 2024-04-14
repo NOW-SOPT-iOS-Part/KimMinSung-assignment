@@ -13,7 +13,7 @@ class InitialViewController: UIViewController {
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("티빙 로그인", for: UIControl.State.normal)
-        button.backgroundColor = .systemRed
+        button.backgroundColor = UIColor(named: "TVING_Red")
         button.clipsToBounds = true
         button.layer.cornerRadius = 3
         button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
