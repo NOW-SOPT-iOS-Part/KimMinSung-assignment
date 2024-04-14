@@ -65,8 +65,31 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    lazy var findIDButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("아이디 찾기", for: UIControl.State.normal)
+        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
+        button.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.normal)
+        button.setTitleColor(UIColor(named: "gray3"), for: UIControl.State.highlighted)
+        button.addTarget(self, action: #selector(findIDButtonDidTapped), for: UIControl.Event.touchUpInside)
+        return button
+    }()
     
+    lazy var findPWButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("비밀번호 찾기", for: UIControl.State.normal)
+        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
+        button.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.normal)
+        button.setTitleColor(UIColor(named: "gray3"), for: UIControl.State.highlighted)
+        button.addTarget(self, action: #selector(findPWButtonDidTapped), for: UIControl.Event.touchUpInside)
+        return button
+    }()
     
+    let seperator: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "gray4")
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +104,10 @@ class LoginViewController: UIViewController {
         [self.titleLabel,
          self.idTextField,
          self.passwordTextField,
-         self.loginButton
+         self.loginButton,
+         self.findIDButton,
+         self.findPWButton,
+         self.seperator
         ].forEach { view in
             self.view.addSubview(view)
         }
@@ -91,7 +117,10 @@ class LoginViewController: UIViewController {
         [self.titleLabel,
          self.idTextField,
          self.passwordTextField,
-         self.loginButton
+         self.loginButton,
+         self.findIDButton,
+         self.findPWButton,
+         self.seperator
         ].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -127,6 +156,23 @@ class LoginViewController: UIViewController {
             btn.height.equalTo(52)
         }
         
+        self.seperator.snp.makeConstraints { view in
+            view.centerX.equalToSuperview()
+            view.top.equalTo(self.loginButton.snp.bottom).offset(36)
+            view.width.equalTo(1)
+            view.height.equalTo(12)
+        }
+        
+        self.findIDButton.snp.makeConstraints { btn in
+            btn.centerY.equalTo(self.seperator.snp.centerY)
+            btn.trailing.equalTo(self.seperator.snp.leading).offset(-33)
+        }
+        
+        self.findPWButton.snp.makeConstraints { btn in
+            btn.centerY.equalTo(self.seperator.snp.centerY)
+            btn.leading.equalTo(self.seperator.snp.trailing).offset(33)
+        }
+        
     }
     
     @objc func loginButtonDidTapped() {
@@ -134,6 +180,13 @@ class LoginViewController: UIViewController {
     }
     
     
+    @objc private func findIDButtonDidTapped() {
+        print(#function)
+    }
+    
+    @objc private func findPWButtonDidTapped() {
+        print(#function)
+    }
     
     
     
