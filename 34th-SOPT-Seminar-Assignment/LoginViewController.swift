@@ -301,14 +301,23 @@ class LoginViewController: UIViewController {
     
     @objc private func clearButton1DidTapped() {
         print(#function)
+        self.idTextField.text = ""
     }
     
     @objc private func clearButton2DidTapped() {
         print(#function)
+        self.pwTextField.text = ""
     }
     
     @objc private func hidePWButtonDidTapped() {
         print(#function)
+        self.pwTextField.isSecureTextEntry.toggle()
+        switch self.pwTextField.isSecureTextEntry {
+        case true:
+            self.hidePWButton.setImage(UIImage(named: "eye.slash"), for: UIControl.State.normal)
+        case false:
+            self.hidePWButton.setImage(UIImage(named: "eye.filled"), for: UIControl.State.normal)
+        }
     }
     
     @objc func loginButtonDidTapped() {
