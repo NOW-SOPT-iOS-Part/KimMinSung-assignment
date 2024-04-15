@@ -25,34 +25,74 @@ class LoginViewController: UIViewController {
             string: "아이디",
             attributes: [.foregroundColor: UIColor.lightGray, .font: UIFont.pretendardFont(ofSize: 15, weight: 600)]
         )
+        textField.textColor = .white
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        //textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        textField.rightView = self.rightView1
         textField.leftViewMode = .always
-        textField.rightViewMode = .always
+        textField.rightViewMode = .whileEditing
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 3
         textField.layer.borderColor = UIColor(named: "gray2")?.cgColor
         textField.backgroundColor = UIColor(named: "gray4")
         textField.delegate = self
+        textField.addTarget(self, action: #selector(idTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
         return textField
     }()
     
-    lazy var passwordTextField: UITextField = {
+    lazy var pwTextField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "비밀번호", 
             attributes: [.foregroundColor: UIColor.lightGray, .font: UIFont.pretendardFont(ofSize: 15, weight: 600)]
         )
+        textField.textColor = .white
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        textField.rightView = self.rightView2
         textField.leftViewMode = .always
-        textField.rightViewMode = .always
+        textField.rightViewMode = .whileEditing
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 3
         textField.layer.borderColor = UIColor(named: "gray2")?.cgColor
         textField.backgroundColor = UIColor(named: "gray4")
         textField.delegate = self
+        textField.addTarget(self, action: #selector(pwTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
         return textField
+    }()
+    
+    lazy var rightView1: UIView = {
+        let view = UIView()
+        //view.backgroundColor = .systemOrange
+        return view
+    }()
+    
+    lazy var rightView2: UIView = {
+        let view = UIView()
+        //view.backgroundColor = .systemOrange
+        return view
+    }()
+    
+    lazy var clearButton1: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "x.circle"), for: UIControl.State.normal)
+        button.setTitleColor(.lightGray, for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(clearButton1DidTapped), for: UIControl.Event.touchUpInside)
+        return button
+    }()
+    
+    lazy var clearButton2: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "x.circle"), for: UIControl.State.normal)
+        button.setTitleColor(.lightGray, for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(clearButton2DidTapped), for: UIControl.Event.touchUpInside)
+        return button
+    }()
+    
+    lazy var hidePWButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "eye.filled"), for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(hidePWButtonDidTapped), for: UIControl.Event.touchUpInside)
+        return button
     }()
     
     lazy var loginButton: UIButton = {
@@ -113,8 +153,6 @@ class LoginViewController: UIViewController {
         button.setAttributedTitle(attributedStirng1, for: UIControl.State.normal)
         button.setAttributedTitle(attributedStirng2, for: UIControl.State.highlighted)
         button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 400)
-        //button.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.normal)
-        //button.setTitleColor(UIColor(named: "gray3"), for: UIControl.State.highlighted)
         button.addTarget(self, action: #selector(makeNicknameButtonDidTapped), for: UIControl.Event.touchUpInside)
         return button
     }()
@@ -148,7 +186,7 @@ class LoginViewController: UIViewController {
     private func configureHierachy() {
         [self.titleLabel,
          self.idTextField,
-         self.passwordTextField,
+         self.pwTextField,
          self.loginButton,
          self.findIDButton,
          self.findPWButton,
@@ -157,12 +195,23 @@ class LoginViewController: UIViewController {
         ].forEach { view in
             self.view.addSubview(view)
         }
+        
+        self.rightView1.addSubview(self.clearButton1)
+        self.rightView2.addSubview(self.clearButton2)
+        self.rightView2.addSubview(self.hidePWButton)
+        
     }
     
     private func setLayout() {
         [self.titleLabel,
          self.idTextField,
-         self.passwordTextField,
+         self.pwTextField,
+         self.rightView1,
+         self.clearButton1,
+         self.rightView2,
+         self.clearButton2,
+         self.hidePWButton,
+         
          self.loginButton,
          self.findIDButton,
          self.findPWButton,
@@ -175,19 +224,26 @@ class LoginViewController: UIViewController {
         self.titleLabel.snp.makeConstraints { label in
             label.centerX.equalToSuperview()
             label.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(90)
-            //label.leading.equalToSuperview().offset(16)
-            //label.trailing.equalToSuperview().offset(-16)
         }
         
         self.idTextField.snp.makeConstraints { tf in
-            //tf.centerX.equalToSuperview()
             tf.top.equalTo(self.titleLabel.snp.bottom).offset(30)
             tf.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(20)
             tf.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-20)
             tf.height.equalTo(50)
         }
         
-        self.passwordTextField.snp.makeConstraints { tf in
+        self.rightView1.snp.makeConstraints { view in
+            view.width.equalTo(self.clearButton1.snp.width).offset(20)
+            view.height.equalTo(self.clearButton1.snp.height)
+        }
+        
+        self.clearButton1.snp.makeConstraints { btn in
+            btn.centerX.equalToSuperview()
+            btn.centerY.equalToSuperview()
+        }
+        
+        self.pwTextField.snp.makeConstraints { tf in
             //tf.centerX.equalToSuperview()
             tf.top.equalTo(self.idTextField.snp.bottom).offset(10)
             tf.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(20)
@@ -195,9 +251,24 @@ class LoginViewController: UIViewController {
             tf.height.equalTo(52)
         }
         
+        self.rightView2.snp.makeConstraints { view in
+            view.height.equalTo(self.hidePWButton.snp.height)
+        }
+        
+        self.clearButton2.snp.makeConstraints { btn in
+            btn.centerY.equalToSuperview()
+            btn.leading.equalToSuperview().offset(10)
+        }
+        
+        self.hidePWButton.snp.makeConstraints { btn in
+            btn.centerY.equalToSuperview()
+            btn.leading.equalTo(self.clearButton2.snp.trailing).offset(10)
+            btn.trailing.equalToSuperview().offset(-10)
+        }
+        
         self.loginButton.snp.makeConstraints { btn in
             btn.centerX.equalToSuperview()
-            btn.top.equalTo(self.passwordTextField.snp.bottom).offset(21)
+            btn.top.equalTo(self.pwTextField.snp.bottom).offset(21)
             btn.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(20)
             btn.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-20)
             btn.height.equalTo(52)
@@ -227,6 +298,19 @@ class LoginViewController: UIViewController {
         
     }
     
+    
+    @objc private func clearButton1DidTapped() {
+        print(#function)
+    }
+    
+    @objc private func clearButton2DidTapped() {
+        print(#function)
+    }
+    
+    @objc private func hidePWButtonDidTapped() {
+        print(#function)
+    }
+    
     @objc func loginButtonDidTapped() {
         print(#function)
     }
@@ -247,18 +331,42 @@ class LoginViewController: UIViewController {
         print(#function)
     }
     
+    @objc private func idTextFieldEditingChanged() {
+        print(#function)
+        if self.idTextField.text!.isEmpty {
+            self.clearButton1.isHidden = true
+        } else {
+            self.clearButton1.isHidden = false
+        }
+    }
+    
+    @objc private func pwTextFieldEditingChanged() {
+        print(#function)
+        if self.pwTextField.text!.isEmpty {
+            self.clearButton2.isHidden = true
+        } else {
+            self.clearButton2.isHidden = false
+        }
+    }
+    
 }
 
 
 extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print(#function)
         textField.layer.borderWidth = 1
+        
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         textField.layer.borderWidth = 0
+        
         return true
     }
     
