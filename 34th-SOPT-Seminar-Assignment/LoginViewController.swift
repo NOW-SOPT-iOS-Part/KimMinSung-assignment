@@ -10,7 +10,7 @@ import SnapKit
 
 class LoginViewController: UIViewController {
     
-    private var nickName: String?
+    private var nickname: String?
     private var id: String!
     
     let titleLabel: UILabel = {
@@ -352,8 +352,7 @@ class LoginViewController: UIViewController {
         print(#function)
         let id = self.idTextField.text!
         let nN: String? = "Hello"
-        //let welcomeVC = WelcomeViewController(nickName: self.nickName, id: id)
-        let welcomeVC = WelcomeViewController(nickName: nN, id: id)
+        let welcomeVC = WelcomeViewController(nickname: nN, id: id)
         welcomeVC.modalPresentationStyle = .fullScreen
         self.present(welcomeVC, animated: true)
     }
@@ -372,6 +371,15 @@ class LoginViewController: UIViewController {
     
     @objc private func makeNicknameButtonDidTapped() {
         print(#function)
+        
+        let makeNicknameVC = MakeNicknameViewController()
+        makeNicknameVC.modalPresentationStyle = .formSheet
+        if let sheet = makeNicknameVC.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 24.0
+        }
+        self.present(makeNicknameVC, animated: true)
     }
     
     @objc private func idTextFieldEditingChanged() {

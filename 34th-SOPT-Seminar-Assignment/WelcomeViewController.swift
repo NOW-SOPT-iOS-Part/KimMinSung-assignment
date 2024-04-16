@@ -10,7 +10,7 @@ import SnapKit
 
 class WelcomeViewController: UIViewController {
     
-    var nickName: String?
+    var nickname: String?
     var id: String
     
     let logoImgView: UIImageView = {
@@ -26,7 +26,7 @@ class WelcomeViewController: UIViewController {
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.pretendardFont(ofSize: 23, weight: 700)
-        label.text = "\(self.nickName ?? self.id)님\n반가워요!"
+        label.text = "\(self.nickname ?? self.id)님\n반가워요!"
         label.numberOfLines = 2
         return label
     }()
@@ -43,8 +43,8 @@ class WelcomeViewController: UIViewController {
     }()
     
     
-    init(nickName: String? = nil, id: String) {
-        self.nickName = nickName
+    init(nickname: String? = nil, id: String) {
+        self.nickname = nickname
         self.id = id
         super.init(nibName: nil, bundle: nil)
     }
