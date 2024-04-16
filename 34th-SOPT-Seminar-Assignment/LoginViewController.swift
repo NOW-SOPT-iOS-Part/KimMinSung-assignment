@@ -346,6 +346,9 @@ class LoginViewController: UIViewController {
     
     @objc func loginButtonDidTapped() {
         print(#function)
+        let welcomeVC = WelcomeViewController()
+        welcomeVC.modalPresentationStyle = .fullScreen
+        self.present(welcomeVC, animated: true)
     }
     
     @objc private func findIDButtonDidTapped() {
