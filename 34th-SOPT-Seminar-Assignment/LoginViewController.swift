@@ -10,6 +10,9 @@ import SnapKit
 
 class LoginViewController: UIViewController {
     
+    private var nickName: String?
+    private var id: String!
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "TVING ID 로그인"
@@ -36,6 +39,7 @@ class LoginViewController: UIViewController {
         textField.layer.borderColor = UIColor(named: "gray2")?.cgColor
         textField.backgroundColor = UIColor(named: "gray4")
         textField.delegate = self
+        textField.keyboardType = .emailAddress
         textField.addTarget(self, action: #selector(idTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
         return textField
     }()
@@ -346,7 +350,10 @@ class LoginViewController: UIViewController {
     
     @objc func loginButtonDidTapped() {
         print(#function)
-        let welcomeVC = WelcomeViewController()
+        let id = self.idTextField.text!
+        let nN: String? = "Hello"
+        //let welcomeVC = WelcomeViewController(nickName: self.nickName, id: id)
+        let welcomeVC = WelcomeViewController(nickName: nN, id: id)
         welcomeVC.modalPresentationStyle = .fullScreen
         self.present(welcomeVC, animated: true)
     }

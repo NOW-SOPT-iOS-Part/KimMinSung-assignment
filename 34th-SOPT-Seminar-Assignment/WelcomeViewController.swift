@@ -10,6 +10,9 @@ import SnapKit
 
 class WelcomeViewController: UIViewController {
     
+    var nickName: String?
+    var id: String
+    
     let logoImgView: UIImageView = {
         let logoImage = UIImage(named: "tving.logo.box")
         let imageView = UIImageView(image: logoImage)
@@ -18,12 +21,12 @@ class WelcomeViewController: UIViewController {
         return imageView
     }()
     
-    let welcomeMessageLabel: UILabel = {
+    lazy var welcomeMessageLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.pretendardFont(ofSize: 23, weight: 700)
-        label.text = "님\n반가워요!"
+        label.text = "\(self.nickName ?? self.id)님\n반가워요!"
         label.numberOfLines = 2
         return label
     }()
@@ -38,6 +41,17 @@ class WelcomeViewController: UIViewController {
         button.addTarget(self, action: #selector(goToMainButtonDidTapped), for: UIControl.Event.touchUpInside)
         return button
     }()
+    
+    
+    init(nickName: String? = nil, id: String) {
+        self.nickName = nickName
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +97,6 @@ class WelcomeViewController: UIViewController {
     
     @objc private func goToMainButtonDidTapped() {
         print(#function)
-        self.dismiss(animated: true)
     }
     
 }
