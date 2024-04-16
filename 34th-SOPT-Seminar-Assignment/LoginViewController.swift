@@ -99,6 +99,7 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.setTitle("로그인하기", for: UIControl.State.normal)
         button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
+        button.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.normal)
         button.backgroundColor = .clear
         button.clipsToBounds = true
         button.layer.cornerRadius = 3
@@ -298,15 +299,38 @@ class LoginViewController: UIViewController {
         
     }
     
+    private func checkLoginButtonColor() {
+        if !self.idTextField.text!.isEmpty && !self.pwTextField.text!.isEmpty {
+            self.enableLoginButton()
+        } else {
+            self.disableLoginButton()
+        }
+    }
+    
+    private func enableLoginButton() {
+        self.loginButton.backgroundColor = UIColor(named: "TVING_Red")
+        self.loginButton.layer.borderWidth = 0
+        self.loginButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        self.loginButton.isEnabled = true
+    }
+    
+    private func disableLoginButton() {
+        self.loginButton.backgroundColor = .clear
+        self.loginButton.layer.borderWidth = 0.5
+        self.loginButton.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.normal)
+        self.loginButton.isEnabled = false
+    }
     
     @objc private func clearButton1DidTapped() {
         print(#function)
         self.idTextField.text = ""
+        self.disableLoginButton()
     }
     
     @objc private func clearButton2DidTapped() {
         print(#function)
         self.pwTextField.text = ""
+        self.disableLoginButton()
     }
     
     @objc private func hidePWButtonDidTapped() {
@@ -347,6 +371,7 @@ class LoginViewController: UIViewController {
         } else {
             self.clearButton1.isHidden = false
         }
+        self.checkLoginButtonColor()
     }
     
     @objc private func pwTextFieldEditingChanged() {
@@ -356,6 +381,7 @@ class LoginViewController: UIViewController {
         } else {
             self.clearButton2.isHidden = false
         }
+        self.checkLoginButtonColor()
     }
     
 }
