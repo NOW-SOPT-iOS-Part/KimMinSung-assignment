@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4E2EBB392BCE927800EA5EE6 /* MakeNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB382BCE927800EA5EE6 /* MakeNickNameViewController.swift */; };
+		4E2EBB3B2BCEA0F400EA5EE6 /* FindIDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3A2BCEA0F400EA5EE6 /* FindIDWebViewController.swift */; };
+		4E2EBB3D2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3C2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift */; };
+		4E2EBB3F2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */; };
 		4EBDEBDD2BCAC2720061986D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */; };
 		4EBDEBDF2BCAC2720061986D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */; };
 		4EBDEBE12BCAC2720061986D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBE02BCAC2720061986D /* ViewController.swift */; };
@@ -52,6 +55,9 @@
 
 /* Begin PBXFileReference section */
 		4E2EBB382BCE927800EA5EE6 /* MakeNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeNickNameViewController.swift; sourceTree = "<group>"; };
+		4E2EBB3A2BCEA0F400EA5EE6 /* FindIDWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDWebViewController.swift; sourceTree = "<group>"; };
+		4E2EBB3C2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordWebViewController.swift; sourceTree = "<group>"; };
+		4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAccountWebViewController.swift; sourceTree = "<group>"; };
 		4EBDEBD92BCAC2720061986D /* 34th-SOPT-Seminar-Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "34th-SOPT-Seminar-Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +145,9 @@
 				4EBDEC192BCACFAF0061986D /* LoginViewController.swift */,
 				4EBDEC1B2BCACFB80061986D /* WelcomeViewController.swift */,
 				4E2EBB382BCE927800EA5EE6 /* MakeNickNameViewController.swift */,
+				4E2EBB3A2BCEA0F400EA5EE6 /* FindIDWebViewController.swift */,
+				4E2EBB3C2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift */,
+				4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */,
 				4EBDEBE52BCAC2720061986D /* Assets.xcassets */,
 				4EBDEBE72BCAC2720061986D /* LaunchScreen.storyboard */,
 				4EBDEBEA2BCAC2720061986D /* Info.plist */,
@@ -326,7 +335,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBDEBE12BCAC2720061986D /* ViewController.swift in Sources */,
+				4E2EBB3B2BCEA0F400EA5EE6 /* FindIDWebViewController.swift in Sources */,
+				4E2EBB3F2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift in Sources */,
 				4EBDEBDD2BCAC2720061986D /* AppDelegate.swift in Sources */,
+				4E2EBB3D2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift in Sources */,
 				4EBDEBDF2BCAC2720061986D /* SceneDelegate.swift in Sources */,
 				4EBDEC1E2BCBC4D60061986D /* UIFontExtension.swift in Sources */,
 				4E2EBB392BCE927800EA5EE6 /* MakeNickNameViewController.swift in Sources */,

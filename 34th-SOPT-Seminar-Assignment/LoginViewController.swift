@@ -59,6 +59,7 @@ class LoginViewController: UIViewController {
         textField.layer.cornerRadius = 3
         textField.layer.borderColor = UIColor(named: "gray2")?.cgColor
         textField.backgroundColor = UIColor(named: "gray4")
+        textField.isSecureTextEntry = true
         textField.delegate = self
         textField.addTarget(self, action: #selector(pwTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
         return textField
@@ -358,14 +359,17 @@ class LoginViewController: UIViewController {
     
     @objc private func findIDButtonDidTapped() {
         print(#function)
+        self.present(FindIDWebViewController(), animated: true)
     }
     
     @objc private func findPWButtonDidTapped() {
         print(#function)
+        self.present(FindPasswordWebViewController(), animated: true)
     }
     
     @objc private func makeAccountButtonDidTapped() {
         print(#function)
+        self.present(MakeAccountWebViewController(), animated: true)
     }
     
     @objc private func makeNicknameButtonDidTapped() {
