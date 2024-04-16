@@ -51,10 +51,8 @@ class MakeNicknameViewController: UIViewController {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        
         self.view.endEditing(true)
     }
-    
     
     private func configureHiearchy() {
         [self.titleLabel, self.nicknameTextField, self.saveNicknameButton].forEach { view in
@@ -96,6 +94,9 @@ class MakeNicknameViewController: UIViewController {
             alertCon.addAction(okAction)
             self.present(alertCon, animated: true)
         } else {
+            
+            guard let loginVC = self.presentingViewController as? LoginViewController else { fatalError() }
+            loginVC.nickname = newNickname
             self.dismiss(animated: true)
         }
         

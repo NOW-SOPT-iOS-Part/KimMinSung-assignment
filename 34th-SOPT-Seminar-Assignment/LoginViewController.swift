@@ -10,8 +10,8 @@ import SnapKit
 
 class LoginViewController: UIViewController {
     
-    private var nickname: String?
-    private var id: String!
+    var nickname: String?
+    var id: String!
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -351,8 +351,7 @@ class LoginViewController: UIViewController {
     @objc func loginButtonDidTapped() {
         print(#function)
         let id = self.idTextField.text!
-        let nN: String? = "Hello"
-        let welcomeVC = WelcomeViewController(nickname: nN, id: id)
+        let welcomeVC = WelcomeViewController(nickname: nickname, id: id)
         welcomeVC.modalPresentationStyle = .fullScreen
         self.present(welcomeVC, animated: true)
     }
