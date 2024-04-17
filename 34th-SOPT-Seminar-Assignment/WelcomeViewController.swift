@@ -61,8 +61,6 @@ class WelcomeViewController: UIViewController {
         self.setLayout()
     }
     
-    
-    
     private func configureHierarchy() {
         [self.logoImgView, self.welcomeMessageLabel, self.goToMainButton].forEach { view in
             self.view.addSubview(view)
@@ -97,6 +95,7 @@ class WelcomeViewController: UIViewController {
     
     @objc private func goToMainButtonDidTapped() {
         print(#function)
+        self.dismiss(animated: true)
     }
     
 }

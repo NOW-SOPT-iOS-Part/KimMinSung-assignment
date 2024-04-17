@@ -47,6 +47,7 @@ class MakeNicknameViewController: UIViewController {
         self.view.backgroundColor = .white
         self.configureHiearchy()
         self.setLayout()
+        self.textFieldInitialSetup()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -85,6 +86,21 @@ class MakeNicknameViewController: UIViewController {
         }
     }
     
+    private func textFieldInitialSetup() {
+        guard let loginView = self.presentingViewController as? LoginViewController else { fatalError() }
+        guard let nickName = loginView.nickname else { return }
+        self.nicknameTextField.text = nickName
+    }
+    
+    private func checkIfValidNickName(string: String) -> Bool {
+        let nickNameRegEx = "^[가-힣]{1,10}$"
+        if string.range(of: nickNameRegEx, options: .regularExpression) != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     @objc private func saveNicknameButtonDidTapped() {
         print(#function)
         let newNickname = self.nicknameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -93,8 +109,14 @@ class MakeNicknameViewController: UIViewController {
             let okAction = UIAlertAction(title: "이게 아요야", style: UIAlertAction.Style.default)
             alertCon.addAction(okAction)
             self.present(alertCon, animated: true)
-        } else {
             
+        } else if !checkIfValidNickName(string: newNickname) {
+            let alertCon = UIAlertController(title: "올바른 형식이 아닙니다.", message: "닉네임은 1~10자의 한글로만 구성되어야 합니다.", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "이게 아요야", style: UIAlertAction.Style.default)
+            alertCon.addAction(okAction)
+            self.present(alertCon, animated: true)
+            
+        } else {
             guard let loginVC = self.presentingViewController as? LoginViewController else { fatalError() }
             loginVC.nickname = newNickname
             self.dismiss(animated: true)
