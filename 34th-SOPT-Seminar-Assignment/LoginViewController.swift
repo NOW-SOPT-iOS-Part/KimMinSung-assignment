@@ -95,7 +95,7 @@ class LoginViewController: UIViewController {
     
     lazy var hidePWButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "eye.filled"), for: UIControl.State.normal)
+        button.setImage(UIImage(named: "eye.slash"), for: UIControl.State.normal)
         button.addTarget(self, action: #selector(hidePWButtonDidTapped), for: UIControl.Event.touchUpInside)
         return button
     }()
