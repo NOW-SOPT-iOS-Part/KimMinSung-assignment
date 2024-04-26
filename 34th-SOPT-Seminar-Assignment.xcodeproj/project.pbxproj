@@ -11,6 +11,12 @@
 		4E2EBB3B2BCEA0F400EA5EE6 /* FindIDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3A2BCEA0F400EA5EE6 /* FindIDWebViewController.swift */; };
 		4E2EBB3D2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3C2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift */; };
 		4E2EBB3F2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */; };
+		4E7016252BDBEE43008B2F37 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7016242BDBEE43008B2F37 /* HomeView.swift */; };
+		4E7016272BDBEE9B008B2F37 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7016262BDBEE9B008B2F37 /* HomeViewController.swift */; };
+		4E7016292BDBEFD9008B2F37 /* UITabBarConExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7016282BDBEFD9008B2F37 /* UITabBarConExtensions.swift */; };
+		4E70162C2BDBF473008B2F37 /* UpcomingContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E70162B2BDBF473008B2F37 /* UpcomingContentsViewController.swift */; };
+		4E70162E2BDBF4EB008B2F37 /* SearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E70162D2BDBF4EB008B2F37 /* SearchingViewController.swift */; };
+		4E7016302BDBF53D008B2F37 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E70162F2BDBF53D008B2F37 /* HistoryViewController.swift */; };
 		4EBDEBDD2BCAC2720061986D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */; };
 		4EBDEBDF2BCAC2720061986D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */; };
 		4EBDEBE12BCAC2720061986D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBDEBE02BCAC2720061986D /* ViewController.swift */; };
@@ -58,6 +64,12 @@
 		4E2EBB3A2BCEA0F400EA5EE6 /* FindIDWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDWebViewController.swift; sourceTree = "<group>"; };
 		4E2EBB3C2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordWebViewController.swift; sourceTree = "<group>"; };
 		4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAccountWebViewController.swift; sourceTree = "<group>"; };
+		4E7016242BDBEE43008B2F37 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4E7016262BDBEE9B008B2F37 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4E7016282BDBEFD9008B2F37 /* UITabBarConExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarConExtensions.swift; sourceTree = "<group>"; };
+		4E70162B2BDBF473008B2F37 /* UpcomingContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingContentsViewController.swift; sourceTree = "<group>"; };
+		4E70162D2BDBF4EB008B2F37 /* SearchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
+		4E70162F2BDBF53D008B2F37 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		4EBDEBD92BCAC2720061986D /* 34th-SOPT-Seminar-Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "34th-SOPT-Seminar-Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +124,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E7016212BDBEE11008B2F37 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				4E7016242BDBEE43008B2F37 /* HomeView.swift */,
+				4E7016262BDBEE9B008B2F37 /* HomeViewController.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		4E70162A2BDBF3EA008B2F37 /* otherViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4E70162B2BDBF473008B2F37 /* UpcomingContentsViewController.swift */,
+				4E70162D2BDBF4EB008B2F37 /* SearchingViewController.swift */,
+				4E70162F2BDBF53D008B2F37 /* HistoryViewController.swift */,
+			);
+			path = otherViewControllers;
+			sourceTree = "<group>";
+		};
 		4EBDEBD02BCAC2710061986D = {
 			isa = PBXGroup;
 			children = (
@@ -136,8 +167,11 @@
 		4EBDEBDB2BCAC2720061986D /* 34th-SOPT-Seminar-Assignment */ = {
 			isa = PBXGroup;
 			children = (
+				4E70162A2BDBF3EA008B2F37 /* otherViewControllers */,
+				4E7016212BDBEE11008B2F37 /* HomeView */,
 				4EBDEC1F2BCBC52E0061986D /* PretendardFont */,
 				4EBDEC1D2BCBC4D60061986D /* UIFontExtension.swift */,
+				4E7016282BDBEFD9008B2F37 /* UITabBarConExtensions.swift */,
 				4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */,
 				4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */,
 				4EBDEBE02BCAC2720061986D /* ViewController.swift */,
@@ -336,14 +370,20 @@
 			files = (
 				4EBDEBE12BCAC2720061986D /* ViewController.swift in Sources */,
 				4E2EBB3B2BCEA0F400EA5EE6 /* FindIDWebViewController.swift in Sources */,
+				4E7016252BDBEE43008B2F37 /* HomeView.swift in Sources */,
 				4E2EBB3F2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift in Sources */,
+				4E7016292BDBEFD9008B2F37 /* UITabBarConExtensions.swift in Sources */,
 				4EBDEBDD2BCAC2720061986D /* AppDelegate.swift in Sources */,
 				4E2EBB3D2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift in Sources */,
 				4EBDEBDF2BCAC2720061986D /* SceneDelegate.swift in Sources */,
 				4EBDEC1E2BCBC4D60061986D /* UIFontExtension.swift in Sources */,
 				4E2EBB392BCE927800EA5EE6 /* MakeNickNameViewController.swift in Sources */,
 				4EBDEC1C2BCACFB80061986D /* WelcomeViewController.swift in Sources */,
+				4E70162E2BDBF4EB008B2F37 /* SearchingViewController.swift in Sources */,
 				4EBDEC1A2BCACFAF0061986D /* LoginViewController.swift in Sources */,
+				4E7016272BDBEE9B008B2F37 /* HomeViewController.swift in Sources */,
+				4E70162C2BDBF473008B2F37 /* UpcomingContentsViewController.swift in Sources */,
+				4E7016302BDBF53D008B2F37 /* HistoryViewController.swift in Sources */,
 				4EBDEC182BCACFA10061986D /* InitialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
