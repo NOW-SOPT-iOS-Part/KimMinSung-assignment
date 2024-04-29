@@ -13,7 +13,8 @@ extension UITabBarController {
     static func getMainTabBarCon() -> UITabBarController {
         
         let tabBarCon = UITabBarController()
-        let homeNaviCon = UINavigationController(rootViewController: HomeViewController())
+        //let homeNaviCon = UINavigationController(rootViewController: HomeViewController())
+        let homeNaviCon = UINavigationController(rootViewController: MainViewController())
         
         tabBarCon.setViewControllers([
                 homeNaviCon,
