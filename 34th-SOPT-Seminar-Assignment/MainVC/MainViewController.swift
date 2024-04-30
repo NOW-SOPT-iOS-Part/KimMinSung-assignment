@@ -13,9 +13,7 @@ class MainViewController: UIViewController {
     lazy var segmentStackViewTopConstraint = self.segmentStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0)
 
     let segmentStackView: SegmentStackView = SegmentStackView.getDefault()
-    
     let vcArray = [HomeViewController(), LiveViewController(), TVProgramViewController(), MovieViewController(), ParamountPlusViewController()]
-    
     let pageVC: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     
     // 스크롤 시 navigation bar 부분의 배경을 어둡게 하기 위해 UIView()를 배치하였음.

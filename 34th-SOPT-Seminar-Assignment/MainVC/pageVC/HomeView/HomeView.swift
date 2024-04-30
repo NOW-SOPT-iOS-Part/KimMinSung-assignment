@@ -125,6 +125,50 @@ final class HomeView: UIView {
         return horizontalRectSection
     }()
     
+    private let quickVODLayoutSection: NSCollectionLayoutSection = {
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0),
+            heightDimension: NSCollectionLayoutDimension.absolute(44)
+        )
+        
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: NSRectAlignment.top
+        )
+        
+        let horizontalRectItemSize = NSCollectionLayoutSize(
+            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0),
+            //heightDimension: NSCollectionLayoutDimension.fractionalWidth(1.0)
+            heightDimension: NSCollectionLayoutDimension.estimated(160)
+        )
+        
+        let horizontalRectItem = NSCollectionLayoutItem(layoutSize: horizontalRectItemSize)
+        
+        let horizontalRectGroupSize = NSCollectionLayoutSize(
+            widthDimension: NSCollectionLayoutDimension.absolute(160),
+            //heightDimension: NSCollectionLayoutDimension.fractionalWidth(1.0)
+            heightDimension: NSCollectionLayoutDimension.estimated(160)
+        )
+        
+        let horizontalRectGroup = NSCollectionLayoutGroup.horizontal(
+            layoutSize: horizontalRectGroupSize,
+            subitems: [horizontalRectItem]
+        )
+        horizontalRectGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        horizontalRectGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(0)
+        
+        let horizontalRectSection = NSCollectionLayoutSection(group: horizontalRectGroup)
+        horizontalRectSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15)
+        horizontalRectSection.boundarySupplementaryItems = [sectionHeader]
+        horizontalRectSection.orthogonalScrollingBehavior = UICollectionLayoutSectionOrthogonalScrollingBehavior.continuous
+        horizontalRectSection.interGroupSpacing = 8
+        
+        return horizontalRectSection
+    }()
+    
+    
     private lazy var homeCompositionalLayout: UICollectionViewCompositionalLayout = {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, env in
             switch sectionIndex {
@@ -159,8 +203,9 @@ final class HomeView: UIView {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: HomeHeaderView.reuseIdentifier
         )
-        collectionView.register(homeVerticalRectCell.self, forCellWithReuseIdentifier: homeVerticalRectCell.reuseIdentifier)
-        collectionView.register(HomeHorizontalRectCell.self, forCellWithReuseIdentifier: HomeHorizontalRectCell.reuseIdentifier)
+        collectionView.register(HomeVerticalRectCell.self, forCellWithReuseIdentifier: HomeVerticalRectCell.reuseIdentifier)
+        collectionView.register(HomeLiveContentCell.self, forCellWithReuseIdentifier: HomeLiveContentCell.reuseIdentifier)
+        collectionView.register(HomeQuickVODCell.self, forCellWithReuseIdentifier: HomeQuickVODCell.reuseIdentifier)
         
         collectionView.backgroundColor = .black
         return collectionView

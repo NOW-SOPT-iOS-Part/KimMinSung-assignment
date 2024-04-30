@@ -13,35 +13,35 @@ class HomePosterPagingCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    let vcArray: [UIViewController] = {
-        let vc1 = HomePosterViewController()
-        let vc2 = HomePosterViewController()
-        let vc3 = HomePosterViewController()
-        let vc4 = HomePosterViewController()
-        let vc5 = HomePosterViewController()
-        let vc6 = HomePosterViewController()
-        let vc7 = HomePosterViewController()
-        let vc8 = HomePosterViewController()
-        return [vc1, vc2, vc3, vc4, vc5, vc6, vc7, vc8]
-    }()
     
-    let pagingVC: UIPageViewController = {
+    var vcArray: [UIViewController]? {
+        didSet {
+            self.setPageVC()
+            self.setPageControl()
+        }
+    }
+    
+    private var currentPage: Int = 0
+    
+    private let pagingVC: UIPageViewController = {
         let pagingVC = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-        pagingVC.view.isUserInteractionEnabled = true
+        pagingVC.view.isUserInteractionEnabled = false
         return pagingVC
     }()
     
-    let pageControl: UIPageControl = {
+    private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = 8
+        //pageControl.numberOfPages = 0
         pageControl.currentPage = 0
         return pageControl
     }()
     
     
+    
     override init(frame: CGRect) {
+        print(#function)
         super.init(frame: frame)
-        
+    
         self.configureViewHierarchy()
         self.setAutoLayout()
         self.setPageVC()
@@ -72,11 +72,14 @@ class HomePosterPagingCell: UICollectionViewCell {
     }
     
     private func setPageVC() {
-        self.pagingVC.setViewControllers([self.vcArray[0]], direction: .forward, animated: true)
+        guard let vcArray else { return }
+        self.pagingVC.setViewControllers([vcArray[self.currentPage]], direction: .forward, animated: true)
         self.pagingVC.view.isUserInteractionEnabled = true
     }
     
     private func setPageControl() {
+        guard let vcArray else { return }
+        self.pageControl.numberOfPages = vcArray.count
         self.pageControl.addTarget(self, action: #selector(pageControlValueChanged), for: UIControl.Event.valueChanged)
         // pageControl의 크기 조정
         let pageControlSize = self.pageControl.intrinsicContentSize
@@ -95,15 +98,16 @@ class HomePosterPagingCell: UICollectionViewCell {
     }
     
     @objc private func pageControlValueChanged(sender: UIPageControl) {
-        let oldIndex = self.vcArray.firstIndex(of: self.pagingVC.viewControllers![0])!
+        guard let vcArray else { return }
+        let oldIndex = vcArray.firstIndex(of: self.pagingVC.viewControllers![0])!
         let newIndex = sender.currentPage
         print("oldIndex: ", oldIndex)
         print("newIndex: ", newIndex)
         
         if oldIndex < newIndex {
-            self.pagingVC.setViewControllers([self.vcArray[sender.currentPage]], direction: .forward, animated: true)
+            self.pagingVC.setViewControllers([vcArray[sender.currentPage]], direction: .forward, animated: true)
         } else {
-            self.pagingVC.setViewControllers([self.vcArray[sender.currentPage]], direction: .reverse, animated: true)
+            self.pagingVC.setViewControllers([vcArray[sender.currentPage]], direction: .reverse, animated: true)
         }
         
     }
@@ -113,25 +117,30 @@ class HomePosterPagingCell: UICollectionViewCell {
 extension HomePosterPagingCell: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let index = self.vcArray.firstIndex(of: viewController) else { return nil }
+        guard let vcArray else { return UIViewController() }
+        guard let index = vcArray.firstIndex(of: viewController) else { return nil }
         let previousIndex = index - 1
         if previousIndex < 0 { return nil }
-        return self.vcArray[previousIndex]
+        return vcArray[previousIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let index = self.vcArray.firstIndex(of: viewController) else { return nil }
+        guard let vcArray else { return UIViewController() }
+        guard let index = vcArray.firstIndex(of: viewController) else { return nil }
         let nextIndex = index + 1
-        if nextIndex >= self.vcArray.count { return nil }
-        return self.vcArray[nextIndex]
+        if nextIndex >= vcArray.count { return nil }
+        return vcArray[nextIndex]
     }
     
 }
 
 extension HomePosterPagingCell: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
+        guard let vcArray else { return }
         if completed {
-            let newIndex = self.vcArray.firstIndex(of: pageViewController.viewControllers![0])!
+            let newIndex = vcArray.firstIndex(of: pageViewController.viewControllers![0])!
+            self.currentPage = newIndex
             self.pageControl.currentPage = newIndex
         }
     }

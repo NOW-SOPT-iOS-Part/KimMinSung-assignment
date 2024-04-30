@@ -9,19 +9,19 @@ import UIKit
 
 class HomePosterViewController: UIViewController {
     
-    let posterImageView: UIImageView = {
+    private let posterImageView: UIImageView = {
         //let imageView = UIImageView(image: .init(systemName: "home"))
-        let imageView = UIImageView(image: .posterDocuOurGame)
+        let imageView = UIImageView(image: nil)
         imageView.backgroundColor = .systemGray3
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
-    let textLabel: UILabel = {
+    private let textLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.pretendardFont(ofSize: 14, weight: 400)
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor = .white
         label.text = """
@@ -52,6 +52,9 @@ class HomePosterViewController: UIViewController {
         }
     }
     
-    
+    func configureData(with content: ContentProtocol) {
+        self.posterImageView.image = content.image
+        self.textLabel.text = content.promotionalText
+    }
     
 }
