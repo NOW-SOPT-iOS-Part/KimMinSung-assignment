@@ -80,6 +80,7 @@ class HomePosterPagingCell: UICollectionViewCell {
     private func setPageControl() {
         guard let vcArray else { return }
         self.pageControl.numberOfPages = vcArray.count
+        self.pageControl.currentPage = self.currentPage
         self.pageControl.addTarget(self, action: #selector(pageControlValueChanged), for: UIControl.Event.valueChanged)
         // pageControl의 크기 조정
         let pageControlSize = self.pageControl.intrinsicContentSize
@@ -109,7 +110,12 @@ class HomePosterPagingCell: UICollectionViewCell {
         } else {
             self.pagingVC.setViewControllers([vcArray[sender.currentPage]], direction: .reverse, animated: true)
         }
-        
+    }
+    
+    
+    override func prepareForReuse() {
+        self.setPageVC()
+        self.setPageControl()
     }
     
 }

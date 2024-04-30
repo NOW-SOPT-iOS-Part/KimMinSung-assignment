@@ -29,7 +29,6 @@ class HomeVerticalRectCell: UICollectionViewCell {
         label.textAlignment = .left
         label.textColor = .gray2
         label.numberOfLines = 2
-        label.text = "해리포터와 마법사의 돌"
         return label
     }()
     

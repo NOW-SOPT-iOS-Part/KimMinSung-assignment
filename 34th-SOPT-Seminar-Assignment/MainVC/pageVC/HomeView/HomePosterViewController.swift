@@ -10,7 +10,6 @@ import UIKit
 class HomePosterViewController: UIViewController {
     
     private let posterImageView: UIImageView = {
-        //let imageView = UIImageView(image: .init(systemName: "home"))
         let imageView = UIImageView(image: nil)
         imageView.backgroundColor = .systemGray3
         imageView.clipsToBounds = true
@@ -24,10 +23,6 @@ class HomePosterViewController: UIViewController {
         label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor = .white
-        label.text = """
-        [7화 공개🔔] 28년만의 우승을 노린다!
-        2022년 LG트윈스의 피, 땀, 눈물 그 모든 이야기
-        """
         return label
     }()
     

@@ -51,6 +51,7 @@
 		4ED9F3F12BDD4D4300712737 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F02BDD4D4300712737 /* HomeHeaderView.swift */; };
 		4ED9F3F62BDDDF1600712737 /* HomePosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F52BDDDF1600712737 /* HomePosterViewController.swift */; };
 		4ED9F3F82BDDE26A00712737 /* HomePosterPagingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F72BDDE26A00712737 /* HomePosterPagingCell.swift */; };
+		4EEB1AAE2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB1AAD2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift */; };
 		4EEF9CD62BDF879400F4E957 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF9CD52BDF879400F4E957 /* ContentModel.swift */; };
 		4EEF9CD82BDF8C1800F4E957 /* DummyDataMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF9CD72BDF8C1800F4E957 /* DummyDataMaker.swift */; };
 		4EEF9CDA2BDFF0AD00F4E957 /* ContentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF9CD92BDFF0AD00F4E957 /* ContentProtocol.swift */; };
@@ -124,6 +125,7 @@
 		4ED9F3F02BDD4D4300712737 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		4ED9F3F52BDDDF1600712737 /* HomePosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePosterViewController.swift; sourceTree = "<group>"; };
 		4ED9F3F72BDDE26A00712737 /* HomePosterPagingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePosterPagingCell.swift; sourceTree = "<group>"; };
+		4EEB1AAD2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		4EEF9CD52BDF879400F4E957 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		4EEF9CD72BDF8C1800F4E957 /* DummyDataMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyDataMaker.swift; sourceTree = "<group>"; };
 		4EEF9CD92BDFF0AD00F4E957 /* ContentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProtocol.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				4E14B0982BDE67C50036F639 /* SegmentStackView.swift */,
 				4E14B08E2BDE44B10036F639 /* MainViewController.swift */,
+				4EEB1AAD2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift */,
 				4E1428662BDF7E530059A7BD /* pageVC */,
 			);
 			path = MainVC;
@@ -468,6 +471,7 @@
 				4E14B0972BDE5E920036F639 /* ParamountPlusViewController.swift in Sources */,
 				4EBDEC1E2BCBC4D60061986D /* UIFontExtension.swift in Sources */,
 				4E2EBB392BCE927800EA5EE6 /* MakeNickNameViewController.swift in Sources */,
+				4EEB1AAE2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift in Sources */,
 				4ED9F3F82BDDE26A00712737 /* HomePosterPagingCell.swift in Sources */,
 				4E14B0952BDE5E680036F639 /* MovieViewController.swift in Sources */,
 				4EEF9CD62BDF879400F4E957 /* ContentModel.swift in Sources */,

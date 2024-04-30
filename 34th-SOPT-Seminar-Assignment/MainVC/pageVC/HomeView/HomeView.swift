@@ -23,8 +23,7 @@ final class HomeView: UIView {
         
         let pagingGroupSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0),
-            // 피그마에 있는 상단 페이징 뷰의 가로/세로 비율이 3 : 4
-            heightDimension: NSCollectionLayoutDimension.estimated(screenSize.width * 1.33)
+            heightDimension: NSCollectionLayoutDimension.estimated(screenSize.width * 1.5)
         )
         
         let pagingGroup = NSCollectionLayoutGroup.horizontal(
@@ -34,7 +33,6 @@ final class HomeView: UIView {
         
         let pagingSection = NSCollectionLayoutSection(group: pagingGroup)
         pagingSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        //pagingSection.boundarySupplementaryItems = [sectionHeader]
         
         return pagingSection
     }()
@@ -54,7 +52,6 @@ final class HomeView: UIView {
         
         let verticalRectItemSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0),
-            //heightDimension: NSCollectionLayoutDimension.fractionalWidth(1.0)
             heightDimension: NSCollectionLayoutDimension.estimated(200)
         )
         
@@ -62,7 +59,6 @@ final class HomeView: UIView {
         
         let verticalRectGroupSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.absolute(98),
-//            heightDimension: NSCollectionLayoutDimension.fractionalWidth(1.0)
             heightDimension: NSCollectionLayoutDimension.estimated(200)
         )
         
@@ -97,7 +93,6 @@ final class HomeView: UIView {
         
         let horizontalRectItemSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0),
-            //heightDimension: NSCollectionLayoutDimension.fractionalWidth(1.0)
             heightDimension: NSCollectionLayoutDimension.estimated(160)
         )
         
@@ -105,7 +100,6 @@ final class HomeView: UIView {
         
         let horizontalRectGroupSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.absolute(160),
-            //heightDimension: NSCollectionLayoutDimension.fractionalWidth(1.0)
             heightDimension: NSCollectionLayoutDimension.estimated(160)
         )
         
@@ -140,7 +134,6 @@ final class HomeView: UIView {
         
         let horizontalRectItemSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0),
-            //heightDimension: NSCollectionLayoutDimension.fractionalWidth(1.0)
             heightDimension: NSCollectionLayoutDimension.estimated(160)
         )
         
@@ -148,7 +141,6 @@ final class HomeView: UIView {
         
         let horizontalRectGroupSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.absolute(160),
-            //heightDimension: NSCollectionLayoutDimension.fractionalWidth(1.0)
             heightDimension: NSCollectionLayoutDimension.estimated(160)
         )
         

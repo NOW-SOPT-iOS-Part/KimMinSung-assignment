@@ -80,7 +80,7 @@ class SegmentStackView: UIStackView {
         let buttonLabelFrame = selectedButton.convert(buttonLabel.frame, to: self)
         self.underbarLeadingConstraint.constant = buttonLabelFrame.origin.x
         self.underbarTrailingConstraint.constant = buttonLabelFrame.origin.x + buttonLabel.bounds.width
-        self.layoutIfNeeded()
+        self.layoutIfNeeded() // 애니메이션 구현하기 위함
     }
     
 }

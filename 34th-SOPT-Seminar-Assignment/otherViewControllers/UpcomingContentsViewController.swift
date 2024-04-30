@@ -12,7 +12,7 @@ class UpcomingContentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .systemGreen
+        self.view.backgroundColor = .systemGray2
         // Do any additional setup after loading the view.
     }
     

@@ -39,8 +39,9 @@ class MainViewController: UIViewController {
         
         /*
          상단 segmentStackView의 언더비 초기 위치를 설정하기 위해서 호출.
-         setUnderbarHorizontalLayout 함수가 각 버튼(의 titleLabel)의 frame에 접근해서인가,
-         view가 그려지기 전에는 해당 함수를 호출해도 언더바가 맞게 그려지지 않더라구요..
+         setUnderbarHorizontalLayout 함수가 각 버튼(의 titleLabel)의 frame에 접근하는데, 아마 그것 때문인지
+         view가 그려지기 전에는 해당 함수를 호출해도 언더바가 맞게 그려지지 않더라구요..(viewWillAppear에서도 안됐음...
+         viewDidAppear에 그려지는 것이 약간 찜찜한데(약간의 시간차가 있음), 혹시 더 좋은 위치가 있으면 그곳에서 호출하면 좋을 것 같음!
          */
         guard let currentIndex =  self.vcArray.firstIndex(of: self.pageVC.viewControllers![0]) else { return }
         
@@ -126,7 +127,6 @@ class MainViewController: UIViewController {
     private func setNaviBar() {
         
         self.navigationController?.navigationBar.tintColor = .white
-        //self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         let logoButton: UIButton = {
             let button = UIButton(type: .system) // type을 system으로 한 것은 navigationBar의 tintColor가 적용되게 하기 위함.
@@ -155,7 +155,7 @@ class MainViewController: UIViewController {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: 32).isActive = true
             button.heightAnchor.constraint(equalToConstant: 32).isActive = true
-            button.addTarget(self, action: #selector(hello), for: .touchUpInside)
+            button.addTarget(self, action: #selector(profileButtonDidTapped), for: .touchUpInside)
             return button
         }()
         
@@ -164,7 +164,7 @@ class MainViewController: UIViewController {
             image: .init(systemName: "airplayvideo"),
             style: .plain,
             target: self,
-            action: #selector(hello)
+            action: #selector(airPlayBarButtonDidTapped)
         )
         let profileBarButtonItem = UIBarButtonItem(customView: profileButton)
         
@@ -173,13 +173,13 @@ class MainViewController: UIViewController {
         
     }
     
-    @objc func hello() {
-        print(#function)
+    @objc private func profileButtonDidTapped() {
+        // ProfileSettingViewController는 미완...
+        self.navigationController?.pushViewController(ProfileSettingsViewController(), animated: true)
     }
     
-    @objc func pushProfile() {
+    @objc func airPlayBarButtonDidTapped() {
         print(#function)
-        // profile 뷰컨트롤러 present 구현...
     }
     
     override func viewSafeAreaInsetsDidChange() {
@@ -223,6 +223,9 @@ extension MainViewController: UIPageViewControllerDelegate {
 
 extension MainViewController: UICollectionViewDelegate {
     
+    
+    // 해당 함수가 호출될 때마다 self.segmentStackView와 navigation bar의 위치를 조정하여, stick한 뷰를 구현
+    // 오토레이아웃을 사용했기 때문에, frame에 직접 값을 할당하는 것 보다는 NSLayoutConstraint의 constant에 값을 할당하는 방식으로 구현
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let naviBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0.0
         let yOffset = scrollView.contentOffset.y

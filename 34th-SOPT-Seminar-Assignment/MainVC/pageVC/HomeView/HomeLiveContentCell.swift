@@ -27,7 +27,6 @@ class HomeLiveContentCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.pretendardFont(ofSize: 15, weight: 800)
         label.textColor = .white
-        label.text = "1"
         label.transform = CGAffineTransform(1.0, 0.0, -0.3, 1.0, 0.0, 0.0)
         return label
     }()
@@ -36,7 +35,6 @@ class HomeLiveContentCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.pretendardFont(ofSize: 10, weight: 400)
         label.textColor = .white
-        label.text = "Mnet"
         return label
     }()
     
@@ -45,7 +43,6 @@ class HomeLiveContentCell: UICollectionViewCell {
         label.font = UIFont.pretendardFont(ofSize: 10, weight: 400)
         label.textAlignment = .left
         label.textColor = .gray2
-        label.text = "보이즈 플래닛 12화"
         return label
     }()
     
@@ -53,7 +50,6 @@ class HomeLiveContentCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.pretendardFont(ofSize: 10, weight: 400)
         label.textColor = .gray2
-        label.text = "80.0%"
         return label
     }()
     

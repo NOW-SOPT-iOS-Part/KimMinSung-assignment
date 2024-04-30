@@ -18,12 +18,32 @@ final class HomeHeaderView: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.pretendardFont(ofSize: 15, weight: 600)
         label.textColor = .white
-        label.text = "티빙에서 꼭 봐야하는 콘텐츠"
         return label
     }()
     
     // viewAllButton font는...?
     private let viewAllButton: UIButton = {
+        
+        let button = UIButton()
+        button.setTitle("전체보기", for: .normal)
+        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 11, weight: 500)
+        button.tintColor = .gray2
+        button.setTitleColor(.gray2, for: .normal)
+        button.setTitleColor(.gray3, for: .highlighted)
+        button.setImage(UIImage(systemName: "chevron.right"), for: UIControl.State.normal)
+        button.semanticContentAttribute = .forceRightToLeft // 버튼 안의 > 모양 이미지를 버튼 안쪽에서 오른쪽에 위치시키기 위함
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 4, left: 3, bottom: 4, right: 0)
+        
+        return button
+        
+        /*
+         아래와 같이 configuration으로 도 구현할까 생각해 보았는데,
+         configuration은 세세한 크기를 조정하는 데에 한계가 있는 것 같아 보였습니다...!(제가 틀렸을 수도)
+         그래서 우선 위와 같은 방법으로 구현하였는데,imageEdgeInsets 속성이 deprecated되었다고 노란색 경고(?)가 뜨네요...
+         (구현은 되고, 문제도 없는데 은근 찝찝함)
+         혹시 다른 방법으로 해결하신 분이 있을까요~?
+         */
         //var btnConfig = UIButton.Configuration.plain()
         //btnConfig.imagePlacement = .trailing
         //btnConfig.baseForegroundColor = .gray2
@@ -33,20 +53,7 @@ final class HomeHeaderView: UICollectionReusableView {
         //btnConfig.image = UIImage(systemName: "chevron.right")
         //let button = UIButton(configuration: btnConfig)
         
-        let button = UIButton()
-        button.setTitle("전체보기", for: .normal)
-        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 11, weight: 500)
-        button.tintColor = .gray2
-        button.setTitleColor(.gray2, for: .normal)
-        button.setTitleColor(.gray3, for: .highlighted)
-        button.setImage(UIImage(systemName: "chevron.right"), for: UIControl.State.normal)
-        button.semanticContentAttribute = .forceRightToLeft
-        button.imageView?.contentMode = .scaleAspectFit
-        button.imageEdgeInsets = UIEdgeInsets(top: 4, left: 3, bottom: 4, right: 0)
-        
-        return button
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -11,6 +11,7 @@ class HomeViewController: UIViewController {
     
     let rootView = HomeView()
     
+    // 반복문을 사용하여 코드를 줄일 수 있을 것 같음.
     let homePosterDummy = DummyDataMaker.shared.makeContentsDummy(kind: .homePoster)
     let mustSeeInTvingDummy = DummyDataMaker.shared.makeContentsDummy(kind: .mustSeeInTving)
     let popularLiveDummy = DummyDataMaker.shared.makeContentsDummy(kind: .popularLiveChannel)
@@ -37,13 +38,14 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.setNaviBar()
         self.setDelegates()
     }
     
+    /// self.rootView.collectionView의 dataSource에 self 할당
+    ///
+    /// collectionView의 delegate는 MainViewController 인스턴스에 할당하므로, 여기에서 delegate를 할당하지 않음.
     private func setDelegates() {
         self.rootView.collectionView.dataSource = self
-        /* collectionView의 delegate는 MainViewController 인스턴스에 할당 */
         //self.rootView.collectionView.delegate = self
     }
 }
@@ -101,6 +103,12 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        /*
+         원래는 아래 코드처럼,cellForItemAt 함수가 호출될 때 각 종류의 cell을 모두 dequeu해 놓고 셀이 놓일 section에 따라 분기처리하여 해당 cell을 반환할 예정이었음.
+         그러나 이렇게 할 경우 불필요하게 cell이 많이 dequeu됨을 확인할 수 있었고, 심지어는 너무 많이 dequeu되어, cell 인스턴스가 추가로 계속해서 생기는 현상 발생
+         (물론 다시 메모리에서 내려가긴 하지만...지나친 cell의 생성과 소멸은 deque의 목적과 반대된다고 생각함...)
+         그래서 section에 따라 분기처리한 후, 각 section에 맞게 cell을 deque하여 반환함.
+         */
         //guard let pagingCell = collectionView.dequeueReusableCell(
         //    withReuseIdentifier: HomePosterPagingCell.reuseIdentifier,
         //    for: indexPath

@@ -76,15 +76,9 @@ class HomeQuickVODCell: UICollectionViewCell {
             imgView.height.equalTo(100)
         }
         
-        //self.rankingLabel.snp.makeConstraints { make in
-        //    make.top.equalTo(self.posterImageView.snp.bottom).offset(8)
-        //    make.leading.equalToSuperview().offset(6)
-        //}
-        
         self.nameLabel.snp.makeConstraints { make in
             make.top.equalTo(self.posterImageView.snp.bottom).offset(11)
             make.leading.equalToSuperview().offset(6)
-            //make.leading.equalTo(self.rankingLabel.snp.trailing).offset(5)
         }
         
         self.episodeNumberLabel.snp.makeConstraints { label in

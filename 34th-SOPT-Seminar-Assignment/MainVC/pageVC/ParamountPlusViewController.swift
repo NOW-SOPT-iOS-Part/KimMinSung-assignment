@@ -9,9 +9,25 @@ import UIKit
 
 class ParamountPlusViewController: UIViewController {
 
+    let imageView: UIImageView = {
+        let imageView = UIImageView(image: .paramountPlus)
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = .systemBlue
+
+        self.setupViewHierarchy()
+        self.setupAutoLayout()
     }
+    
+    private func setupViewHierarchy() {
+        self.view.addSubview(self.imageView)
+    }
+    
+    private func setupAutoLayout() {
+        self.imageView.snp.makeConstraints { $0.edges.equalToSuperview() }
+    }
+    
 }
