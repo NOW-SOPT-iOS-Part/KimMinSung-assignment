@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E07B1312BEA6E10001EA480 /* SecureData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E07B1302BEA6E10001EA480 /* SecureData.plist */; };
 		4E14B08F2BDE44B10036F639 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B08E2BDE44B10036F639 /* MainViewController.swift */; };
 		4E14B0912BDE5A670036F639 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B0902BDE5A670036F639 /* LiveViewController.swift */; };
 		4E14B0932BDE5E2E0036F639 /* TVProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B0922BDE5E2E0036F639 /* TVProgramViewController.swift */; };
@@ -78,6 +79,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E07B1302BEA6E10001EA480 /* SecureData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecureData.plist; sourceTree = "<group>"; };
 		4E14B08E2BDE44B10036F639 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4E14B0902BDE5A670036F639 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		4E14B0922BDE5E2E0036F639 /* TVProgramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVProgramViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		4EBDEBD02BCAC2710061986D = {
 			isa = PBXGroup;
 			children = (
+				4E07B1302BEA6E10001EA480 /* SecureData.plist */,
 				4EBDEC0C2BCAC7980061986D /* .gitignore */,
 				4EBDEBDB2BCAC2720061986D /* 34th-SOPT-Seminar-Assignment */,
 				4EBDEBF22BCAC2730061986D /* 34th-SOPT-Seminar-AssignmentTests */,
@@ -419,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBDEC302BCBCAAB0061986D /* Pretendard-SemiBold.otf in Resources */,
+				4E07B1312BEA6E10001EA480 /* SecureData.plist in Resources */,
 				4EBDEC312BCBCAAB0061986D /* Pretendard-Bold.otf in Resources */,
 				4EBDEC2B2BCBCAAB0061986D /* Pretendard-ExtraLight.otf in Resources */,
 				4EBDEC2F2BCBCAAB0061986D /* Pretendard-Medium.otf in Resources */,
