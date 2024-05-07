@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "promotionalPosterSeriesFamily.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "promotionalPosterSeriesFamily 1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "promotionalPosterSeriesFamily 2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

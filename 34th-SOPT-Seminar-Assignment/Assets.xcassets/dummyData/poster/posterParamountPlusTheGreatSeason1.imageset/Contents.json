@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "posterParamountPlusTheGreatSeason1.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "posterParamountPlusTheGreatSeason1 1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "posterParamountPlusTheGreatSeason1 2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -95,7 +95,10 @@ class WelcomeViewController: UIViewController {
     
     @objc private func goToMainButtonDidTapped() {
         print(#function)
-        self.dismiss(animated: true)
+        //self.dismiss(animated: true)
+        let mainTabBarCon = UITabBarController.getMainTabBarCon()
+        mainTabBarCon.modalPresentationStyle = .fullScreen
+        self.present(mainTabBarCon, animated: true)
     }
     
 }
