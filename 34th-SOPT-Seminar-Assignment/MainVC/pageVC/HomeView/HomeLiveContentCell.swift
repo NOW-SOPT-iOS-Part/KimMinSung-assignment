@@ -77,7 +77,6 @@ class HomeLiveContentCell: UICollectionViewCell {
         
         self.posterImageView.snp.makeConstraints { imgView in
             imgView.top.leading.trailing.equalToSuperview()
-            imgView.width.equalTo(160)
             imgView.height.equalTo(80)
         }
         
