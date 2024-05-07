@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4E07B1312BEA6E10001EA480 /* SecureData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E07B1302BEA6E10001EA480 /* SecureData.plist */; };
+		4E07B1342BEA7524001EA480 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 4E07B1332BEA7524001EA480 /* CombineMoya */; };
+		4E07B1362BEA7524001EA480 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 4E07B1352BEA7524001EA480 /* Moya */; };
+		4E07B1382BEA7524001EA480 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 4E07B1372BEA7524001EA480 /* ReactiveMoya */; };
+		4E07B13A2BEA7524001EA480 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 4E07B1392BEA7524001EA480 /* RxMoya */; };
 		4E14B08F2BDE44B10036F639 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B08E2BDE44B10036F639 /* MainViewController.swift */; };
 		4E14B0912BDE5A670036F639 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B0902BDE5A670036F639 /* LiveViewController.swift */; };
 		4E14B0932BDE5E2E0036F639 /* TVProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B0922BDE5E2E0036F639 /* TVProgramViewController.swift */; };
@@ -141,7 +145,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E07B13A2BEA7524001EA480 /* RxMoya in Frameworks */,
+				4E07B1342BEA7524001EA480 /* CombineMoya in Frameworks */,
+				4E07B1382BEA7524001EA480 /* ReactiveMoya in Frameworks */,
 				4EBDEC102BCAC7F80061986D /* SnapKit in Frameworks */,
+				4E07B1362BEA7524001EA480 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +337,10 @@
 			name = "34th-SOPT-Seminar-Assignment";
 			packageProductDependencies = (
 				4EBDEC0F2BCAC7F80061986D /* SnapKit */,
+				4E07B1332BEA7524001EA480 /* CombineMoya */,
+				4E07B1352BEA7524001EA480 /* Moya */,
+				4E07B1372BEA7524001EA480 /* ReactiveMoya */,
+				4E07B1392BEA7524001EA480 /* RxMoya */,
 			);
 			productName = "34th-SOPT-Seminar-Assignment";
 			productReference = 4EBDEBD92BCAC2720061986D /* 34th-SOPT-Seminar-Assignment.app */;
@@ -404,6 +416,7 @@
 			mainGroup = 4EBDEBD02BCAC2710061986D;
 			packageReferences = (
 				4EBDEC0E2BCAC7F80061986D /* XCRemoteSwiftPackageReference "SnapKit" */,
+				4E07B1322BEA7524001EA480 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 4EBDEBDA2BCAC2720061986D /* Products */;
 			projectDirPath = "";
@@ -831,6 +844,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4E07B1322BEA7524001EA480 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 		4EBDEC0E2BCAC7F80061986D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -842,6 +863,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4E07B1332BEA7524001EA480 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E07B1322BEA7524001EA480 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		4E07B1352BEA7524001EA480 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E07B1322BEA7524001EA480 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		4E07B1372BEA7524001EA480 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E07B1322BEA7524001EA480 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		4E07B1392BEA7524001EA480 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E07B1322BEA7524001EA480 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
 		4EBDEC0F2BCAC7F80061986D /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4EBDEC0E2BCAC7F80061986D /* XCRemoteSwiftPackageReference "SnapKit" */;
