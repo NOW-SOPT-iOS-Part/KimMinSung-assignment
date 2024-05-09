@@ -8,12 +8,9 @@
 import Foundation
 import Moya
 
-
 enum KOBISAPI {
-    case getMovieRanking(date: Date, number: Int = 10)
+    case getMovieRanking(targetDate: String, number: Int = 10)
 }
-
-// 13. Always remember to retain the provider somewhere: if you fail to do so, it will be released automatically, potentially before you receive any response. -> 싱글톤 객체로 구현
 
 extension KOBISAPI: TargetType {
     
@@ -36,24 +33,17 @@ extension KOBISAPI: TargetType {
     }
     
     var task: Moya.Task {
-        let key = Bundle.main.KOBISAPIKey
-        
         switch self {
-        case .getMovieRanking(let date, let number):
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyyMMdd"
-            let dateInString = dateFormatter.string(from: date)
-            
+        case .getMovieRanking(let targetDateString, let number):
+            let key = Bundle.main.KOBISAPIKey
             return Moya.Task.requestParameters(
-                parameters: ["key": key, "targetDt": dateInString, "itemPerPage": number],
-                encoding: JSONEncoding.default
+                parameters: ["key": key, "targetDt": targetDateString, "itemPerPage": "\(number)"],
+                encoding: URLEncoding.queryString
             )
+            
         }
     }
     
-    var headers: [String : String]? {
-        return nil
-    }
+    var headers: [String : String]? { return nil }
     
 }
