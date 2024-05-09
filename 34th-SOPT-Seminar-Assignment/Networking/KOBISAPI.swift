@@ -10,7 +10,7 @@ import Moya
 
 
 enum KOBISAPI {
-    case getMovieRanking(date: Date, number: Int? = nil)
+    case getMovieRanking(date: Date, number: Int = 10)
 }
 
 // 13. Always remember to retain the provider somewhere: if you fail to do so, it will be released automatically, potentially before you receive any response. -> 싱글톤 객체로 구현
@@ -46,7 +46,7 @@ extension KOBISAPI: TargetType {
             let dateInString = dateFormatter.string(from: date)
             
             return Moya.Task.requestParameters(
-                parameters: ["key": key, "targetDt": dateInString, "itemPerPage": number ?? 10],
+                parameters: ["key": key, "targetDt": dateInString, "itemPerPage": number],
                 encoding: JSONEncoding.default
             )
         }
