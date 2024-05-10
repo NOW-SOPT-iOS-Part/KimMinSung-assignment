@@ -201,10 +201,15 @@ extension HomeViewController: UICollectionViewDataSource {
             return pagingCell
             
         case 1:
+//            guard let boxOfficeCell = collectionView.dequeueReusableCell(
+//                withReuseIdentifier: HomeRankingContentCell.reuseIdentifier,
+//                for: indexPath
+//            ) as? HomeRankingContentCell else { fatalError() }
+            
             guard let boxOfficeCell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: HomeRankingContentCell.reuseIdentifier,
+                withReuseIdentifier: HomeBoxOfficeCell.reuseIdentifier,
                 for: indexPath
-            ) as? HomeRankingContentCell else { fatalError() }
+            ) as? HomeBoxOfficeCell else { fatalError() }
             
             boxOfficeCell.rankingLabel.text = nil
             boxOfficeCell.mainTitleLabel.text = nil
@@ -214,7 +219,7 @@ extension HomeViewController: UICollectionViewDataSource {
             }
             boxOfficeCell.subTitleLabel.text = nil
             boxOfficeCell.percentageNumberLabel.text = nil
-            boxOfficeCell.setImageRatio(to: .vertical)
+            //boxOfficeCell.setImageRatio(to: .vertical)
             boxOfficeCell.posterImageView.image = nil
             boxOfficeCell.posterImageView.backgroundColor = .lightGray
             return boxOfficeCell
@@ -230,11 +235,11 @@ extension HomeViewController: UICollectionViewDataSource {
             
         case 3:
             guard let liveContentCell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: HomeRankingContentCell.reuseIdentifier,
+                withReuseIdentifier: HomeLiveContentCell.reuseIdentifier,
                 for: indexPath
-            ) as? HomeRankingContentCell else { fatalError() }
+            ) as? HomeLiveContentCell else { fatalError() }
             
-            liveContentCell.setImageRatio(to: .horizontal)
+            //liveContentCell.setImageRatio(to: .horizontal)
             liveContentCell.configureData(with: self.popularLiveDummy[indexPath.item])
             return liveContentCell
             

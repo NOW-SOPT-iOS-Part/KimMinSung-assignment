@@ -5,10 +5,10 @@
 //  Created by 김민성 on 2024/04/27.
 //
 
-enum RankingCellImageRatio {
-    case horizontal
-    case vertical
-}
+//enum RankingCellImageRatio {
+//    case horizontal
+//    case vertical
+//}
 
 
 import UIKit
@@ -63,22 +63,14 @@ class HomeRankingContentCell: UICollectionViewCell {
         return label
     }()
     
-    
-    lazy var imageViewWidthConstraint = self.posterImageView.widthAnchor.constraint(equalToConstant: 0)
-    lazy var imageViewHeightConstraint = self.posterImageView.heightAnchor.constraint(equalToConstant: 0)
-    lazy var percentageNumberLabelBottomConstraint = self.percentageNumberLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.configureViewHierarchy()
-        self.setAutoLayout()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private func configureViewHierarchy() {
         self.contentView.clipsToBounds = true
@@ -89,41 +81,6 @@ class HomeRankingContentCell: UICollectionViewCell {
          self.percentageNumberLabel
         ].forEach { self.contentView.addSubview($0) }
     }
-    
-    private func setAutoLayout() {
-        
-        self.imageViewWidthConstraint.isActive = true
-        self.imageViewHeightConstraint.isActive = true
-        self.posterImageView.snp.makeConstraints { imgView in
-            imgView.top.leading.trailing.equalToSuperview()
-        }
-        
-        self.rankingLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.posterImageView.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(6)
-        }
-        
-        self.mainTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.posterImageView.snp.bottom).offset(11)
-            make.leading.equalTo(self.rankingLabel.snp.trailing).offset(5)
-            make.trailing.equalToSuperview().inset(5)
-        }
-        
-        self.subTitleLabel.snp.makeConstraints { label in
-            label.top.equalTo(self.mainTitleLabel.snp.bottom)
-            label.leading.equalTo(self.mainTitleLabel)
-            label.trailing.equalToSuperview().inset(5)
-        }
-        
-        self.percentageNumberLabelBottomConstraint.isActive = true
-        self.percentageNumberLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.subTitleLabel.snp.bottom)
-            make.leading.equalTo(self.mainTitleLabel)
-            make.trailing.equalToSuperview().inset(5)
-            //make.bottom.equalToSuperview()
-        }
-    }
-    
     
     func configureData(with content: ContentProtocol) {
         self.posterImageView.image = content.image
@@ -138,24 +95,6 @@ class HomeRankingContentCell: UICollectionViewCell {
         self.mainTitleLabel.text = liveContent.channelName
         self.percentageNumberLabel.text = String(format: "%.1f%%", liveContent.ratings)
         self.posterImageView.image = liveContent.image
-    }
-    
-    func setImageRatio(to ratio: RankingCellImageRatio) {
-        switch ratio {
-        case .horizontal:
-            self.posterImageView.snp.makeConstraints { imgView in
-                self.imageViewWidthConstraint.constant = 160
-                self.imageViewHeightConstraint.constant = 80
-                self.percentageNumberLabelBottomConstraint.isActive = false
-            }
-            
-        case .vertical:
-            self.posterImageView.snp.makeConstraints { imgView in
-                self.imageViewWidthConstraint.constant = 98
-                self.imageViewHeightConstraint.constant = 146
-                self.percentageNumberLabelBottomConstraint.isActive = true
-            }
-        }
     }
     
 }
