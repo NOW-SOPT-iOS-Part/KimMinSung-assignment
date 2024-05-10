@@ -78,9 +78,6 @@ final class HomeView: UIView {
         return verticalRectSection
     }()
     
-    
-    // 박스오피스 section을 따로 만들어야 하나...? 하는 생각도 듦...왜냐하면 박스오피스 Section은 헤더 뷰에 날짜 선택하는 좌우 화살표 버튼? 이 있어야 하는데...
-    // 그걸 기존 layout section을 재활용하려니 너무 복잡해짐...그냥 깔끔하게! 딱! 크기도 따로 지정해서! 만들면 편할 것 같다
     private let rankingRectLayoutSection: NSCollectionLayoutSection = {
         
         let headerSize = NSCollectionLayoutSize(
