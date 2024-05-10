@@ -170,7 +170,7 @@ final class HomeView: UIView {
             case 0:
                 return self.pagingLayoutSection
             case 1:
-                return self.rankingRectLayoutSection
+                return self.verticalRectLayoutSection
             case 2:
                 return self.verticalRectLayoutSection
             case 3:
@@ -207,7 +207,9 @@ final class HomeView: UIView {
         
         collectionView.register(HomePosterPagingCell.self, forCellWithReuseIdentifier: HomePosterPagingCell.reuseIdentifier)
         collectionView.register(HomeVerticalRectCell.self, forCellWithReuseIdentifier: HomeVerticalRectCell.reuseIdentifier)
-        collectionView.register(HomeRankingContentCell.self, forCellWithReuseIdentifier: HomeRankingContentCell.reuseIdentifier)
+        //collectionView.register(HomeRankingContentCell.self, forCellWithReuseIdentifier: HomeRankingContentCell.reuseIdentifier)
+        collectionView.register(HomeBoxOfficeCell.self, forCellWithReuseIdentifier: HomeBoxOfficeCell.reuseIdentifier)
+        collectionView.register(HomeLiveContentCell.self, forCellWithReuseIdentifier: HomeLiveContentCell.reuseIdentifier)
         collectionView.register(HomeQuickVODCell.self, forCellWithReuseIdentifier: HomeQuickVODCell.reuseIdentifier)
         
         collectionView.backgroundColor = .black
