@@ -13,7 +13,9 @@ class HomeViewController: UIViewController {
     
     // 반복문을 사용하여 코드를 줄일 수 있을 것 같음.
     let homePosterDummy = DummyDataMaker.shared.makeContentsDummy(kind: .homePoster)
-    var boxOfficeData: [BoxOfficeMovieProtocol] = [] // 다른 더미데이터들과는 달리 유일하게 네트워크 통신을 통해 이미지를 받아옴. 
+    
+    // 다른 더미데이터들과는 달리 유일하게 네트워크 통신을 통해 이미지를 받아옴.
+    var boxOfficeData: [BoxOfficeMovieProtocol] = []
     let mustSeeInTvingDummy = DummyDataMaker.shared.makeContentsDummy(kind: .mustSeeInTving)
     let popularLiveDummy = DummyDataMaker.shared.makeContentsDummy(kind: .popularLiveChannel)
     let paramountPlusDummy = DummyDataMaker.shared.makeContentsDummy(kind: .paramountPlus)
@@ -53,17 +55,33 @@ class HomeViewController: UIViewController {
     
     
     private func updateBoxOfficeData(dateDistance: DateDistanceFromToday) {
-        APINetworkingManager.shared.getAPI(dateDistance: dateDistance) { [weak self] array in
+        self.boxOfficeData = []
+        APINetworkingManager.shared.getKOBISAPI(dateDistance: dateDistance) { [weak self] array in
             guard let self else { return }
+            
             array.forEach { apiModel in
+                var releaseDts = apiModel.openDate
+                releaseDts = releaseDts.replacingOccurrences(of: "-", with: "")
                 guard let movieCode = Int(apiModel.movieCode) else { fatalError("movieCode is not Int format") }
                 guard let ranking = Int(apiModel.ranking) else { fatalError("ranking is not Int format") }
-                let movieContent = BoxOfficeContent(movieName: apiModel.movieName, movieCode: movieCode, ranking: ranking)
+                guard let audienceAccumulated = Int(apiModel.audienceAccumulated) else { fatalError("audience count in not Int format") }
                 
-                self.boxOfficeData.append(movieContent)
+                APINetworkingManager.shared.getMoviePoster(title: apiModel.movieName, releaseDts: releaseDts) { [weak self] image in
+                    guard let self else { return }
+                    let movieContent = BoxOfficeContent(
+                        movieName: apiModel.movieName,
+                        movieCode: movieCode,
+                        ranking: ranking,
+                        audienceAccumulated: audienceAccumulated,
+                        image: image
+                    )
+                    self.boxOfficeData.append(movieContent)
+                    if self.boxOfficeData.count == 10 {
+                        self.boxOfficeData = self.boxOfficeData.sorted{ $0.ranking < $1.ranking }
+                        self.reloadCellsOnly(at: .boxOffice)
+                    }
+                }
             }
-            
-            self.reloadCellsOnly(at: .boxOffice)
         }
     }
     
@@ -76,12 +94,15 @@ class HomeViewController: UIViewController {
     }
     
     private func reloadCellsOnly(at section: SectionKind) {
-        let numberOfCells = self.rootView.collectionView.numberOfItems(inSection: section.rawValue)
-        var indexPathsToReload: [IndexPath] = []
-        for i in 0..<numberOfCells {
-            indexPathsToReload.append(IndexPath(item: i, section: section.rawValue))
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            let numberOfCells = self.rootView.collectionView.numberOfItems(inSection: section.rawValue)
+            var indexPathsToReload: [IndexPath] = []
+            for i in 0..<numberOfCells {
+                indexPathsToReload.append(IndexPath(item: i, section: section.rawValue))
+            }
+            self.rootView.collectionView.reloadItems(at: indexPathsToReload )
         }
-        self.rootView.collectionView.reloadItems(at: indexPathsToReload )
     }
 }
 
@@ -201,11 +222,6 @@ extension HomeViewController: UICollectionViewDataSource {
             return pagingCell
             
         case 1:
-//            guard let boxOfficeCell = collectionView.dequeueReusableCell(
-//                withReuseIdentifier: HomeRankingContentCell.reuseIdentifier,
-//                for: indexPath
-//            ) as? HomeRankingContentCell else { fatalError() }
-            
             guard let boxOfficeCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: HomeBoxOfficeCell.reuseIdentifier,
                 for: indexPath
@@ -213,15 +229,15 @@ extension HomeViewController: UICollectionViewDataSource {
             
             boxOfficeCell.rankingLabel.text = nil
             boxOfficeCell.mainTitleLabel.text = nil
-            if self.boxOfficeData.count == 10 {
-                boxOfficeCell.rankingLabel.text = String(self.boxOfficeData[indexPath.item].ranking)
-                boxOfficeCell.mainTitleLabel.text = self.boxOfficeData[indexPath.item].movieName
-            }
+            boxOfficeCell.posterImageView.image = nil
             boxOfficeCell.subTitleLabel.text = nil
             boxOfficeCell.percentageNumberLabel.text = nil
-            //boxOfficeCell.setImageRatio(to: .vertical)
-            boxOfficeCell.posterImageView.image = nil
             boxOfficeCell.posterImageView.backgroundColor = .lightGray
+            
+            if self.boxOfficeData.count == 10 {
+                boxOfficeCell.configureData(with: self.boxOfficeData[indexPath.item])
+            }
+            
             return boxOfficeCell
             
         case 2:
@@ -239,7 +255,6 @@ extension HomeViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? HomeLiveContentCell else { fatalError() }
             
-            //liveContentCell.setImageRatio(to: .horizontal)
             liveContentCell.configureData(with: self.popularLiveDummy[indexPath.item])
             return liveContentCell
             

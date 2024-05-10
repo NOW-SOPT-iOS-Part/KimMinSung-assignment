@@ -60,4 +60,13 @@ class HomeBoxOfficeCell: HomeRankingContentCell {
         }
     }
     
+    
+    func configureData(with content: BoxOfficeMovieProtocol) {
+        self.rankingLabel.text = "\(content.ranking)"
+        self.mainTitleLabel.text = content.movieName
+        self.posterImageView.image = content.image
+        let formattedAudienceAccumulated = content.audienceAccumulated.formatted(.number)
+        self.subTitleLabel.text = "누적관객수:\n\(formattedAudienceAccumulated)명"
+    }
+    
 }
