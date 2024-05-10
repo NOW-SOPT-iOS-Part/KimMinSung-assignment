@@ -23,4 +23,16 @@ extension Bundle {
         }
     }
     
+    var KMDBAPIKey: String {
+        guard let filePathURL = Bundle.main.url(forResource: "SecureData", withExtension: "plist") else { fatalError() }
+        do {
+            let plistDict2 = try NSDictionary(contentsOf: filePathURL, error: ())
+            guard let apiKey = plistDict2.object(forKey: "KMDBAPIKey") as? String else { fatalError() }
+            return apiKey
+            
+        } catch {
+            fatalError()
+        }
+    }
+    
 }
