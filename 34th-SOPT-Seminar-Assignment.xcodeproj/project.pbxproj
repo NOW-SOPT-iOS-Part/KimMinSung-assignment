@@ -32,6 +32,7 @@
 		4E3D80522BED16FD00042145 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3D80512BED16FD00042145 /* NetworkingManager.swift */; };
 		4E5919FE2BEE48B500156FAB /* HomeBoxOfficeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5919FD2BEE48B500156FAB /* HomeBoxOfficeCell.swift */; };
 		4E591A002BEE48C600156FAB /* HomeLiveContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5919FF2BEE48C600156FAB /* HomeLiveContentCell.swift */; };
+		4E591A052BEE4F7900156FAB /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 4E591A042BEE4F7900156FAB /* SwiftSoup */; };
 		4E7016252BDBEE43008B2F37 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7016242BDBEE43008B2F37 /* HomeView.swift */; };
 		4E7016272BDBEE9B008B2F37 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7016262BDBEE9B008B2F37 /* HomeViewController.swift */; };
 		4E7016292BDBEFD9008B2F37 /* UITabBarConExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7016282BDBEFD9008B2F37 /* UITabBarConExtensions.swift */; };
@@ -166,6 +167,7 @@
 				4E07B1382BEA7524001EA480 /* ReactiveMoya in Frameworks */,
 				4EBDEC102BCAC7F80061986D /* SnapKit in Frameworks */,
 				4E07B1362BEA7524001EA480 /* Moya in Frameworks */,
+				4E591A052BEE4F7900156FAB /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +383,7 @@
 				4E07B1352BEA7524001EA480 /* Moya */,
 				4E07B1372BEA7524001EA480 /* ReactiveMoya */,
 				4E07B1392BEA7524001EA480 /* RxMoya */,
+				4E591A042BEE4F7900156FAB /* SwiftSoup */,
 			);
 			productName = "34th-SOPT-Seminar-Assignment";
 			productReference = 4EBDEBD92BCAC2720061986D /* 34th-SOPT-Seminar-Assignment.app */;
@@ -457,6 +460,7 @@
 			packageReferences = (
 				4EBDEC0E2BCAC7F80061986D /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4E07B1322BEA7524001EA480 /* XCRemoteSwiftPackageReference "Moya" */,
+				4E591A032BEE4F7900156FAB /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 4EBDEBDA2BCAC2720061986D /* Products */;
 			projectDirPath = "";
@@ -900,6 +904,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		4E591A032BEE4F7900156FAB /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.2;
+			};
+		};
 		4EBDEC0E2BCAC7F80061986D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -930,6 +942,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E07B1322BEA7524001EA480 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		4E591A042BEE4F7900156FAB /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E591A032BEE4F7900156FAB /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 		4EBDEC0F2BCAC7F80061986D /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
