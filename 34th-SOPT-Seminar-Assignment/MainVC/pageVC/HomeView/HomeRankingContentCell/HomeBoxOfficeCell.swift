@@ -56,6 +56,7 @@ class HomeBoxOfficeCell: HomeRankingContentCell {
             make.top.equalTo(self.subTitleLabel.snp.bottom)
             make.leading.equalTo(self.mainTitleLabel)
             make.trailing.equalToSuperview().inset(5)
+            make.bottom.equalToSuperview()
         }
     }
     

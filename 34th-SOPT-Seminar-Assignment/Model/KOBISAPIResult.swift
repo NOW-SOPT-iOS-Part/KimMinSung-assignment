@@ -12,7 +12,7 @@
 import Foundation
 
 // MARK: - MovieNetworkingResult
-struct MovieNetworkingResult: Codable {
+struct KOBISAPIResult: Codable {
     let boxOfficeResult: BoxOfficeResult
 }
 

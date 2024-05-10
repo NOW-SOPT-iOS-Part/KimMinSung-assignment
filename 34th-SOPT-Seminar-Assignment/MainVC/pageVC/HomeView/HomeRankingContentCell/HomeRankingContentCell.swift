@@ -53,6 +53,7 @@ class HomeRankingContentCell: UICollectionViewCell {
         label.font = UIFont.pretendardFont(ofSize: 10, weight: 400)
         label.textAlignment = .left
         label.textColor = .gray2
+        label.numberOfLines = 2
         return label
     }()
     
