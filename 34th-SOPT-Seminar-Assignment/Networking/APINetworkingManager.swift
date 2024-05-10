@@ -45,8 +45,9 @@ final class APINetworkingManager {
      (한 번에 많은 양의 캐시데이터를 불러오는 게 부담스러울 것 같으면 접근 시마다 코어데이터에 있는지 확인하고 캐시데이터로 복사해 오던가 등등...의 방법으로도 구현할 수 있을 것 같다.)
      */
     
-    let moyaProvider = MoyaProvider<KOBISAPI>()
-    var cacheBoxOfficeData: [String: [DailyBoxOfficeMovie]] = [:] // 키는 "yyyyMMdd" 포맷의 문자열, 값은 DailyBoxOfficeMovie타입을 요소로 갖는 딕셔너리
+    let moyaProvider = MoyaProvider<MoyaTargetType>()
+    var boxOfficeDataCache: [String: [DailyBoxOfficeMovie]] = [:] // 키는 "yyyyMMdd" 포맷의 문자열, 값은 DailyBoxOfficeMovie타입을 요소로 갖는 딕셔너리
+    var moviePosterCache: [String: UIImage] = [:]
     
     static let shared = APINetworkingManager()
     private init() { }
@@ -56,7 +57,7 @@ final class APINetworkingManager {
     /// - Parameters:
     ///   - dayBeforeToday: 특정 날짜가 오늘로부터 며칠 전인지 정하는 값. 항상 양수가 들어와야 한다. 예를 들어 이 값이  1이면 어제의 박스오피스, 2이면 그저께의 박스오피스를 요청한다.
     ///   - contentsNum: 한 번에 요청할 박스오피스 순위의 값. 최대값은 10. 10보다 큰 값을 입력할 경우, 10개만 받아옴.
-    func getAPI(dateDistance: DateDistanceFromToday, contentsNum: Int = 10, completion: @escaping ([DailyBoxOfficeMovie]) -> Void) {
+    func getKOBISAPI(dateDistance: DateDistanceFromToday, contentsNum: Int = 10, completion: @escaping ([DailyBoxOfficeMovie]) -> Void) {
         let currentDate = Date.now
         guard let targetDate = Calendar(identifier: .gregorian).date(byAdding: .day, value: -Int(dateDistance.rawValue), to: currentDate) else { fatalError() }
         
@@ -68,22 +69,22 @@ final class APINetworkingManager {
          네트워크 통신 전에 캐시데이터에 있는지 확인
          캐시데이터에 있으면 캐시데이터를 반환 후 네트워크 통신 없이 return
          */
-        if self.cacheBoxOfficeData.keys.contains(dateInString) {
-            guard let dailyBoxOfficeList = cacheBoxOfficeData[dateInString] else { fatalError() }
+        if self.boxOfficeDataCache.keys.contains(dateInString) {
+            guard let dailyBoxOfficeList = boxOfficeDataCache[dateInString] else { fatalError() }
             completion(dailyBoxOfficeList)
             return
         }
         
-        self.moyaProvider.request(KOBISAPI.getMovieRanking(targetDate: dateInString, number: contentsNum)) { result in
+        self.moyaProvider.request(MoyaTargetType.getMovieRanking(targetDate: dateInString, number: contentsNum)) { result in
             switch result {
             case .success(let result):
                 let responseData = result.data
                 do {
-                    let decodedNetworkingResult = try JSONDecoder().decode(MovieNetworkingResult.self, from: responseData)
+                    let decodedNetworkingResult = try JSONDecoder().decode(KOBISAPIResult.self, from: responseData)
                     
                     // 캐시데이터에 없으면 캐시데이터에 저장
-                    if !self.cacheBoxOfficeData.keys.contains(dateInString) {
-                        self.cacheBoxOfficeData[dateInString] = decodedNetworkingResult.boxOfficeResult.dailyBoxOfficeList
+                    if !self.boxOfficeDataCache.keys.contains(dateInString) {
+                        self.boxOfficeDataCache[dateInString] = decodedNetworkingResult.boxOfficeResult.dailyBoxOfficeList
                     }
                     completion(decodedNetworkingResult.boxOfficeResult.dailyBoxOfficeList)
                     
@@ -91,6 +92,40 @@ final class APINetworkingManager {
                     fatalError("decoding data failed")
                 }
                 
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getMoviePoster(title: String, releaseDts: String, completion: @escaping (UIImage?) -> Void ) {
+        
+        /*
+         네트워크 통신 전에 캐시데이터에 있는지 확인
+         캐시데이터에 있으면 캐시데이터를 반환 후 네트워크 통신 없이 return
+         */
+        if self.moviePosterCache.keys.contains(title) {
+            completion(self.moviePosterCache[title])
+            return
+        }
+        
+        self.moyaProvider.request(MoyaTargetType.getKMDBAPI(title: title, releaseDts: releaseDts)) { result in
+            switch result {
+            case .success(let result):
+                let responseData = result.data
+                do {
+                    let decodedNetworkingResult = try JSONDecoder().decode(KMDBAPIResult.self, from: responseData)
+                    let postersURL = decodedNetworkingResult.data[0].result[0].posters
+                    let posterURLArray: [URL] = postersURL.components(separatedBy: "|").map( { URL(string: $0)!} )
+                    NetworkingManager.shared.getImage(using: posterURLArray[0]) { image in
+                        self.moviePosterCache[title] = image
+                        completion(image)
+                        return
+                    }
+                    
+                } catch {
+                    fatalError("decoding data failed")
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }

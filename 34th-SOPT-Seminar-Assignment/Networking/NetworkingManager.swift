@@ -16,10 +16,9 @@ final class NetworkingManager {
     func getImage(using URL: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: URL) { data, response, error in
             guard let data, error == nil else { fatalError() }
-            print(response?.suggestedFilename ?? URL.lastPathComponent)
             guard let image = UIImage(data: data) else { fatalError("data converting into UIImage failed") }
             completion(image)
-        }
+        }.resume()
     }
     
     

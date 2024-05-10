@@ -10,14 +10,14 @@ import Moya
 
 enum MoyaTargetType {
     case getMovieRanking(targetDate: String, number: Int = 10)
-    case getKMDBAPI(movieId: String)
+    case getKMDBAPI(title: String, releaseDts: String)
 }
 
 extension MoyaTargetType: TargetType {
     
     var baseURL: URL {
         switch self {
-        case .getMovieRanking(targetDate: let targetDate, number: let number):
+        case .getMovieRanking:
             return URL(string: "http://www.kobis.or.kr")!
         case .getKMDBAPI:
             return URL(string: "http://api.koreafilm.or.kr")!
@@ -28,7 +28,7 @@ extension MoyaTargetType: TargetType {
         switch self {
         case .getMovieRanking:
             return "/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
-        case .getKMDBAPI(movieId: let movieId):
+        case .getKMDBAPI:
             return "/openapi-data2/wisenut/search_api/search_json2.jsp"
         }
     }
@@ -49,10 +49,10 @@ extension MoyaTargetType: TargetType {
                 encoding: URLEncoding.queryString
             )
             
-        case .getKMDBAPI(movieId: let movieId):
+        case .getKMDBAPI(title: let title, releaseDts: let releaseDts):
             let key = Bundle.main.KMDBAPIKey
             return Moya.Task.requestParameters(
-                parameters: ["collection": "kmdb_new2", "ServiceKey": key, "movieId": movieId],
+                parameters: ["collection": "kmdb_new2", "ServiceKey": key, "title": title, "releaseDts": releaseDts],
                 encoding: URLEncoding.queryString
             )
         }
