@@ -72,7 +72,7 @@ class HomeQuickVODCell: UICollectionViewCell {
         
         self.posterImageView.snp.makeConstraints { imgView in
             imgView.top.leading.trailing.equalToSuperview()
-            imgView.width.equalTo(150)
+            //imgView.width.equalTo(150)
             imgView.height.equalTo(100)
         }
         
