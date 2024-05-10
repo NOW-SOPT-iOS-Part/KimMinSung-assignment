@@ -107,6 +107,7 @@ struct BoxOfficeContent: BoxOfficeMovieProtocol {
     var movieName: String
     var movieCode: Int
     var ranking: Int
+    var audienceAccumulated: Int
     
     var imageURL: URL? = nil
     var image: UIImage? = nil

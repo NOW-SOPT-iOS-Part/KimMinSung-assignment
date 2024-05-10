@@ -39,6 +39,7 @@ protocol BoxOfficeMovieProtocol {
     var movieName: String { get }
     var movieCode: Int { get }
     var ranking: Int { get }
+    var audienceAccumulated: Int { get }
     
     var imageURL: URL? { get set }
     var image: UIImage? { get set }
