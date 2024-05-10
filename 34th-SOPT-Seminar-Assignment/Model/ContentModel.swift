@@ -41,14 +41,6 @@ struct Content: ContentProtocol {
         self.image = image
         self.currentEpisode = episode
     }
-    
-    func getImageFromServer() -> UIImage? {
-        return .posterSeriesSignal
-    }
-    
-    mutating func updateImage() {
-        self.image = getImageFromServer()
-    }
 }
 
 
@@ -96,14 +88,6 @@ struct LiveContent: LiveContentProtocol {
         self.ranking = ranking
     }
     
-    func getImageFromServer() -> UIImage? {
-        return nil
-    }
-    
-    mutating func updateImage() {
-        self.image = self.getImageFromServer()
-    }
-    
     func getRatingsFromServer() -> Double? {
         // 아마 네트워크 통신을 통해 정해진 값을 받아올 것임.
         // 여기서는 nil을 반환
@@ -118,7 +102,16 @@ struct LiveContent: LiveContentProtocol {
 
 
 
-
+struct BoxOfficeContent: BoxOfficeMovieProtocol {
+    
+    var movieName: String
+    var movieCode: Int
+    var ranking: Int
+    
+    var imageURL: URL? = nil
+    var image: UIImage? = nil
+    
+}
 
 
 
