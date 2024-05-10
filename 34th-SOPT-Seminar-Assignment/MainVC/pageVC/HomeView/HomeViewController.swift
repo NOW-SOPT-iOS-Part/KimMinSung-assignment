@@ -53,7 +53,6 @@ class HomeViewController: UIViewController {
     
     
     private func updateBoxOfficeData(dateDistance: DateDistanceFromToday) {
-        print(#function)
         APINetworkingManager.shared.getAPI(dateDistance: dateDistance) { [weak self] array in
             guard let self else { return }
             array.forEach { apiModel in
@@ -82,7 +81,6 @@ class HomeViewController: UIViewController {
         for i in 0..<numberOfCells {
             indexPathsToReload.append(IndexPath(item: i, section: section.rawValue))
         }
-        print(indexPathsToReload)
         self.rootView.collectionView.reloadItems(at: indexPathsToReload )
     }
 }
@@ -277,7 +275,6 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: BoxOfficeController {
     
     func changeBoxOfficeDate(to targetDateDistance: DateDistanceFromToday) {
-        print(#function)
         self.boxOfficeData = []
         self.reloadCellsOnly(at: .boxOffice)
         self.updateBoxOfficeData(dateDistance: targetDateDistance)

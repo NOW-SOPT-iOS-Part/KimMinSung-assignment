@@ -102,7 +102,6 @@ final class HomeBoxOfficeHeaderView: UICollectionReusableView {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        print(#function)
     }
     
     required init?(coder: NSCoder) {
@@ -149,7 +148,6 @@ final class HomeBoxOfficeHeaderView: UICollectionReusableView {
             } else if self.boxOfficeSelectedDate == .theDayBeforeYesterday {
                 self.boxOfficeSelectedDate = .threeDaysAgo
             } else {
-                print(#function)
                 return
             }
             
@@ -159,7 +157,6 @@ final class HomeBoxOfficeHeaderView: UICollectionReusableView {
             } else if self.boxOfficeSelectedDate == .theDayBeforeYesterday {
                 self.boxOfficeSelectedDate = .yesterday
             } else {
-                print(#function)
                 return
             }
             

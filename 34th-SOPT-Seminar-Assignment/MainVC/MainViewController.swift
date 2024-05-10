@@ -186,7 +186,6 @@ class MainViewController: UIViewController {
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         guard let homeVC = self.vcArray[0] as? HomeViewController else { fatalError() }
-        print(self.view.safeAreaInsets.bottom)
         let inset = UIEdgeInsets(top: 0, left: 0, bottom: self.view.safeAreaInsets.bottom, right: 0)
         homeVC.rootView.setCollectionViewContentInset(inset: inset)
     }
