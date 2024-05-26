@@ -134,12 +134,13 @@ class MainViewController: UIViewController {
             /*
              navigation bar의 왼쪽에 들어갈 로고의 크기 조절
              UIBarButtonItem의 customView로 UIButton 인스턴스를 넣고,
-             해당 UIButton의 인스턴스에 NSLayoutConstraint를 적용하여 오토레이아웃 적용하였음.
+             해당 UIButton의 인스턴스에 NSLayoutConstraint를 적용하여 오토레이아웃 적용하였음. (SnapKit으로 구현)
              *혹시 더 좋은 코드가 있다면 알려주세요~
              */
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.widthAnchor.constraint(equalToConstant: 99).isActive = true
-            button.heightAnchor.constraint(equalToConstant: 25).isActive = true
+            button.snp.makeConstraints { make in
+                make.width.equalTo(99)
+                make.height.equalTo(25)
+            }
             button.isUserInteractionEnabled = false
             return button
         }()
@@ -185,7 +186,6 @@ class MainViewController: UIViewController {
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         guard let homeVC = self.vcArray[0] as? HomeViewController else { fatalError() }
-        print(self.view.safeAreaInsets.bottom)
         let inset = UIEdgeInsets(top: 0, left: 0, bottom: self.view.safeAreaInsets.bottom, right: 0)
         homeVC.rootView.setCollectionViewContentInset(inset: inset)
     }
