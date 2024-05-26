@@ -67,14 +67,14 @@ class InitialViewController: UIViewController {
     
     
     @objc private func loginButtonDidTapped() {
-        //let loginVC = LoginViewController()
-        //loginVC.modalPresentationStyle = .fullScreen
-        //self.present(loginVC, animated: true)
+        let loginVC = LoginViewController()
+        loginVC.modalPresentationStyle = .fullScreen
+        self.present(loginVC, animated: true)
         
         // 편의상 임시로 로그인버튼 누를 시 mainTabBarCon이 present 되도록 설정...
-        let mainTabBarCon = UITabBarController.getMainTabBarCon()
-        mainTabBarCon.modalPresentationStyle = .fullScreen
-        self.present(mainTabBarCon, animated: true)
+        //let mainTabBarCon = UITabBarController.getMainTabBarCon()
+        //mainTabBarCon.modalPresentationStyle = .fullScreen
+        //self.present(mainTabBarCon, animated: true)
     }
 
 }
