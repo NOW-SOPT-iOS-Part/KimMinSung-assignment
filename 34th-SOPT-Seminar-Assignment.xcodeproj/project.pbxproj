@@ -190,38 +190,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E07B13C2BEA7555001EA480 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				4E07B13D2BEA75C6001EA480 /* MoyaTargetType.swift */,
-				4E07B13F2BEA77A7001EA480 /* BundleExtensions.swift */,
-				4E3D804B2BEC7EE000042145 /* APINetworkingManager.swift */,
-				4E3D80512BED16FD00042145 /* NetworkingManager.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		4E1428662BDF7E530059A7BD /* pageVC */ = {
+		4E1428662BDF7E530059A7BD /* ViewsForPageVC */ = {
 			isa = PBXGroup;
 			children = (
 				4E7016212BDBEE11008B2F37 /* HomeView */,
-				4E14B0902BDE5A670036F639 /* LiveViewController.swift */,
-				4E14B0922BDE5E2E0036F639 /* TVProgramViewController.swift */,
-				4E14B0942BDE5E680036F639 /* MovieViewController.swift */,
-				4E14B0962BDE5E920036F639 /* ParamountPlusViewController.swift */,
 			);
-			path = pageVC;
+			path = ViewsForPageVC;
 			sourceTree = "<group>";
 		};
-		4E1428672BDF7E840059A7BD /* MainVC */ = {
+		4E1428672BDF7E840059A7BD /* MainView */ = {
 			isa = PBXGroup;
 			children = (
 				4E14B0982BDE67C50036F639 /* SegmentStackView.swift */,
 				4E14B08E2BDE44B10036F639 /* MainViewController.swift */,
 				4EEB1AAD2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift */,
-				4E1428662BDF7E530059A7BD /* pageVC */,
+				4E1428662BDF7E530059A7BD /* ViewsForPageVC */,
 			);
-			path = MainVC;
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		4E591A012BEE48D500156FAB /* HomeRankingContentCell */ = {
@@ -237,27 +222,21 @@
 		4E7016212BDBEE11008B2F37 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				4E591A012BEE48D500156FAB /* HomeRankingContentCell */,
-				4E7016262BDBEE9B008B2F37 /* HomeViewController.swift */,
-				4E7016242BDBEE43008B2F37 /* HomeView.swift */,
-				4ED9F3F72BDDE26A00712737 /* HomePosterPagingCell.swift */,
-				4ED9F3F52BDDDF1600712737 /* HomePosterViewController.swift */,
-				4ED9F3F02BDD4D4300712737 /* HomeHeaderView.swift */,
-				4E2A7BEA2BEDDF8A002FC517 /* HomeBoxOfficeHeaderView.swift */,
-				4E3AB97D2BDC85530021C436 /* HomeVerticalRectCell.swift */,
-				4EEF9CDB2BE0B51A00F4E957 /* HomeQuickVODCell.swift */,
+				4EEDE4552C03976700EAC5EF /* Cells */,
+				4EEDE4542C03976300EAC5EF /* Views */,
+				4EEDE4532C03975D00EAC5EF /* ViewControllers */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
 		};
-		4E70162A2BDBF3EA008B2F37 /* otherViewControllers */ = {
+		4E70162A2BDBF3EA008B2F37 /* OtherViewsForTab */ = {
 			isa = PBXGroup;
 			children = (
 				4E70162B2BDBF473008B2F37 /* UpcomingContentsViewController.swift */,
 				4E70162D2BDBF4EB008B2F37 /* SearchingViewController.swift */,
 				4E70162F2BDBF53D008B2F37 /* HistoryViewController.swift */,
 			);
-			path = otherViewControllers;
+			path = OtherViewsForTab;
 			sourceTree = "<group>";
 		};
 		4EBDEBD02BCAC2710061986D = {
@@ -285,24 +264,11 @@
 		4EBDEBDB2BCAC2720061986D /* 34th-SOPT-Seminar-Assignment */ = {
 			isa = PBXGroup;
 			children = (
-				4E07B13C2BEA7555001EA480 /* Networking */,
-				4EEF9CD42BDF878000F4E957 /* Model */,
-				4E1428672BDF7E840059A7BD /* MainVC */,
-				4E70162A2BDBF3EA008B2F37 /* otherViewControllers */,
-				4EBDEC1F2BCBC52E0061986D /* PretendardFont */,
-				4EEF9CD32BDF863F00F4E957 /* LoginView */,
-				4EBDEC1D2BCBC4D60061986D /* UIFontExtension.swift */,
-				4E7016282BDBEFD9008B2F37 /* UITabBarConExtensions.swift */,
-				4EFDCA362BDE136300CC5793 /* UIScreenExtensions.swift */,
-				4EFDCA382BDE13A100CC5793 /* UIWindowExtensions.swift */,
-				4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */,
-				4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */,
+				4EEDE44C2C03875A00EAC5EF /* Application */,
+				4EEDE44B2C03875100EAC5EF /* Global */,
+				4EEDE44A2C03873F00EAC5EF /* Network */,
+				4EEDE4492C03873600EAC5EF /* Presentation */,
 				4EBDEBE02BCAC2720061986D /* ViewController.swift */,
-				4EBDEC172BCACFA10061986D /* InitialViewController.swift */,
-				4EBDEC1B2BCACFB80061986D /* WelcomeViewController.swift */,
-				4EBDEBE52BCAC2720061986D /* Assets.xcassets */,
-				4EBDEBE72BCAC2720061986D /* LaunchScreen.storyboard */,
-				4EBDEBEA2BCAC2720061986D /* Info.plist */,
 			);
 			path = "34th-SOPT-Seminar-Assignment";
 			sourceTree = "<group>";
@@ -338,6 +304,136 @@
 				4EBDEC252BCBC5490061986D /* Pretendard-Thin.otf */,
 			);
 			path = PretendardFont;
+			sourceTree = "<group>";
+		};
+		4EEDE4492C03873600EAC5EF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				4EBDEC172BCACFA10061986D /* InitialViewController.swift */,
+				4EBDEC1B2BCACFB80061986D /* WelcomeViewController.swift */,
+				4EEDE4522C0396C400EAC5EF /* ViewsForTabBarController */,
+				4EEF9CD32BDF863F00F4E957 /* LoginView */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		4EEDE44A2C03873F00EAC5EF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4EEF9CD42BDF878000F4E957 /* Model */,
+				4E07B13D2BEA75C6001EA480 /* MoyaTargetType.swift */,
+				4E07B13F2BEA77A7001EA480 /* BundleExtensions.swift */,
+				4E3D804B2BEC7EE000042145 /* APINetworkingManager.swift */,
+				4E3D80512BED16FD00042145 /* NetworkingManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4EEDE44B2C03875100EAC5EF /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				4EEDE4512C03884100EAC5EF /* Extensions */,
+				4EEDE44E2C0387A400EAC5EF /* Resources */,
+				4EEDE44D2C03876F00EAC5EF /* SupportingFiles */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		4EEDE44C2C03875A00EAC5EF /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				4EBDEBDC2BCAC2720061986D /* AppDelegate.swift */,
+				4EBDEBDE2BCAC2720061986D /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		4EEDE44D2C03876F00EAC5EF /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				4EBDEBE72BCAC2720061986D /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		4EEDE44E2C0387A400EAC5EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4EBDEBEA2BCAC2720061986D /* Info.plist */,
+				4EEDE4502C0387BC00EAC5EF /* Fonts */,
+				4EEDE44F2C0387B900EAC5EF /* Assets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4EEDE44F2C0387B900EAC5EF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4EBDEBE52BCAC2720061986D /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		4EEDE4502C0387BC00EAC5EF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4EBDEC1F2BCBC52E0061986D /* PretendardFont */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		4EEDE4512C03884100EAC5EF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4EBDEC1D2BCBC4D60061986D /* UIFontExtension.swift */,
+				4E7016282BDBEFD9008B2F37 /* UITabBarConExtensions.swift */,
+				4EFDCA362BDE136300CC5793 /* UIScreenExtensions.swift */,
+				4EFDCA382BDE13A100CC5793 /* UIWindowExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4EEDE4522C0396C400EAC5EF /* ViewsForTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				4E1428672BDF7E840059A7BD /* MainView */,
+				4E70162A2BDBF3EA008B2F37 /* OtherViewsForTab */,
+			);
+			path = ViewsForTabBarController;
+			sourceTree = "<group>";
+		};
+		4EEDE4532C03975D00EAC5EF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4E7016262BDBEE9B008B2F37 /* HomeViewController.swift */,
+				4ED9F3F52BDDDF1600712737 /* HomePosterViewController.swift */,
+				4E14B0902BDE5A670036F639 /* LiveViewController.swift */,
+				4E14B0922BDE5E2E0036F639 /* TVProgramViewController.swift */,
+				4E14B0942BDE5E680036F639 /* MovieViewController.swift */,
+				4E14B0962BDE5E920036F639 /* ParamountPlusViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4EEDE4542C03976300EAC5EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4E7016242BDBEE43008B2F37 /* HomeView.swift */,
+				4ED9F3F02BDD4D4300712737 /* HomeHeaderView.swift */,
+				4E2A7BEA2BEDDF8A002FC517 /* HomeBoxOfficeHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4EEDE4552C03976700EAC5EF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4ED9F3F72BDDE26A00712737 /* HomePosterPagingCell.swift */,
+				4E3AB97D2BDC85530021C436 /* HomeVerticalRectCell.swift */,
+				4EEF9CDB2BE0B51A00F4E957 /* HomeQuickVODCell.swift */,
+				4E591A012BEE48D500156FAB /* HomeRankingContentCell */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		4EEF9CD32BDF863F00F4E957 /* LoginView */ = {
