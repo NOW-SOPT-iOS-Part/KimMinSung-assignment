@@ -39,7 +39,6 @@ class HomePosterPagingCell: UICollectionViewCell {
     
     
     override init(frame: CGRect) {
-        print(#function)
         super.init(frame: frame)
     
         self.configureViewHierarchy()
@@ -84,8 +83,6 @@ class HomePosterPagingCell: UICollectionViewCell {
         self.pageControl.addTarget(self, action: #selector(pageControlValueChanged), for: UIControl.Event.valueChanged)
         // pageControl의 크기 조정
         let pageControlSize = self.pageControl.intrinsicContentSize
-        print("width: ", self.pageControl.intrinsicContentSize.width)
-        print("height: ", self.pageControl.intrinsicContentSize.height)
         
         let shrinkTransform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         let translateTransform = CGAffineTransform(translationX: -pageControlSize.width * 0.25, y: -pageControlSize.height * 0.25)
@@ -102,8 +99,6 @@ class HomePosterPagingCell: UICollectionViewCell {
         guard let vcArray else { return }
         let oldIndex = vcArray.firstIndex(of: self.pagingVC.viewControllers![0])!
         let newIndex = sender.currentPage
-        print("oldIndex: ", oldIndex)
-        print("newIndex: ", newIndex)
         
         if oldIndex < newIndex {
             self.pagingVC.setViewControllers([vcArray[sender.currentPage]], direction: .forward, animated: true)

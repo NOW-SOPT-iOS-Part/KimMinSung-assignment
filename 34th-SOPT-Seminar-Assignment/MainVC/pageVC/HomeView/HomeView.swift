@@ -52,14 +52,14 @@ final class HomeView: UIView {
         
         let verticalRectItemSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0),
-            heightDimension: NSCollectionLayoutDimension.estimated(200)
+            heightDimension: NSCollectionLayoutDimension.estimated(180)
         )
         
         let verticalRectItem = NSCollectionLayoutItem(layoutSize: verticalRectItemSize)
         
         let verticalRectGroupSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.absolute(98),
-            heightDimension: NSCollectionLayoutDimension.estimated(200)
+            heightDimension: NSCollectionLayoutDimension.estimated(180)
         )
         
         let verticalRectGroup = NSCollectionLayoutGroup.horizontal(
@@ -78,7 +78,7 @@ final class HomeView: UIView {
         return verticalRectSection
     }()
     
-    private let horizontalRectLayoutSection: NSCollectionLayoutSection = {
+    private let rankingRectLayoutSection: NSCollectionLayoutSection = {
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0),
@@ -92,14 +92,14 @@ final class HomeView: UIView {
         )
         
         let horizontalRectItemSize = NSCollectionLayoutSize(
-            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0),
+            widthDimension: NSCollectionLayoutDimension.estimated(160),
             heightDimension: NSCollectionLayoutDimension.estimated(160)
         )
         
         let horizontalRectItem = NSCollectionLayoutItem(layoutSize: horizontalRectItemSize)
         
         let horizontalRectGroupSize = NSCollectionLayoutSize(
-            widthDimension: NSCollectionLayoutDimension.absolute(160),
+            widthDimension: NSCollectionLayoutDimension.estimated(160),
             heightDimension: NSCollectionLayoutDimension.estimated(160)
         )
         
@@ -162,25 +162,29 @@ final class HomeView: UIView {
     
     
     private lazy var homeCompositionalLayout: UICollectionViewCompositionalLayout = {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, env in
+        let layoutConfiguration = UICollectionViewCompositionalLayoutConfiguration()
+        layoutConfiguration.interSectionSpacing = 20
+        
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, env in
             switch sectionIndex {
             case 0:
                 return self.pagingLayoutSection
             case 1:
                 return self.verticalRectLayoutSection
             case 2:
-                return self.horizontalRectLayoutSection
-            case 3:
                 return self.verticalRectLayoutSection
+            case 3:
+                return self.rankingRectLayoutSection
             case 4:
                 return self.verticalRectLayoutSection
             case 5:
-                return self.horizontalRectLayoutSection
+                return self.verticalRectLayoutSection
+            case 6:
+                return self.rankingRectLayoutSection
             default:
                 fatalError()
             }
-        }
-        layout.configuration.interSectionSpacing = 20
+        }, configuration: layoutConfiguration)
         
         return layout
     }()
@@ -188,14 +192,23 @@ final class HomeView: UIView {
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.homeCompositionalLayout)
-
-        collectionView.register(HomePosterPagingCell.self, forCellWithReuseIdentifier: HomePosterPagingCell.reuseIdentifier)
+        
+        collectionView.register(
+            HomeBoxOfficeHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HomeBoxOfficeHeaderView.reuseIdentifier
+        )
+        
         collectionView.register(
             HomeHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: HomeHeaderView.reuseIdentifier
         )
+        
+        collectionView.register(HomePosterPagingCell.self, forCellWithReuseIdentifier: HomePosterPagingCell.reuseIdentifier)
         collectionView.register(HomeVerticalRectCell.self, forCellWithReuseIdentifier: HomeVerticalRectCell.reuseIdentifier)
+        //collectionView.register(HomeRankingContentCell.self, forCellWithReuseIdentifier: HomeRankingContentCell.reuseIdentifier)
+        collectionView.register(HomeBoxOfficeCell.self, forCellWithReuseIdentifier: HomeBoxOfficeCell.reuseIdentifier)
         collectionView.register(HomeLiveContentCell.self, forCellWithReuseIdentifier: HomeLiveContentCell.reuseIdentifier)
         collectionView.register(HomeQuickVODCell.self, forCellWithReuseIdentifier: HomeQuickVODCell.reuseIdentifier)
         

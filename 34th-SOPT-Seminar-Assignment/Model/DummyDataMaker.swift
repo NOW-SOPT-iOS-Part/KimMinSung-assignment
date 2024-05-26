@@ -7,8 +7,9 @@
 
 import UIKit
 
-enum SectionKind: CaseIterable {
+enum SectionKind: Int, CaseIterable {
     case homePoster
+    case boxOffice
     case mustSeeInTving
     case popularLiveChannel
     case paramountPlus
@@ -41,6 +42,9 @@ class DummyDataMaker {
             return self.magicalMovies
         case .quickVOD:
             return self.quickVODs
+            
+        default:
+            return []
         }
     }
     
