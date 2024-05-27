@@ -48,6 +48,13 @@ class MainViewController: UIViewController {
         self.segmentStackView.setUnderbarHorizontalLayout(to: currentIndex)
     }
     
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        guard let homeVC = self.vcArray[0] as? HomeViewController else { fatalError() }
+        let inset = UIEdgeInsets(top: 0, left: 0, bottom: self.view.safeAreaInsets.bottom, right: 0)
+        homeVC.rootView.setCollectionViewContentInset(inset: inset)
+    }
+    
     private func configureViewHierarchy() {
         
         // 베열 순서 주의!
@@ -181,13 +188,6 @@ class MainViewController: UIViewController {
     
     @objc func airPlayBarButtonDidTapped() {
         print(#function)
-    }
-    
-    override func viewSafeAreaInsetsDidChange() {
-        super.viewSafeAreaInsetsDidChange()
-        guard let homeVC = self.vcArray[0] as? HomeViewController else { fatalError() }
-        let inset = UIEdgeInsets(top: 0, left: 0, bottom: self.view.safeAreaInsets.bottom, right: 0)
-        homeVC.rootView.setCollectionViewContentInset(inset: inset)
     }
 }
 
