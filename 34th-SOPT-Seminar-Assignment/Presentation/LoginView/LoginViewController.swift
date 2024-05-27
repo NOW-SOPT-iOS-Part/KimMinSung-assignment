@@ -209,24 +209,6 @@ class LoginViewController: UIViewController {
     }
     
     private func setLayout() {
-        [self.titleLabel,
-         self.idTextField,
-         self.pwTextField,
-         self.rightView1,
-         self.clearButton1,
-         self.rightView2,
-         self.clearButton2,
-         self.hidePWButton,
-         
-         self.loginButton,
-         self.findIDButton,
-         self.findPWButton,
-         self.seperator,
-         self.stackView
-        ].forEach { view in
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
         self.titleLabel.snp.makeConstraints { label in
             label.centerX.equalToSuperview()
             label.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(90)
