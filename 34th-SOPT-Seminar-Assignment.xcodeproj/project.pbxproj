@@ -67,6 +67,7 @@
 		4ED9F3F62BDDDF1600712737 /* HomePosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F52BDDDF1600712737 /* HomePosterViewController.swift */; };
 		4ED9F3F82BDDE26A00712737 /* HomePosterPagingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F72BDDE26A00712737 /* HomePosterPagingCell.swift */; };
 		4EEB1AAE2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB1AAD2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift */; };
+		4EEDE45C2C043ED000EAC5EF /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 4EEDE45B2C043ED000EAC5EF /* RxCocoa */; };
 		4EEF9CD62BDF879400F4E957 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF9CD52BDF879400F4E957 /* ContentModel.swift */; };
 		4EEF9CD82BDF8C1800F4E957 /* DummyDataMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF9CD72BDF8C1800F4E957 /* DummyDataMaker.swift */; };
 		4EEF9CDA2BDFF0AD00F4E957 /* ContentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF9CD92BDFF0AD00F4E957 /* ContentProtocol.swift */; };
@@ -167,6 +168,7 @@
 				4E07B13A2BEA7524001EA480 /* RxMoya in Frameworks */,
 				4E07B1342BEA7524001EA480 /* CombineMoya in Frameworks */,
 				4E07B1382BEA7524001EA480 /* ReactiveMoya in Frameworks */,
+				4EEDE45C2C043ED000EAC5EF /* RxCocoa in Frameworks */,
 				4EBDEC102BCAC7F80061986D /* SnapKit in Frameworks */,
 				4E07B1362BEA7524001EA480 /* Moya in Frameworks */,
 				4E591A052BEE4F7900156FAB /* SwiftSoup in Frameworks */,
@@ -483,6 +485,7 @@
 				4E07B1372BEA7524001EA480 /* ReactiveMoya */,
 				4E07B1392BEA7524001EA480 /* RxMoya */,
 				4E591A042BEE4F7900156FAB /* SwiftSoup */,
+				4EEDE45B2C043ED000EAC5EF /* RxCocoa */,
 			);
 			productName = "34th-SOPT-Seminar-Assignment";
 			productReference = 4EBDEBD92BCAC2720061986D /* 34th-SOPT-Seminar-Assignment.app */;
@@ -560,6 +563,7 @@
 				4EBDEC0E2BCAC7F80061986D /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4E07B1322BEA7524001EA480 /* XCRemoteSwiftPackageReference "Moya" */,
 				4E591A032BEE4F7900156FAB /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				4EEDE45A2C043ED000EAC5EF /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 4EBDEBDA2BCAC2720061986D /* Products */;
 			projectDirPath = "";
@@ -1020,6 +1024,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		4EEDE45A2C043ED000EAC5EF /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1052,6 +1064,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4EBDEC0E2BCAC7F80061986D /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		4EEDE45B2C043ED000EAC5EF /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EEDE45A2C043ED000EAC5EF /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
