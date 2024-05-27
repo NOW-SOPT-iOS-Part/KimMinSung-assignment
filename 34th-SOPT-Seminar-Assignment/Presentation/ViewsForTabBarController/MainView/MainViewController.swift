@@ -190,6 +190,11 @@ class MainViewController: UIViewController {
         
     }
     
+    /*
+     기존 UIScrollViewDelegate으로 구현한 코드를 RxSwift, RxCocoa를 사용하여 리팩토링
+     delegate 패턴 구현을 위해 흩어진 코드들이 한 곳에 모여질 수 있고,
+     한 곳에서 에러처리 등도 구현 가능함.
+     */
     private func subscribeScrollView() {
         guard let homeVC = self.vcArray[0] as? HomeViewController else { fatalError() }
         let homeCollectionView = homeVC.rootView.collectionView
