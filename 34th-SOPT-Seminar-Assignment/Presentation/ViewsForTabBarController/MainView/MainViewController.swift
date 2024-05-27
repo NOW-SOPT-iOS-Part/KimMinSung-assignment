@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class MainViewController: UIViewController {
     
     // segmentStackView.topAnchor의 constraint는 스크롤함에 따라 constatn 값을 바꿔주기 위해 별도의 상수로 정의
@@ -23,6 +26,12 @@ class MainViewController: UIViewController {
         return view
     }()
     
+    
+    //MARK: RxSwift
+    let disposeBag: DisposeBag = DisposeBag()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +41,9 @@ class MainViewController: UIViewController {
         self.setDelegates()
         self.setButtonsAction()
         self.setNaviBar()
+        
+        //MARK: binding using RxCocoa
+        self.subscribeScrollView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,9 +101,6 @@ class MainViewController: UIViewController {
     private func setDelegates() {
         self.pageVC.dataSource = self
         self.pageVC.delegate = self
-        
-        guard let homeVC = self.vcArray[0] as? HomeViewController else { fatalError() }
-        homeVC.rootView.collectionView.delegate = self
     }
     
     private func setButtonsAction() {
@@ -181,6 +190,46 @@ class MainViewController: UIViewController {
         
     }
     
+    private func subscribeScrollView() {
+        guard let homeVC = self.vcArray[0] as? HomeViewController else { fatalError() }
+        let homeCollectionView = homeVC.rootView.collectionView
+        
+        homeCollectionView.rx.didScroll
+            .subscribe(
+                onNext: {
+                    self.scrollViewDidScroll(homeCollectionView)
+                },
+                onError: { error in print(error.localizedDescription) },
+                onCompleted: { print("onCompleted") },
+                onDisposed: { print("onDisposed") }
+            ).disposed(by: self.disposeBag)
+    }
+    
+    private func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let naviBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0.0
+        let yOffset = scrollView.contentOffset.y
+        if yOffset > 0 {
+            self.navigationController?.navigationBar.isUserInteractionEnabled = false
+            self.navigationController?.navigationBar.bounds.origin.y = yOffset
+            self.naviBackView.backgroundColor = .black.withAlphaComponent(yOffset / naviBarHeight)
+            self.segmentStackView.separator.backgroundColor = .gray4.withAlphaComponent(yOffset / naviBarHeight)
+            self.segmentStackViewTopConstraint.constant = -yOffset
+            if yOffset > naviBarHeight {
+                self.naviBackView.backgroundColor = .black
+                self.segmentStackView.separator.backgroundColor = .gray4
+                self.segmentStackViewTopConstraint.constant = -naviBarHeight
+            }
+            
+        } else {
+            self.navigationController?.navigationBar.isUserInteractionEnabled = true
+            self.navigationController?.navigationBar.backgroundColor = .black.withAlphaComponent(0)
+            self.navigationController?.navigationBar.bounds.origin.y = 0
+            self.naviBackView.backgroundColor = .clear
+            self.segmentStackView.separator.backgroundColor = .clear
+            self.segmentStackViewTopConstraint.constant = 0
+        }
+    }
+    
     @objc private func profileButtonDidTapped() {
         // ProfileSettingViewController는 미완...
         self.navigationController?.pushViewController(ProfileSettingsViewController(), animated: true)
@@ -220,7 +269,8 @@ extension MainViewController: UIPageViewControllerDelegate {
     
 }
 
-
+//MARK: - RxSwift와 RxCocoa로 리팩토링
+/*
 extension MainViewController: UICollectionViewDelegate {
     
     
@@ -252,3 +302,4 @@ extension MainViewController: UICollectionViewDelegate {
     }
     
 }
+ */
