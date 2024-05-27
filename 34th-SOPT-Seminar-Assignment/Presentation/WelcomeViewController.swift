@@ -98,7 +98,8 @@ class WelcomeViewController: UIViewController {
         //self.dismiss(animated: true)
         let mainTabBarCon = UITabBarController.getMainTabBarCon()
         mainTabBarCon.modalPresentationStyle = .fullScreen
-        self.present(mainTabBarCon, animated: true)
+        //self.present(mainTabBarCon, animated: true)
+        self.view.window?.setRootViewController(mainTabBarCon)
     }
     
 }
