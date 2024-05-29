@@ -63,6 +63,7 @@
 		4EBDEC2F2BCBCAAB0061986D /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEC272BCBC5490061986D /* Pretendard-Medium.otf */; };
 		4EBDEC302BCBCAAB0061986D /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEC222BCBC5480061986D /* Pretendard-SemiBold.otf */; };
 		4EBDEC312BCBCAAB0061986D /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEC232BCBC5490061986D /* Pretendard-Bold.otf */; };
+		4ED005E42C075BF400D964B3 /* TVINGLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED005E32C075BF400D964B3 /* TVINGLoginButton.swift */; };
 		4ED9F3F12BDD4D4300712737 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F02BDD4D4300712737 /* HomeHeaderView.swift */; };
 		4ED9F3F62BDDDF1600712737 /* HomePosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F52BDDDF1600712737 /* HomePosterViewController.swift */; };
 		4ED9F3F82BDDE26A00712737 /* HomePosterPagingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F72BDDE26A00712737 /* HomePosterPagingCell.swift */; };
@@ -149,6 +150,7 @@
 		4EBDEC262BCBC5490061986D /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		4EBDEC272BCBC5490061986D /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		4EBDEC282BCBC5490061986D /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		4ED005E32C075BF400D964B3 /* TVINGLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVINGLoginButton.swift; sourceTree = "<group>"; };
 		4ED9F3F02BDD4D4300712737 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		4ED9F3F52BDDDF1600712737 /* HomePosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePosterViewController.swift; sourceTree = "<group>"; };
 		4ED9F3F72BDDE26A00712737 /* HomePosterPagingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePosterPagingCell.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				4E2EBB3A2BCEA0F400EA5EE6 /* FindIDWebViewController.swift */,
 				4E2EBB3C2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift */,
 				4EEDE45F2C04577900EAC5EF /* LoginView.swift */,
+				4ED005E32C075BF400D964B3 /* TVINGLoginButton.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				4E3D804E2BEC885300042145 /* KOBISAPIResult.swift in Sources */,
 				4E7016292BDBEFD9008B2F37 /* UITabBarConExtensions.swift in Sources */,
 				4EEF9CDC2BE0B51A00F4E957 /* HomeQuickVODCell.swift in Sources */,
+				4ED005E42C075BF400D964B3 /* TVINGLoginButton.swift in Sources */,
 				4EBDEBDD2BCAC2720061986D /* AppDelegate.swift in Sources */,
 				4E14B08F2BDE44B10036F639 /* MainViewController.swift in Sources */,
 				4E3AB97E2BDC85530021C436 /* HomeVerticalRectCell.swift in Sources */,

@@ -91,19 +91,22 @@ class LoginView: UIView {
         return button
     }()
     
-    lazy var loginButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("로그인하기", for: UIControl.State.normal)
-        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
-        button.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.normal)
-        button.backgroundColor = .clear
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 3
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = CGColor(gray: 0.5, alpha: 1)
-        button.isEnabled = false
-        return button
-    }()
+    let loginButton: TVINGLoginButton = TVINGLoginButton()
+    
+//    lazy var loginButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("로그인하기", for: UIControl.State.normal)
+//        button.titleLabel?.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
+//        button.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.disabled)
+//        button.setTitleColor(UIColor(named: "TVING_Red"), for: UIControl.State.normal)
+//        button.backgroundColor = .clear
+//        button.clipsToBounds = true
+//        button.layer.cornerRadius = 3
+//        button.layer.borderWidth = 0.5
+//        button.layer.borderColor = CGColor(gray: 0.5, alpha: 1)
+//        button.isEnabled = false
+//        return button
+//    }()
     
     lazy var findIDButton: UIButton = {
         let button = UIButton()
@@ -268,7 +271,20 @@ class LoginView: UIView {
             view.centerX.equalToSuperview()
             view.top.equalTo(self.seperator.snp.bottom).offset(28)
         }
-        
     }
+    
+//    func enableLoginButton() {
+//        self.loginButton.backgroundColor = UIColor(named: "TVING_Red")
+//        self.loginButton.layer.borderWidth = 0
+//        self.loginButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+//        self.loginButton.isEnabled = true
+//    }
+    
+//    func disableLoginButton() {
+//        self.loginButton.backgroundColor = .clear
+//        self.loginButton.layer.borderWidth = 0.5
+//        self.loginButton.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.normal)
+//        self.loginButton.isEnabled = false
+//    }
     
 }

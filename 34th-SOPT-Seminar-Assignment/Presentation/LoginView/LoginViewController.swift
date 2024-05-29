@@ -23,6 +23,8 @@ class LoginViewController: UIViewController {
     let idInputTextBehavior: BehaviorSubject<String> = BehaviorSubject(value: "")
     let pwInputTextBehavior: BehaviorSubject<String> = BehaviorSubject(value: "")
     
+    let checkIDFormatBehavior: BehaviorSubject<Bool> = BehaviorSubject(value: false)
+    let checkPWFormatBehavior: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     
     
     override func loadView() {
@@ -34,10 +36,14 @@ class LoginViewController: UIViewController {
         
         self.view.backgroundColor = .black
         
-        self.subscribeForIDTextFieldInput()
-        self.subscribeForPWTextFieldInput()
+        self.subscribeForIDTextField()
+        self.subscribeForIDTextFieldValue()
         
-        self.setDelegates()
+        self.subscribeForPWTextField()
+        self.subscribeForPWTextFieldValue()
+        
+        self.subscribeForLoginButton()
+//        self.setDelegates()
         self.setTargetActions()
     }
     
@@ -46,10 +52,10 @@ class LoginViewController: UIViewController {
     }
     
     /* 각 subscibe는 onNext만 구현해도 되지만, RxSwift 공부를 위해 일부 subscrive 메서드에서는 다른 event의 case들도 구현해 보았습니다. */
-    private func subscribeForIDTextFieldInput() {
+    private func subscribeForIDTextField() {
         
         //idTextField의 editing이 시작했을 때 -> 테두리 적용
-        self.rootView.idTextField.rx.controlEvent(.editingDidBegin).asObservable()
+        self.rootView.idTextField.rx.controlEvent(.editingDidBegin)
             .subscribe(
                 onNext: { self.rootView.idTextField.layer.borderWidth = 1 },
                 onError: { print($0.localizedDescription) },
@@ -68,7 +74,7 @@ class LoginViewController: UIViewController {
         //self.rootView.idTextField.rx.text.orEmpty.bind(to: self.idInputTextBehavior).disposed(by: self.disposeBag)
         
         //idTextField의 editing이 끝났을 떄 -> 테두리 제거
-        self.rootView.idTextField.rx.controlEvent(.editingDidEnd).asObservable()
+        self.rootView.idTextField.rx.controlEvent(.editingDidEnd)
             .subscribe({ _ in self.rootView.idTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
         
         //idTextField의 return 키를 누름으로써 editing이 끝났을 떄
@@ -78,10 +84,12 @@ class LoginViewController: UIViewController {
     }
     
     private func subscribeForIDTextFieldValue() {
-        
+        self.idInputTextBehavior
+            .map(self.isValidEmailFormat(input:))
+            .bind(to: self.checkIDFormatBehavior).disposed(by: self.disposeBag)
     }
     
-    private func subscribeForPWTextFieldInput() {
+    private func subscribeForPWTextField() {
         
         //pwTextField의 editing이 시작했을 때
         self.rootView.pwTextField.rx.controlEvent(.editingDidBegin).asObservable()
@@ -106,12 +114,23 @@ class LoginViewController: UIViewController {
         
     }
     
-    
-    private func setDelegates() {
-        self.rootView.idTextField.delegate = self
-        self.rootView.pwTextField.delegate = self
+    private func subscribeForPWTextFieldValue() {
+        self.pwInputTextBehavior
+            .map(self.isValidPasswordFormat(input:))
+            .bind(to: self.checkPWFormatBehavior).disposed(by: self.disposeBag)
     }
     
+    private func subscribeForLoginButton() {
+        Observable.combineLatest(
+            self.checkIDFormatBehavior,
+            self.checkPWFormatBehavior,
+            resultSelector: { $0 && $1 }
+        ).subscribe(
+            onNext: { isBothInValidFormat in self.rootView.loginButton.isEnabled = isBothInValidFormat },
+            onCompleted: { print("버튼 subscribe completed!") },
+            onDisposed: { print("버튼 subscribe disposed됨!") }
+        ).disposed(by: self.disposeBag)
+    }
     
 //    private func setDelegates() {
 //        self.rootView.idTextField.delegate = self
@@ -121,8 +140,8 @@ class LoginViewController: UIViewController {
     private func setTargetActions() {
 //        self.rootView.idTextField.addTarget(self, action: #selector(idTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
 //        self.rootView.pwTextField.addTarget(self, action: #selector(pwTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
-        self.rootView.clearIDButton.addTarget(self, action: #selector(clearButton1DidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.clearPWButton.addTarget(self, action: #selector(clearButton2DidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.clearIDButton.addTarget(self, action: #selector(clearButton1DidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.clearPWButton.addTarget(self, action: #selector(clearButton2DidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.hidePWButton.addTarget(self, action: #selector(hidePWButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.loginButton.addTarget(self, action: #selector(loginButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.findIDButton.addTarget(self, action: #selector(findIDButtonDidTapped), for: UIControl.Event.touchUpInside)
@@ -132,39 +151,35 @@ class LoginViewController: UIViewController {
         self.rootView.makeNicknameButton.addTarget(self, action: #selector(makeNicknameButtonDidTapped), for: UIControl.Event.touchUpInside)
     }
     
-    private func checkLoginButtonColor() {
-        if !self.rootView.idTextField.text!.isEmpty && !self.rootView.pwTextField.text!.isEmpty {
-            self.enableLoginButton()
-        } else {
-            self.disableLoginButton()
-        }
+//    private func checkLoginButtonColor() {
+//        if !self.rootView.idTextField.text!.isEmpty && !self.rootView.pwTextField.text!.isEmpty {
+//            self.rootView.enableLoginButton()
+//        } else {
+//            self.rootView.disableLoginButton()
+//        }
+//    }
+    
+    
+    
+    private func isValidEmailFormat(input: String) -> Bool {
+        !input.isEmpty
     }
     
-    private func enableLoginButton() {
-        self.rootView.loginButton.backgroundColor = UIColor(named: "TVING_Red")
-        self.rootView.loginButton.layer.borderWidth = 0
-        self.rootView.loginButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        self.rootView.loginButton.isEnabled = true
+    private func isValidPasswordFormat(input: String) -> Bool {
+        !input.isEmpty
     }
     
-    private func disableLoginButton() {
-        self.rootView.loginButton.backgroundColor = .clear
-        self.rootView.loginButton.layer.borderWidth = 0.5
-        self.rootView.loginButton.setTitleColor(UIColor(named: "gray2"), for: UIControl.State.normal)
-        self.rootView.loginButton.isEnabled = false
-    }
+//    @objc private func clearButton1DidTapped() {
+//        print(#function)
+//        self.rootView.idTextField.text = ""
+//        self.rootView.disableLoginButton()
+//    }
     
-    @objc private func clearButton1DidTapped() {
-        print(#function)
-        self.rootView.idTextField.text = ""
-        self.disableLoginButton()
-    }
-    
-    @objc private func clearButton2DidTapped() {
-        print(#function)
-        self.rootView.pwTextField.text = ""
-        self.disableLoginButton()
-    }
+//    @objc private func clearButton2DidTapped() {
+//        print(#function)
+//        self.rootView.pwTextField.text = ""
+//        self.rootView.disableLoginButton()
+//    }
     
     @objc private func hidePWButtonDidTapped() {
         print(#function)
