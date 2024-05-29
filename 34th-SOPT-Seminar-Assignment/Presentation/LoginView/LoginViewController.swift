@@ -38,10 +38,10 @@ class LoginViewController: UIViewController {
     }
     
     private func setTargetActions() {
-        self.rootView.idTextField.addTarget(self, action: #selector(idTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
-        self.rootView.pwTextField.addTarget(self, action: #selector(pwTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
-        self.rootView.clearButton1.addTarget(self, action: #selector(clearButton1DidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.clearButton2.addTarget(self, action: #selector(clearButton2DidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.idTextField.addTarget(self, action: #selector(idTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
+//        self.rootView.pwTextField.addTarget(self, action: #selector(pwTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
+        self.rootView.clearIDButton.addTarget(self, action: #selector(clearButton1DidTapped), for: UIControl.Event.touchUpInside)
+        self.rootView.clearPWButton.addTarget(self, action: #selector(clearButton2DidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.hidePWButton.addTarget(self, action: #selector(hidePWButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.loginButton.addTarget(self, action: #selector(loginButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.findIDButton.addTarget(self, action: #selector(findIDButtonDidTapped), for: UIControl.Event.touchUpInside)
@@ -135,9 +135,9 @@ class LoginViewController: UIViewController {
     @objc private func idTextFieldEditingChanged() {
         print(#function)
         if self.rootView.idTextField.text!.isEmpty {
-            self.rootView.clearButton1.isHidden = true
+            self.rootView.clearIDButton.isHidden = true
         } else {
-            self.rootView.clearButton1.isHidden = false
+            self.rootView.clearIDButton.isHidden = false
         }
         self.checkLoginButtonColor()
     }
@@ -145,9 +145,9 @@ class LoginViewController: UIViewController {
     @objc private func pwTextFieldEditingChanged() {
         print(#function)
         if self.rootView.pwTextField.text!.isEmpty {
-            self.rootView.clearButton2.isHidden = true
+            self.rootView.clearPWButton.isHidden = true
         } else {
-            self.rootView.clearButton2.isHidden = false
+            self.rootView.clearPWButton.isHidden = false
         }
         self.checkLoginButtonColor()
     }

@@ -71,14 +71,14 @@ class LoginView: UIView {
         return view
     }()
     
-    lazy var clearButton1: UIButton = {
+    lazy var clearIDButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "x.circle"), for: UIControl.State.normal)
         button.setTitleColor(.lightGray, for: UIControl.State.normal)
         return button
     }()
     
-    lazy var clearButton2: UIButton = {
+    lazy var clearPWButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "x.circle"), for: UIControl.State.normal)
         button.setTitleColor(.lightGray, for: UIControl.State.normal)
@@ -187,8 +187,8 @@ class LoginView: UIView {
             self.addSubview(view)
         }
         
-        self.rightView1.addSubview(self.clearButton1)
-        self.rightView2.addSubview(self.clearButton2)
+        self.rightView1.addSubview(self.clearIDButton)
+        self.rightView2.addSubview(self.clearPWButton)
         self.rightView2.addSubview(self.hidePWButton)
         
     }
@@ -207,11 +207,11 @@ class LoginView: UIView {
         }
         
         self.rightView1.snp.makeConstraints { view in
-            view.width.equalTo(self.clearButton1.snp.width).offset(20)
-            view.height.equalTo(self.clearButton1.snp.height)
+            view.width.equalTo(self.clearIDButton.snp.width).offset(20)
+            view.height.equalTo(self.clearIDButton.snp.height)
         }
         
-        self.clearButton1.snp.makeConstraints { btn in
+        self.clearIDButton.snp.makeConstraints { btn in
             btn.centerX.equalToSuperview()
             btn.centerY.equalToSuperview()
         }
@@ -228,14 +228,14 @@ class LoginView: UIView {
             view.height.equalTo(self.hidePWButton.snp.height)
         }
         
-        self.clearButton2.snp.makeConstraints { btn in
+        self.clearPWButton.snp.makeConstraints { btn in
             btn.centerY.equalToSuperview()
             btn.leading.equalToSuperview().offset(10)
         }
         
         self.hidePWButton.snp.makeConstraints { btn in
             btn.centerY.equalToSuperview()
-            btn.leading.equalTo(self.clearButton2.snp.trailing).offset(10)
+            btn.leading.equalTo(self.clearPWButton.snp.trailing).offset(10)
             btn.trailing.equalToSuperview().offset(-10)
         }
         
