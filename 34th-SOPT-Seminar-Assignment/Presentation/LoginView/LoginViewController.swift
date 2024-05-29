@@ -112,6 +112,12 @@ class LoginViewController: UIViewController {
         self.rootView.pwTextField.delegate = self
     }
     
+    
+//    private func setDelegates() {
+//        self.rootView.idTextField.delegate = self
+//        self.rootView.pwTextField.delegate = self
+//    }
+    
     private func setTargetActions() {
 //        self.rootView.idTextField.addTarget(self, action: #selector(idTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
 //        self.rootView.pwTextField.addTarget(self, action: #selector(pwTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
@@ -229,23 +235,24 @@ class LoginViewController: UIViewController {
     
 }
 
-
+/*
 extension LoginViewController: UITextFieldDelegate {
     
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        print(#function)
-//        textField.layer.borderWidth = 1
-//        
-//        return true
-//    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print(#function)
+        textField.layer.borderWidth = 1
+        
+        return true
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
     }
     
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//        textField.layer.borderWidth = 0
-//        
-//        return true
-//    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        textField.layer.borderWidth = 0
+        
+        return true
+    }
     
 }
+ */
