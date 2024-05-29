@@ -98,11 +98,11 @@ class LoginViewController: UIViewController {
         
         //pwTextField의 editing이 끝났을 때
         self.rootView.pwTextField.rx.controlEvent(.editingDidEnd).asObservable()
-            .subscribe({ _ in print("pwTF editingDidEnd") }).disposed(by: self.disposeBag)
+            .subscribe({ _ in self.rootView.pwTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
         
         //pwTextField의 return 키를 누름으로써 editing이 끝났을 떄
         self.rootView.pwTextField.rx.controlEvent(.editingDidEndOnExit).asObservable()
-            .subscribe({ _ in print("pwTF editingDidEndOnExit") }).disposed(by: self.disposeBag)
+            .subscribe({ _ in self.rootView.pwTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
         
     }
     
