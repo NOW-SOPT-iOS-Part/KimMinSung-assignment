@@ -140,8 +140,8 @@ class LoginViewController: UIViewController {
     private func setTargetActions() {
 //        self.rootView.idTextField.addTarget(self, action: #selector(idTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
 //        self.rootView.pwTextField.addTarget(self, action: #selector(pwTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
-        self.rootView.clearIDButton.addTarget(self, action: #selector(clearButton1DidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.clearPWButton.addTarget(self, action: #selector(clearButton2DidTapped), for: UIControl.Event.touchUpInside)
+        self.rootView.clearIDButton.addTarget(self, action: #selector(clearIDButtonDidTapped), for: UIControl.Event.touchUpInside)
+        self.rootView.clearPWButton.addTarget(self, action: #selector(clearPWButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.hidePWButton.addTarget(self, action: #selector(hidePWButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.loginButton.addTarget(self, action: #selector(loginButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.findIDButton.addTarget(self, action: #selector(findIDButtonDidTapped), for: UIControl.Event.touchUpInside)
@@ -169,7 +169,7 @@ class LoginViewController: UIViewController {
         !input.isEmpty
     }
     
-    @objc private func clearButton1DidTapped() {
+    @objc private func clearIDButtonDidTapped() {
         print(#function)
         self.rootView.idTextField.text = ""
         /*
@@ -183,7 +183,7 @@ class LoginViewController: UIViewController {
 //        self.rootView.disableLoginButton()
     }
     
-    @objc private func clearButton2DidTapped() {
+    @objc private func clearPWButtonDidTapped() {
         print(#function)
         self.rootView.pwTextField.text = ""
         self.rootView.pwTextField.sendActions(for: .valueChanged)
