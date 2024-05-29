@@ -34,8 +34,8 @@ class LoginViewController: UIViewController {
         
         self.view.backgroundColor = .black
         
-        self.bindDataForIDTextField()
-        self.bindDataForPWTextField()
+        self.subscribeForIDTextFieldInput()
+        self.subscribeForPWTextFieldInput()
         
         self.setDelegates()
         self.setTargetActions()
@@ -46,12 +46,12 @@ class LoginViewController: UIViewController {
     }
     
     /* 각 subscibe는 onNext만 구현해도 되지만, RxSwift 공부를 위해 일부 subscrive 메서드에서는 다른 event의 case들도 구현해 보았습니다. */
-    private func bindDataForIDTextField() {
+    private func subscribeForIDTextFieldInput() {
         
         //idTextField의 editing이 시작했을 때 -> 테두리 적용
         self.rootView.idTextField.rx.controlEvent(.editingDidBegin).asObservable()
             .subscribe(
-                onNext: { print("idTF editingDidBegin") },
+                onNext: { self.rootView.idTextField.layer.borderWidth = 1 },
                 onError: { print($0.localizedDescription) },
                 onCompleted: { print("idTF editingDidBegin Completed") },
                 onDisposed: { print("idTF editingDidBegin Disposed") }
@@ -69,19 +69,23 @@ class LoginViewController: UIViewController {
         
         //idTextField의 editing이 끝났을 떄 -> 테두리 제거
         self.rootView.idTextField.rx.controlEvent(.editingDidEnd).asObservable()
-            .subscribe({ _ in print("idTF editingDidEnd") }).disposed(by: self.disposeBag)
+            .subscribe({ _ in self.rootView.idTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
         
         //idTextField의 return 키를 누름으로써 editing이 끝났을 떄
         self.rootView.idTextField.rx.controlEvent(.editingDidEndOnExit).asObservable()
-            .subscribe({ _ in print("idTF editingDidEndOnExit") }).disposed(by: self.disposeBag)
+            .subscribe({ _ in self.rootView.idTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
+        
     }
     
+    private func subscribeForIDTextFieldValue() {
+        
+    }
     
-    private func bindDataForPWTextField() {
+    private func subscribeForPWTextFieldInput() {
         
         //pwTextField의 editing이 시작했을 때
         self.rootView.pwTextField.rx.controlEvent(.editingDidBegin).asObservable()
-            .subscribe(onNext: { _ in print("pwTF editingDidBegin") }).disposed(by: self.disposeBag)
+            .subscribe(onNext: { self.rootView.pwTextField.layer.borderWidth = 1 }).disposed(by: self.disposeBag)
         
         //pwTextField의 text가 바뀌었을 때
         self.rootView.pwTextField.rx.text.orEmpty
