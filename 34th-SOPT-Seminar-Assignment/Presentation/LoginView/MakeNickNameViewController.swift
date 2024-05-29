@@ -13,7 +13,7 @@ class MakeNicknameViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.pretendardFont(ofSize: 23, weight: 500)
         label.textAlignment = .left
-        label.textColor = .black
+        label.textColor = .white
         label.text = "닉네임을 입력해주세요"
         return label
     }()
@@ -21,8 +21,8 @@ class MakeNicknameViewController: UIViewController {
     let nicknameTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.pretendardFont(ofSize: 14, weight: 600)
-        tf.backgroundColor = UIColor(named: "gray2")
-        tf.textColor = .black
+        tf.backgroundColor = UIColor(named: "gray3")
+        tf.textColor = .white
         tf.leftViewMode = .always
         tf.clipsToBounds = true
         tf.layer.cornerRadius = 3
@@ -44,7 +44,7 @@ class MakeNicknameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(named: "gray4")
         self.configureHiearchy()
         self.setLayout()
         self.textFieldInitialSetup()
