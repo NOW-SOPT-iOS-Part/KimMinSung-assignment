@@ -42,6 +42,8 @@ class LoginViewController: UIViewController {
         self.subscribeForPWTextField()
         self.subscribeForPWTextFieldValue()
         
+        self.subscribeForButtonsInTextField()
+        
         self.subscribeForLoginButton()
 //        self.setDelegates()
         self.setTargetActions()
@@ -112,6 +114,9 @@ class LoginViewController: UIViewController {
         self.rootView.pwTextField.rx.controlEvent(.editingDidEndOnExit).asObservable()
             .subscribe({ _ in self.rootView.pwTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
         
+        self.rootView.pwTextField.rx.isSecureTextEntry.asObserver()
+            
+        
     }
     
     private func subscribeForPWTextFieldValue() {
@@ -119,6 +124,40 @@ class LoginViewController: UIViewController {
             .map(self.isValidPasswordFormat(input:))
             .bind(to: self.checkPWFormatBehavior).disposed(by: self.disposeBag)
     }
+    
+    
+    private func subscribeForButtonsInTextField() {
+        self.rootView.clearIDButton.rx.tap
+            .subscribe(onNext: {
+                /*
+                 RxCocoa의 코드를 살펴보면, textField.rx.text 가 textField.text의 값을 방출하는 경우는
+                 .allEditingEvents, .valueChanges 의 이벤트가 발생했을 때이다. (Reactive 타입의 controlPropertyWithDefaultEvents() 함수에서 확인)
+                 따라서 텍스트필드에 텍스트를 직접 입력하는 것만으로는 textField.rx.text 는 값을 방출하지 않는다.
+                 그래서 수동으로 해당 이벤트를 발생시켰음.
+                 */
+                self.rootView.idTextField.text = ""
+                self.rootView.idTextField.sendActions(for: .valueChanged)
+            }).disposed(by: self.disposeBag)
+        
+        self.rootView.clearPWButton.rx.tap
+            .subscribe(onNext: {
+                self.rootView.pwTextField.text = ""
+                self.rootView.pwTextField.sendActions(for: .valueChanged)
+            }).disposed(by: self.disposeBag)
+        
+        
+        self.rootView.hidePWButton.rx.tap
+            .subscribe(onNext: {
+                self.rootView.pwTextField.isSecureTextEntry.toggle()
+                switch self.rootView.pwTextField.isSecureTextEntry {
+                case true:
+                    self.rootView.hidePWButton.setImage(UIImage(named: "eye.slash"), for: UIControl.State.normal)
+                case false:
+                    self.rootView.hidePWButton.setImage(UIImage(named: "eye.filled"), for: UIControl.State.normal)
+                }
+            })
+    }
+    
     
     private func subscribeForLoginButton() {
         Observable.combineLatest(
@@ -132,6 +171,10 @@ class LoginViewController: UIViewController {
         ).disposed(by: self.disposeBag)
     }
     
+    private func subscribeForAccountRelatedButtons() {
+        
+    }
+    
 //    private func setDelegates() {
 //        self.rootView.idTextField.delegate = self
 //        self.rootView.pwTextField.delegate = self
@@ -140,8 +183,8 @@ class LoginViewController: UIViewController {
     private func setTargetActions() {
 //        self.rootView.idTextField.addTarget(self, action: #selector(idTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
 //        self.rootView.pwTextField.addTarget(self, action: #selector(pwTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
-        self.rootView.clearIDButton.addTarget(self, action: #selector(clearIDButtonDidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.clearPWButton.addTarget(self, action: #selector(clearPWButtonDidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.clearIDButton.addTarget(self, action: #selector(clearIDButtonDidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.clearPWButton.addTarget(self, action: #selector(clearPWButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.hidePWButton.addTarget(self, action: #selector(hidePWButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.loginButton.addTarget(self, action: #selector(loginButtonDidTapped), for: UIControl.Event.touchUpInside)
         self.rootView.findIDButton.addTarget(self, action: #selector(findIDButtonDidTapped), for: UIControl.Event.touchUpInside)
@@ -169,26 +212,26 @@ class LoginViewController: UIViewController {
         !input.isEmpty
     }
     
-    @objc private func clearIDButtonDidTapped() {
-        print(#function)
-        self.rootView.idTextField.text = ""
-        /*
-         RxCocoa의 코드를 살펴보면, textField.rx.text 가 textField.text의 값을 방출하는 경우는
-         .allEditingEvents, .valueChanges 의 이벤트가 발생했을 때이다. (Reactive 타입의 controlPropertyWithDefaultEvents() 함수에서 확인)
-         따라서 텍스트필드에 텍스트를 직접 입력하는 것만으로는 textField.rx.text 는 값을 방출하지 않는다.
-         그래서 수동으로 해당 이벤트를 발생시켰음.
-         */
-        /* 이 함수도 후에 RxSwift로 구현하기 */
-        self.rootView.idTextField.sendActions(for: .valueChanged)
-//        self.rootView.disableLoginButton()
-    }
+//    @objc private func clearIDButtonDidTapped() {
+//        print(#function)
+//        self.rootView.idTextField.text = ""
+//        /*
+//         RxCocoa의 코드를 살펴보면, textField.rx.text 가 textField.text의 값을 방출하는 경우는
+//         .allEditingEvents, .valueChanges 의 이벤트가 발생했을 때이다. (Reactive 타입의 controlPropertyWithDefaultEvents() 함수에서 확인)
+//         따라서 텍스트필드에 텍스트를 직접 입력하는 것만으로는 textField.rx.text 는 값을 방출하지 않는다.
+//         그래서 수동으로 해당 이벤트를 발생시켰음.
+//         */
+//        /* 이 함수도 후에 RxSwift로 구현하기 */
+//        self.rootView.idTextField.sendActions(for: .valueChanged)
+////        self.rootView.disableLoginButton()
+//    }
     
-    @objc private func clearPWButtonDidTapped() {
-        print(#function)
-        self.rootView.pwTextField.text = ""
-        self.rootView.pwTextField.sendActions(for: .valueChanged)
-//        self.rootView.disableLoginButton()
-    }
+//    @objc private func clearPWButtonDidTapped() {
+//        print(#function)
+//        self.rootView.pwTextField.text = ""
+//        self.rootView.pwTextField.sendActions(for: .valueChanged)
+////        self.rootView.disableLoginButton()
+//    }
     
     @objc private func hidePWButtonDidTapped() {
         print(#function)
