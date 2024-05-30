@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
         self.subscribeForButtonsInTextField()
         
         self.subscribeForLoginButton()
+        self.subscribeForAccountRelatedButtons()
 //        self.setDelegates()
         self.setTargetActions()
     }
@@ -59,7 +60,7 @@ class LoginViewController: UIViewController {
         //idTextField의 editing이 시작했을 때 -> 테두리 적용
         self.rootView.idTextField.rx.controlEvent(.editingDidBegin)
             .subscribe(
-                onNext: { self.rootView.idTextField.layer.borderWidth = 1 },
+                onNext: { [unowned self] in self.rootView.idTextField.layer.borderWidth = 1 },
                 onError: { print($0.localizedDescription) },
                 onCompleted: { print("idTF editingDidBegin Completed") },
                 onDisposed: { print("idTF editingDidBegin Disposed") }
@@ -68,7 +69,7 @@ class LoginViewController: UIViewController {
         //idTextField의 text가 바뀌었을 때
         self.rootView.idTextField.rx.text.orEmpty
             .subscribe(
-                onNext: { text in
+                onNext: { [unowned self] text in
                     self.idInputTextBehavior.onNext(text)
                     self.rootView.clearIDButton.isHidden = text.isEmpty
                 }).disposed(by: self.disposeBag)
@@ -77,11 +78,11 @@ class LoginViewController: UIViewController {
         
         //idTextField의 editing이 끝났을 떄 -> 테두리 제거
         self.rootView.idTextField.rx.controlEvent(.editingDidEnd)
-            .subscribe({ _ in self.rootView.idTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
+            .subscribe({ [unowned self] _ in self.rootView.idTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
         
         //idTextField의 return 키를 누름으로써 editing이 끝났을 떄
         self.rootView.idTextField.rx.controlEvent(.editingDidEndOnExit).asObservable()
-            .subscribe({ _ in self.rootView.idTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
+            .subscribe({ [unowned self] _ in self.rootView.idTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
         
     }
     
@@ -95,11 +96,12 @@ class LoginViewController: UIViewController {
         
         //pwTextField의 editing이 시작했을 때
         self.rootView.pwTextField.rx.controlEvent(.editingDidBegin).asObservable()
-            .subscribe(onNext: { self.rootView.pwTextField.layer.borderWidth = 1 }).disposed(by: self.disposeBag)
+            .subscribe(onNext: { [unowned self] in
+                self.rootView.pwTextField.layer.borderWidth = 1 }).disposed(by: self.disposeBag)
         
         //pwTextField의 text가 바뀌었을 때
         self.rootView.pwTextField.rx.text.orEmpty
-            .subscribe(onNext: { text in
+            .subscribe(onNext: { [unowned self] text in
                 self.pwInputTextBehavior.onNext(text) //BehaviorSubject에 값을 넘겨줌
                 self.rootView.clearPWButton.isHidden = text.isEmpty
             })
@@ -108,15 +110,12 @@ class LoginViewController: UIViewController {
         
         //pwTextField의 editing이 끝났을 때
         self.rootView.pwTextField.rx.controlEvent(.editingDidEnd).asObservable()
-            .subscribe({ _ in self.rootView.pwTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
+            .subscribe({ [unowned self] _ in self.rootView.pwTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
         
         //pwTextField의 return 키를 누름으로써 editing이 끝났을 떄
         self.rootView.pwTextField.rx.controlEvent(.editingDidEndOnExit).asObservable()
-            .subscribe({ _ in self.rootView.pwTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
-        
-        self.rootView.pwTextField.rx.isSecureTextEntry.asObserver()
+            .subscribe({ [unowned self] _ in self.rootView.pwTextField.layer.borderWidth = 0 }).disposed(by: self.disposeBag)
             
-        
     }
     
     private func subscribeForPWTextFieldValue() {
@@ -128,7 +127,7 @@ class LoginViewController: UIViewController {
     
     private func subscribeForButtonsInTextField() {
         self.rootView.clearIDButton.rx.tap
-            .subscribe(onNext: {
+            .subscribe(onNext: { [unowned self] in
                 /*
                  RxCocoa의 코드를 살펴보면, textField.rx.text 가 textField.text의 값을 방출하는 경우는
                  .allEditingEvents, .valueChanges 의 이벤트가 발생했을 때이다. (Reactive 타입의 controlPropertyWithDefaultEvents() 함수에서 확인)
@@ -140,14 +139,14 @@ class LoginViewController: UIViewController {
             }).disposed(by: self.disposeBag)
         
         self.rootView.clearPWButton.rx.tap
-            .subscribe(onNext: {
+            .subscribe(onNext: { [unowned self] in
                 self.rootView.pwTextField.text = ""
                 self.rootView.pwTextField.sendActions(for: .valueChanged)
             }).disposed(by: self.disposeBag)
         
         
         self.rootView.hidePWButton.rx.tap
-            .subscribe(onNext: {
+            .subscribe(onNext: { [unowned self] in
                 self.rootView.pwTextField.isSecureTextEntry.toggle()
                 switch self.rootView.pwTextField.isSecureTextEntry {
                 case true:
@@ -155,7 +154,7 @@ class LoginViewController: UIViewController {
                 case false:
                     self.rootView.hidePWButton.setImage(UIImage(named: "eye.filled"), for: UIControl.State.normal)
                 }
-            })
+            }).disposed(by: self.disposeBag)
     }
     
     
@@ -165,14 +164,45 @@ class LoginViewController: UIViewController {
             self.checkPWFormatBehavior,
             resultSelector: { $0 && $1 }
         ).subscribe(
-            onNext: { isBothInValidFormat in self.rootView.loginButton.isEnabled = isBothInValidFormat },
+            onNext: { [unowned self] isBothInValidFormat in self.rootView.loginButton.isEnabled = isBothInValidFormat },
             onCompleted: { print("버튼 subscribe completed!") },
             onDisposed: { print("버튼 subscribe disposed됨!") }
         ).disposed(by: self.disposeBag)
+        
+        self.rootView.loginButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                let id = self.rootView.idTextField.text!
+                let welcomeVC = WelcomeViewController(nickname: self.nickname, id: id)
+                welcomeVC.modalPresentationStyle = .fullScreen
+                self.present(welcomeVC, animated: true)
+            }).disposed(by: self.disposeBag)
     }
     
     private func subscribeForAccountRelatedButtons() {
+        self.rootView.findIDButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.present(FindIDWebViewController(), animated: true)
+            }).disposed(by: self.disposeBag)
         
+        self.rootView.findPWButton.rx.tap
+            .subscribe(onNext: { [unowned self] in self.present(FindPasswordWebViewController(), animated: true) })
+            .disposed(by: self.disposeBag)
+        
+        self.rootView.makeAccountButton.rx.tap
+            .subscribe(onNext: { [unowned self] in self.present(MakeAccountWebViewController(), animated: true) })
+            .disposed(by: self.disposeBag)
+        
+        self.rootView.makeNicknameButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                let makeNicknameVC = MakeNicknameViewController()
+                makeNicknameVC.modalPresentationStyle = .formSheet
+                if let sheet = makeNicknameVC.sheetPresentationController {
+                    sheet.detents = [.medium()]
+                    sheet.prefersGrabberVisible = true
+                    sheet.preferredCornerRadius = 24.0
+                }
+                self.present(makeNicknameVC, animated: true)
+            }).disposed(by: self.disposeBag)
     }
     
 //    private func setDelegates() {
@@ -185,13 +215,12 @@ class LoginViewController: UIViewController {
 //        self.rootView.pwTextField.addTarget(self, action: #selector(pwTextFieldEditingChanged), for: UIControl.Event.allEditingEvents)
 //        self.rootView.clearIDButton.addTarget(self, action: #selector(clearIDButtonDidTapped), for: UIControl.Event.touchUpInside)
 //        self.rootView.clearPWButton.addTarget(self, action: #selector(clearPWButtonDidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.hidePWButton.addTarget(self, action: #selector(hidePWButtonDidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.loginButton.addTarget(self, action: #selector(loginButtonDidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.findIDButton.addTarget(self, action: #selector(findIDButtonDidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.findIDButton.addTarget(self, action: #selector(findIDButtonDidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.findPWButton.addTarget(self, action: #selector(findPWButtonDidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.makeAccountButton.addTarget(self, action: #selector(makeAccountButtonDidTapped), for: UIControl.Event.touchUpInside)
-        self.rootView.makeNicknameButton.addTarget(self, action: #selector(makeNicknameButtonDidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.hidePWButton.addTarget(self, action: #selector(hidePWButtonDidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.loginButton.addTarget(self, action: #selector(loginButtonDidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.findIDButton.addTarget(self, action: #selector(findIDButtonDidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.findPWButton.addTarget(self, action: #selector(findPWButtonDidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.makeAccountButton.addTarget(self, action: #selector(makeAccountButtonDidTapped), for: UIControl.Event.touchUpInside)
+//        self.rootView.makeNicknameButton.addTarget(self, action: #selector(makeNicknameButtonDidTapped), for: UIControl.Event.touchUpInside)
     }
     
 //    private func checkLoginButtonColor() {
@@ -233,52 +262,52 @@ class LoginViewController: UIViewController {
 ////        self.rootView.disableLoginButton()
 //    }
     
-    @objc private func hidePWButtonDidTapped() {
-        print(#function)
-        self.rootView.pwTextField.isSecureTextEntry.toggle()
-        switch self.rootView.pwTextField.isSecureTextEntry {
-        case true:
-            self.rootView.hidePWButton.setImage(UIImage(named: "eye.slash"), for: UIControl.State.normal)
-        case false:
-            self.rootView.hidePWButton.setImage(UIImage(named: "eye.filled"), for: UIControl.State.normal)
-        }
-    }
+//    @objc private func hidePWButtonDidTapped() {
+//        print(#function)
+//        self.rootView.pwTextField.isSecureTextEntry.toggle()
+//        switch self.rootView.pwTextField.isSecureTextEntry {
+//        case true:
+//            self.rootView.hidePWButton.setImage(UIImage(named: "eye.slash"), for: UIControl.State.normal)
+//        case false:
+//            self.rootView.hidePWButton.setImage(UIImage(named: "eye.filled"), for: UIControl.State.normal)
+//        }
+//    }
     
-    @objc func loginButtonDidTapped() {
-        print(#function)
-        let id = self.rootView.idTextField.text!
-        let welcomeVC = WelcomeViewController(nickname: nickname, id: id)
-        welcomeVC.modalPresentationStyle = .fullScreen
-        self.present(welcomeVC, animated: true)
-    }
+//    @objc func loginButtonDidTapped() {
+//        print(#function)
+//        let id = self.rootView.idTextField.text!
+//        let welcomeVC = WelcomeViewController(nickname: self.nickname, id: id)
+//        welcomeVC.modalPresentationStyle = .fullScreen
+//        self.present(welcomeVC, animated: true)
+//    }
     
-    @objc private func findIDButtonDidTapped() {
-        print(#function)
-        self.present(FindIDWebViewController(), animated: true)
-    }
+//    @objc private func findIDButtonDidTapped() {
+//        print(#function)
+//        self.present(FindIDWebViewController(), animated: true)
+//    }
     
-    @objc private func findPWButtonDidTapped() {
-        print(#function)
-        self.present(FindPasswordWebViewController(), animated: true)
-    }
+//    @objc private func findPWButtonDidTapped() {
+//        print(#function)
+//        self.present(FindPasswordWebViewController(), animated: true)
+//    }
     
-    @objc private func makeAccountButtonDidTapped() {
-        print(#function)
-        self.present(MakeAccountWebViewController(), animated: true)
-    }
+//    @objc private func makeAccountButtonDidTapped() {
+//        print(#function)
+//        self.present(MakeAccountWebViewController(), animated: true)
+//    }
     
-    @objc private func makeNicknameButtonDidTapped() {
-        print(#function)
-        
-        let makeNicknameVC = MakeNicknameViewController()
-        makeNicknameVC.modalPresentationStyle = .formSheet
-        if let sheet = makeNicknameVC.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 24.0
-        }
-        self.present(makeNicknameVC, animated: true)
-    }
+//    @objc private func makeNicknameButtonDidTapped() {
+//        print(#function)
+//        
+//        let makeNicknameVC = MakeNicknameViewController()
+//        makeNicknameVC.modalPresentationStyle = .formSheet
+//        if let sheet = makeNicknameVC.sheetPresentationController {
+//            sheet.detents = [.medium()]
+//            sheet.prefersGrabberVisible = true
+//            sheet.preferredCornerRadius = 24.0
+//        }
+//        self.present(makeNicknameVC, animated: true)
+//    }
     
 //    @objc private func idTextFieldEditingChanged() {
 //        print(#function)
