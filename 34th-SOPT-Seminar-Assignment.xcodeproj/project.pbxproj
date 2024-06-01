@@ -64,6 +64,8 @@
 		4EBDEC302BCBCAAB0061986D /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEC222BCBC5480061986D /* Pretendard-SemiBold.otf */; };
 		4EBDEC312BCBCAAB0061986D /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEC232BCBC5490061986D /* Pretendard-Bold.otf */; };
 		4ED005E42C075BF400D964B3 /* TVINGLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED005E32C075BF400D964B3 /* TVINGLoginButton.swift */; };
+		4ED52D132C0B3FE00033080E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED52D122C0B3FE00033080E /* LoginViewModel.swift */; };
+		4ED52D162C0B40030033080E /* ViewModelType_Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED52D152C0B40030033080E /* ViewModelType_Rx.swift */; };
 		4ED9F3F12BDD4D4300712737 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F02BDD4D4300712737 /* HomeHeaderView.swift */; };
 		4ED9F3F62BDDDF1600712737 /* HomePosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F52BDDDF1600712737 /* HomePosterViewController.swift */; };
 		4ED9F3F82BDDE26A00712737 /* HomePosterPagingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9F3F72BDDE26A00712737 /* HomePosterPagingCell.swift */; };
@@ -151,6 +153,8 @@
 		4EBDEC272BCBC5490061986D /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		4EBDEC282BCBC5490061986D /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		4ED005E32C075BF400D964B3 /* TVINGLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVINGLoginButton.swift; sourceTree = "<group>"; };
+		4ED52D122C0B3FE00033080E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		4ED52D152C0B40030033080E /* ViewModelType_Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType_Rx.swift; sourceTree = "<group>"; };
 		4ED9F3F02BDD4D4300712737 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		4ED9F3F52BDDDF1600712737 /* HomePosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePosterViewController.swift; sourceTree = "<group>"; };
 		4ED9F3F72BDDE26A00712737 /* HomePosterPagingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePosterPagingCell.swift; sourceTree = "<group>"; };
@@ -312,6 +316,22 @@
 			path = PretendardFont;
 			sourceTree = "<group>";
 		};
+		4ED52D112C0B3FCF0033080E /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4ED52D122C0B3FE00033080E /* LoginViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		4ED52D142C0B3FF10033080E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4ED52D152C0B40030033080E /* ViewModelType_Rx.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		4EEDE4492C03873600EAC5EF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +358,7 @@
 		4EEDE44B2C03875100EAC5EF /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				4ED52D142C0B3FF10033080E /* Protocols */,
 				4EEDE4512C03884100EAC5EF /* Extensions */,
 				4EEDE44E2C0387A400EAC5EF /* Resources */,
 				4EEDE44D2C03876F00EAC5EF /* SupportingFiles */,
@@ -445,6 +466,7 @@
 		4EEF9CD32BDF863F00F4E957 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
+				4ED52D112C0B3FCF0033080E /* viewModel */,
 				4EBDEC192BCACFAF0061986D /* LoginViewController.swift */,
 				4E2EBB382BCE927800EA5EE6 /* MakeNickNameViewController.swift */,
 				4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */,
@@ -651,6 +673,7 @@
 				4EEB1AAE2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift in Sources */,
 				4E07B1402BEA77A7001EA480 /* BundleExtensions.swift in Sources */,
 				4E07B1412BEA8628001EA480 /* MoyaTargetType.swift in Sources */,
+				4ED52D132C0B3FE00033080E /* LoginViewModel.swift in Sources */,
 				4E591A002BEE48C600156FAB /* HomeLiveContentCell.swift in Sources */,
 				4ED9F3F82BDDE26A00712737 /* HomePosterPagingCell.swift in Sources */,
 				4E14B0952BDE5E680036F639 /* MovieViewController.swift in Sources */,
@@ -663,6 +686,7 @@
 				4EFDCA392BDE13A100CC5793 /* UIWindowExtensions.swift in Sources */,
 				4E3D804C2BEC7EE000042145 /* APINetworkingManager.swift in Sources */,
 				4EBDEC1A2BCACFAF0061986D /* LoginViewController.swift in Sources */,
+				4ED52D162C0B40030033080E /* ViewModelType_Rx.swift in Sources */,
 				4E14B0992BDE67C50036F639 /* SegmentStackView.swift in Sources */,
 				4E14B0912BDE5A670036F639 /* LiveViewController.swift in Sources */,
 				4E7016272BDBEE9B008B2F37 /* HomeViewController.swift in Sources */,

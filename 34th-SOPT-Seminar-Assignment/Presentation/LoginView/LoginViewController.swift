@@ -20,8 +20,8 @@ class LoginViewController: UIViewController {
     
     var disposeBag: DisposeBag = DisposeBag()
     
-    let idInputTextBehavior: BehaviorSubject<String> = BehaviorSubject(value: "")
-    let pwInputTextBehavior: BehaviorSubject<String> = BehaviorSubject(value: "")
+    let idInputTextBehavior: BehaviorRelay<String> = BehaviorRelay(value: "")
+    let pwInputTextBehavior: BehaviorRelay<String> = BehaviorRelay(value: "")
     
     let checkIDFormatBehavior: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     let checkPWFormatBehavior: BehaviorSubject<Bool> = BehaviorSubject(value: false)
@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
         self.rootView.idTextField.rx.text.orEmpty
             .subscribe(
                 onNext: { [unowned self] text in
-                    self.idInputTextBehavior.onNext(text)
+                    self.idInputTextBehavior.accept(text)
                     self.rootView.clearIDButton.isHidden = text.isEmpty
                 }).disposed(by: self.disposeBag)
         /* clearIDButton의 설정이 없다면 다음과 같이 bind 메서드로 축약 가능*/
@@ -102,7 +102,7 @@ class LoginViewController: UIViewController {
         //pwTextField의 text가 바뀌었을 때
         self.rootView.pwTextField.rx.text.orEmpty
             .subscribe(onNext: { [unowned self] text in
-                self.pwInputTextBehavior.onNext(text) //BehaviorSubject에 값을 넘겨줌
+                self.pwInputTextBehavior.accept(text) //BehaviorRelay에 값을 넘겨줌
                 self.rootView.clearPWButton.isHidden = text.isEmpty
             })
             .disposed(by: self.disposeBag)
