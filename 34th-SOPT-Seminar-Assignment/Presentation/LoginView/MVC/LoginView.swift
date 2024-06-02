@@ -87,7 +87,9 @@ class LoginView: UIView {
     
     lazy var hidePWButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "eye.slash"), for: UIControl.State.normal)
+        button.setImage(UIImage(named: "eye.slash"), for: UIControl.State.selected)
+        button.setImage(UIImage(named: "eye.filled"), for: UIControl.State.normal)
+        button.isSelected = true
         return button
     }()
     
@@ -169,6 +171,7 @@ class LoginView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = .black
         self.configureHierachy()
         self.setConstraints()
     }
