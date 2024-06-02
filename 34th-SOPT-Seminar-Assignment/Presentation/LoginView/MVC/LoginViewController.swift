@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginViewControllerType {
     
     let rootView: LoginView = LoginView()
     

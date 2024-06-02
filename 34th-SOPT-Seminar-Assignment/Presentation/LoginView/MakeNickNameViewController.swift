@@ -87,7 +87,8 @@ class MakeNicknameViewController: UIViewController {
     }
     
     private func textFieldInitialSetup() {
-        guard let loginView = self.presentingViewController as? LoginViewController else { fatalError() }
+        //guard let loginView = self.presentingViewController as? LoginViewController else { fatalError() }
+        guard let loginView = self.presentingViewController as? LoginViewControllerType else { fatalError() }
         guard let nickName = loginView.nickname else { return }
         self.nicknameTextField.text = nickName
     }

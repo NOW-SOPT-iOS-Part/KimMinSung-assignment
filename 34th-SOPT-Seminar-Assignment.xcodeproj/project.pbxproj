@@ -25,6 +25,8 @@
 		4E2EBB3B2BCEA0F400EA5EE6 /* FindIDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3A2BCEA0F400EA5EE6 /* FindIDWebViewController.swift */; };
 		4E2EBB3D2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3C2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift */; };
 		4E2EBB3F2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */; };
+		4E3328D42C0B70E500B9ACEB /* LoginViewController_MVVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328D32C0B70E500B9ACEB /* LoginViewController_MVVM.swift */; };
+		4E3328D72C0C4A0700B9ACEB /* LoginViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328D62C0C4A0700B9ACEB /* LoginViewControllerType.swift */; };
 		4E3AB97E2BDC85530021C436 /* HomeVerticalRectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3AB97D2BDC85530021C436 /* HomeVerticalRectCell.swift */; };
 		4E3AB9802BDCA2470021C436 /* HomeRankingContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3AB97F2BDCA2470021C436 /* HomeRankingContentCell.swift */; };
 		4E3D804C2BEC7EE000042145 /* APINetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3D804B2BEC7EE000042145 /* APINetworkingManager.swift */; };
@@ -112,6 +114,8 @@
 		4E2EBB3A2BCEA0F400EA5EE6 /* FindIDWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDWebViewController.swift; sourceTree = "<group>"; };
 		4E2EBB3C2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordWebViewController.swift; sourceTree = "<group>"; };
 		4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAccountWebViewController.swift; sourceTree = "<group>"; };
+		4E3328D32C0B70E500B9ACEB /* LoginViewController_MVVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController_MVVM.swift; sourceTree = "<group>"; };
+		4E3328D62C0C4A0700B9ACEB /* LoginViewControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerType.swift; sourceTree = "<group>"; };
 		4E3AB97D2BDC85530021C436 /* HomeVerticalRectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVerticalRectCell.swift; sourceTree = "<group>"; };
 		4E3AB97F2BDCA2470021C436 /* HomeRankingContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRankingContentCell.swift; sourceTree = "<group>"; };
 		4E3D804B2BEC7EE000042145 /* APINetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetworkingManager.swift; sourceTree = "<group>"; };
@@ -219,6 +223,23 @@
 			path = MainView;
 			sourceTree = "<group>";
 		};
+		4E3328D52C0C49F600B9ACEB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4E3328D62C0C4A0700B9ACEB /* LoginViewControllerType.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4E3328D82C0C4B8A00B9ACEB /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				4EBDEC192BCACFAF0061986D /* LoginViewController.swift */,
+				4EEDE45F2C04577900EAC5EF /* LoginView.swift */,
+			);
+			path = MVC;
+			sourceTree = "<group>";
+		};
 		4E591A012BEE48D500156FAB /* HomeRankingContentCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,12 +337,13 @@
 			path = PretendardFont;
 			sourceTree = "<group>";
 		};
-		4ED52D112C0B3FCF0033080E /* viewModel */ = {
+		4ED52D112C0B3FCF0033080E /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				4ED52D122C0B3FE00033080E /* LoginViewModel.swift */,
+				4E3328D32C0B70E500B9ACEB /* LoginViewController_MVVM.swift */,
 			);
-			path = viewModel;
+			path = MVVM;
 			sourceTree = "<group>";
 		};
 		4ED52D142C0B3FF10033080E /* Protocols */ = {
@@ -466,13 +488,13 @@
 		4EEF9CD32BDF863F00F4E957 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
-				4ED52D112C0B3FCF0033080E /* viewModel */,
-				4EBDEC192BCACFAF0061986D /* LoginViewController.swift */,
+				4E3328D52C0C49F600B9ACEB /* Protocols */,
+				4ED52D112C0B3FCF0033080E /* MVVM */,
+				4E3328D82C0C4B8A00B9ACEB /* MVC */,
 				4E2EBB382BCE927800EA5EE6 /* MakeNickNameViewController.swift */,
 				4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */,
 				4E2EBB3A2BCEA0F400EA5EE6 /* FindIDWebViewController.swift */,
 				4E2EBB3C2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift */,
-				4EEDE45F2C04577900EAC5EF /* LoginView.swift */,
 				4ED005E32C075BF400D964B3 /* TVINGLoginButton.swift */,
 			);
 			path = LoginView;
@@ -656,6 +678,7 @@
 				4EEF9CD82BDF8C1800F4E957 /* DummyDataMaker.swift in Sources */,
 				4ED9F3F12BDD4D4300712737 /* HomeHeaderView.swift in Sources */,
 				4E3D804E2BEC885300042145 /* KOBISAPIResult.swift in Sources */,
+				4E3328D72C0C4A0700B9ACEB /* LoginViewControllerType.swift in Sources */,
 				4E7016292BDBEFD9008B2F37 /* UITabBarConExtensions.swift in Sources */,
 				4EEF9CDC2BE0B51A00F4E957 /* HomeQuickVODCell.swift in Sources */,
 				4ED005E42C075BF400D964B3 /* TVINGLoginButton.swift in Sources */,
@@ -664,6 +687,7 @@
 				4E3AB97E2BDC85530021C436 /* HomeVerticalRectCell.swift in Sources */,
 				4E3D80522BED16FD00042145 /* NetworkingManager.swift in Sources */,
 				4E2EBB3D2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift in Sources */,
+				4E3328D42C0B70E500B9ACEB /* LoginViewController_MVVM.swift in Sources */,
 				4EBDEBDF2BCAC2720061986D /* SceneDelegate.swift in Sources */,
 				4E14B0972BDE5E920036F639 /* ParamountPlusViewController.swift in Sources */,
 				4EBDEC1E2BCBC4D60061986D /* UIFontExtension.swift in Sources */,
