@@ -101,6 +101,9 @@ final class LoginViewModel: ViewModelType_Rx {
     typealias Input = LoginViewModelInput
     typealias Output = LoginViewModelOutput
     
+    var id: String { self.idInputTextBehavior.value }
+    private (set) var nickname: String? = nil
+    
     //ID TextField Value checking
     let idInputTextBehavior: BehaviorRelay<String> = BehaviorRelay(value: "")
     
@@ -159,6 +162,9 @@ final class LoginViewModel: ViewModelType_Rx {
         return output
     }
     
+    func updateNickname(newValue: String) {
+        self.nickname = newValue
+    }
     
     private func isValidEmailFormat(input: String) -> Bool {
         !input.isEmpty
@@ -167,5 +173,6 @@ final class LoginViewModel: ViewModelType_Rx {
     private func isValidPasswordFormat(input: String) -> Bool {
         !input.isEmpty
     }
+    
     
 }

@@ -88,9 +88,8 @@ class MakeNicknameViewController: UIViewController {
     
     private func textFieldInitialSetup() {
         //guard let loginView = self.presentingViewController as? LoginViewController else { fatalError() }
-        guard let loginView = self.presentingViewController as? LoginViewControllerType else { fatalError() }
-        guard let nickName = loginView.nickname else { return }
-        self.nicknameTextField.text = nickName
+        guard let loginVC_MVVM = self.presentingViewController as? LoginViewController_MVVM else { fatalError() }
+        self.nicknameTextField.text = loginVC_MVVM.viewModel.nickname
     }
     
     private func checkIfValidNickName(string: String) -> Bool {
@@ -118,8 +117,8 @@ class MakeNicknameViewController: UIViewController {
             self.present(alertCon, animated: true)
             
         } else {
-            guard let loginVC = self.presentingViewController as? LoginViewController else { fatalError() }
-            loginVC.nickname = newNickname
+            guard let loginVC = self.presentingViewController as? LoginViewController_MVVM else { fatalError() }
+            loginVC.viewModel.updateNickname(newValue: newNickname)
             self.dismiss(animated: true)
         }
         

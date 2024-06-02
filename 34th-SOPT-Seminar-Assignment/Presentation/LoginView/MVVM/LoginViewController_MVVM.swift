@@ -11,13 +11,10 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class LoginViewController_MVVM: UIViewController, LoginViewControllerType {
+class LoginViewController_MVVM: UIViewController {
     
     let viewModel: LoginViewModel
     let rootView: LoginView = LoginView()
-    
-    var nickname: String? = ""
-    var id: String!
     
     var disposeBag: DisposeBag = DisposeBag()
     
@@ -46,16 +43,20 @@ class LoginViewController_MVVM: UIViewController, LoginViewControllerType {
     
     private func bindViewModel() {
         
+        //Input Binding
         let input = LoginViewModelInput(
             idTexFieldEditingDidBegin: self.rootView.idTextField.rx.controlEvent(.editingDidBegin),
             idTextFieldEditingChange: self.rootView.idTextField.rx.text.orEmpty,
             idTextFieldAllEditingEndEvent: self.rootView.idTextField.rx.controlEvent([.editingDidEnd, .editingDidEndOnExit]),
+            
             pwTextFieldEditingDidBegan: self.rootView.pwTextField.rx.controlEvent(.editingDidBegin),
             pwTextFieldEditingChange: self.rootView.pwTextField.rx.text.orEmpty,
             pwTextFieldAllEditingEndEvent: self.rootView.pwTextField.rx.controlEvent([.editingDidEnd, .editingDidEndOnExit]),
+            
             clearIDButtonTap: self.rootView.clearIDButton.rx.tap,
             clearPWButtonTap: self.rootView.clearPWButton.rx.tap,
             hidePWButtonTap: self.rootView.hidePWButton.rx.tap,
+            
             loginButtonTap: self.rootView.loginButton.rx.tap,
             findIDButtonTap: self.rootView.findIDButton.rx.tap,
             findPWButtonTap: self.rootView.findPWButton.rx.tap,
@@ -63,6 +64,7 @@ class LoginViewController_MVVM: UIViewController, LoginViewControllerType {
             makeNicknameButtonTap: self.rootView.makeNicknameButton.rx.tap
         )
         
+        //Output Binding
         let output = self.viewModel.transform(from: input, disposeBag: self.disposeBag)
         
         output.setIDTextFieldBorderLine
@@ -106,9 +108,11 @@ class LoginViewController_MVVM: UIViewController, LoginViewControllerType {
         
         output.shouldPresentWelcomeVC
             .subscribe(onNext: { [unowned self] in
-                let id = self.rootView.idTextField.text!
-                let welcomeVC = WelcomeViewController(nickname: self.nickname, id: id)
-                welcomeVC.modalPresentationStyle = .fullScreen
+                let id = self.viewModel.id
+                let nickname = self.viewModel.nickname
+                let welcomeVC = WelcomeViewController(nickname: nickname, id: id)
+                //welcomeVC.modalPresentationStyle = .fullScreen
+                welcomeVC.modalPresentationStyle = .formSheet
                 self.present(welcomeVC, animated: true)
             }).disposed(by: self.disposeBag)
         
