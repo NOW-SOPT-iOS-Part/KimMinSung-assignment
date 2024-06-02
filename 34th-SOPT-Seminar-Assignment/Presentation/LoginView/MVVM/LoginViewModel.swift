@@ -19,10 +19,6 @@ struct LoginViewModelInput {
     let idTexFieldEditingDidBegin: ControlEvent<Void>
     //ID TextField text changed
     let idTextFieldEditingChange: ControlProperty<String>
-//    //ID TextField editing end
-//    let idTextFieldEditingDidEnd: ControlEvent<Void>
-//    //ID TextField return Key tapped
-//    let idTextFieldEditingDidEndOnExit: ControlEvent<Void>
     //ID TextField editing end
     let idTextFieldAllEditingEndEvent: ControlEvent<Void>
     
@@ -31,10 +27,6 @@ struct LoginViewModelInput {
     let pwTextFieldEditingDidBegan: ControlEvent<Void>
     //PW TextField text changed
     let pwTextFieldEditingChange: ControlProperty<String>
-//    //PW TextField editing end
-//    let pwTextFieldEditingDidEnd: ControlEvent<Void>
-//    //PW TextField return Key tapped
-//    let pwTextFieldEditingDidEndOnExit: ControlEvent<Void>
     //PW TextField editing end
     let pwTextFieldAllEditingEndEvent: ControlEvent<Void>
     
@@ -104,7 +96,6 @@ struct LoginViewModelOutput {
 }
 
 
-
 final class LoginViewModel: ViewModelType_Rx {
     
     typealias Input = LoginViewModelInput
@@ -147,17 +138,6 @@ final class LoginViewModel: ViewModelType_Rx {
         input.makeAccountButtonTap.bind(to: output.shouldPresentMakeAccountVC).disposed(by: disposeBag)
         input.makeNicknameButtonTap.bind(to: output.shouldPresentMakeNicknameVC).disposed(by: disposeBag)
         
-        
-//        input.idTextFieldEditingChange
-//            .map({ [unowned self] in self.isValidEmailFormat(input: $0) })
-//            .bind(to: self.checkIDFormatBehavior)
-//            .disposed(by: disposeBag)
-//
-//        input.pwTextFieldEditingChange
-//            .map({ [unowned self] in self.isValidPasswordFormat(input: $0) })
-//            .bind(to: self.checkPWFormatBehavior)
-//            .disposed(by: disposeBag)
-        
         self.idInputTextBehavior
             .map(self.isValidEmailFormat(input:))
             .bind(to: self.checkIDFormatBehavior)
@@ -178,7 +158,6 @@ final class LoginViewModel: ViewModelType_Rx {
         
         return output
     }
-    
     
     
     private func isValidEmailFormat(input: String) -> Bool {
