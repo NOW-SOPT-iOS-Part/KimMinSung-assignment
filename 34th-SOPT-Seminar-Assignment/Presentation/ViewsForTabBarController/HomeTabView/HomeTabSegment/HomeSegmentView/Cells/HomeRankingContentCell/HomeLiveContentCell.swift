@@ -45,7 +45,7 @@ class HomeLiveContentCell: HomeRankingContentCell {
             label.trailing.equalToSuperview().inset(5)
         }
         
-        self.percentageNumberLabel.snp.makeConstraints { make in
+        self.metricLabel.snp.makeConstraints { make in
             make.top.equalTo(self.subTitleLabel.snp.bottom)
             make.leading.equalTo(self.mainTitleLabel)
             make.trailing.equalToSuperview().inset(5)

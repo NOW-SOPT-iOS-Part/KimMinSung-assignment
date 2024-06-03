@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeVerticalRectCell: UICollectionViewCell {
+class HomeVerticalRectCell: UICollectionViewCell, CellType {
     
     static var reuseIdentifier: String {
         return String(describing: self)

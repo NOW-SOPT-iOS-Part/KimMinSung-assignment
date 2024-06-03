@@ -20,14 +20,14 @@ class HomeBoxOfficeCell: HomeRankingContentCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.setAutoLayout()
+        self.setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setAutoLayout() {
+    private func setConstraints() {
         
         self.posterImageView.snp.makeConstraints { imgView in
             imgView.top.leading.trailing.equalToSuperview()
@@ -52,7 +52,7 @@ class HomeBoxOfficeCell: HomeRankingContentCell {
             label.trailing.equalToSuperview().inset(5)
         }
         
-        self.percentageNumberLabel.snp.makeConstraints { make in
+        self.metricLabel.snp.makeConstraints { make in
             make.top.equalTo(self.subTitleLabel.snp.bottom)
             make.leading.equalTo(self.mainTitleLabel)
             make.trailing.equalToSuperview().inset(5)

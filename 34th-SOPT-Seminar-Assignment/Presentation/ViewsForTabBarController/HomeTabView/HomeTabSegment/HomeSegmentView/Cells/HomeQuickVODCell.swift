@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeQuickVODCell: UICollectionViewCell {
+class HomeQuickVODCell: UICollectionViewCell, CellType {
     
     static var reuseIdentifier: String {
         return String(describing: self)

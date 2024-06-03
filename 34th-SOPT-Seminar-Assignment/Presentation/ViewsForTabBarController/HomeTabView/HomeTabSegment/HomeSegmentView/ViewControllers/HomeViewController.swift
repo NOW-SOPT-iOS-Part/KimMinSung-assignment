@@ -227,12 +227,11 @@ extension HomeViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? HomeBoxOfficeCell else { fatalError() }
             
+            boxOfficeCell.posterImageView.backgroundColor = .lightGray
             boxOfficeCell.rankingLabel.text = nil
             boxOfficeCell.mainTitleLabel.text = nil
-            boxOfficeCell.posterImageView.image = nil
             boxOfficeCell.subTitleLabel.text = nil
-            boxOfficeCell.percentageNumberLabel.text = nil
-            boxOfficeCell.posterImageView.backgroundColor = .lightGray
+            boxOfficeCell.metricLabel.text = nil
             
             if self.boxOfficeData.count == 10 {
                 boxOfficeCell.configureData(with: self.boxOfficeData[indexPath.item])

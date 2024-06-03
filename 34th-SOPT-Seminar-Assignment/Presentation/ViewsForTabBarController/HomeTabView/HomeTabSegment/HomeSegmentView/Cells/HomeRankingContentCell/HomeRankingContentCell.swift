@@ -12,9 +12,8 @@
 
 
 import UIKit
-import SnapKit
 
-class HomeRankingContentCell: UICollectionViewCell {
+class HomeRankingContentCell: UICollectionViewCell, RankingCellType {
     
     static var reuseIdentifier: String {
         return String(describing: self)
@@ -57,7 +56,7 @@ class HomeRankingContentCell: UICollectionViewCell {
         return label
     }()
     
-    let percentageNumberLabel: UILabel = {
+    let metricLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.pretendardFont(ofSize: 10, weight: 400)
         label.textColor = .gray2
@@ -79,8 +78,18 @@ class HomeRankingContentCell: UICollectionViewCell {
          self.rankingLabel,
          self.mainTitleLabel,
          self.subTitleLabel,
-         self.percentageNumberLabel
-        ].forEach { self.contentView.addSubview($0) }
+         self.metricLabel]
+            .forEach { self.contentView.addSubview($0) }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.posterImageView.backgroundColor = .lightGray
+        self.rankingLabel.text = ""
+        self.mainTitleLabel.text = ""
+        self.subTitleLabel.text = ""
+        self.metricLabel.text = ""
     }
     
     func configureData(with content: ContentProtocol) {
@@ -94,7 +103,7 @@ class HomeRankingContentCell: UICollectionViewCell {
         }
         
         self.mainTitleLabel.text = liveContent.channelName
-        self.percentageNumberLabel.text = String(format: "%.1f%%", liveContent.ratings)
+        self.metricLabel.text = String(format: "%.1f%%", liveContent.ratings)
         self.posterImageView.image = liveContent.image
     }
     

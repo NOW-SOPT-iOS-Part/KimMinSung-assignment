@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomePosterPagingCell: UICollectionViewCell {
+class HomePosterPagingCell: UICollectionViewCell, CellType {
     
     static var reuseIdentifier: String {
         return String(describing: self)
