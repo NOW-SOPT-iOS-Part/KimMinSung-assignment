@@ -349,8 +349,8 @@
 			children = (
 				4EBDEC172BCACFA10061986D /* InitialViewController.swift */,
 				4EBDEC1B2BCACFB80061986D /* WelcomeViewController.swift */,
-				4EEDE4522C0396C400EAC5EF /* ViewsForTabBarController */,
 				4EEF9CD32BDF863F00F4E957 /* LoginView */,
+				4EEDE4522C0396C400EAC5EF /* ViewsForTabBarController */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
