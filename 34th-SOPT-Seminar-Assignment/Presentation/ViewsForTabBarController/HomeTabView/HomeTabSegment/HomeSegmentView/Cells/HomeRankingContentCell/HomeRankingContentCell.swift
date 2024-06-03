@@ -13,7 +13,7 @@
 
 import UIKit
 
-class HomeRankingContentCell: UICollectionViewCell, RankingCellType {
+class HomeRankingContentCell: UICollectionViewCell, CellType {
     
     static var reuseIdentifier: String {
         return String(describing: self)
@@ -74,12 +74,13 @@ class HomeRankingContentCell: UICollectionViewCell, RankingCellType {
     
     private func configureViewHierarchy() {
         self.contentView.clipsToBounds = true
-        [self.posterImageView,
-         self.rankingLabel,
-         self.mainTitleLabel,
-         self.subTitleLabel,
-         self.metricLabel]
-            .forEach { self.contentView.addSubview($0) }
+        self.contentView.addSubViews(
+            self.posterImageView,
+            self.rankingLabel,
+            self.mainTitleLabel,
+            self.subTitleLabel,
+            self.metricLabel
+        )
     }
     
     override func prepareForReuse() {

@@ -304,13 +304,6 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		4E3328E22C0DEBAD00B9ACEB /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		4E591A012BEE48D500156FAB /* HomeRankingContentCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,7 +318,6 @@
 		4E7016212BDBEE11008B2F37 /* HomeSegmentView */ = {
 			isa = PBXGroup;
 			children = (
-				4E3328E22C0DEBAD00B9ACEB /* New Group */,
 				4EEDE4552C03976700EAC5EF /* Cells */,
 				4EEDE4542C03976300EAC5EF /* Views */,
 				4EEDE4532C03975D00EAC5EF /* ViewControllers */,

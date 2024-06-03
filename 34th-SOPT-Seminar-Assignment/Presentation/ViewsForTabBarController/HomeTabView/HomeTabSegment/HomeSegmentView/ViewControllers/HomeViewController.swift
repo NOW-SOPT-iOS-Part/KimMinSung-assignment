@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     
     // 다른 더미데이터들과는 달리 유일하게 네트워크 통신을 통해 이미지를 받아옴.
     var boxOfficeData: [BoxOfficeMovieProtocol] = []
+    
     let mustSeeInTvingDummy = DummyDataMaker.shared.makeContentsDummy(kind: .mustSeeInTving)
     let popularLiveDummy = DummyDataMaker.shared.makeContentsDummy(kind: .popularLiveChannel)
     let paramountPlusDummy = DummyDataMaker.shared.makeContentsDummy(kind: .paramountPlus)
