@@ -25,7 +25,7 @@ class HomeRankingContentCell: UICollectionViewCell, CellType {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 3
         imageView.layer.cornerCurve = .continuous
-        imageView.backgroundColor = .systemGray
+        imageView.backgroundColor = .lightGray
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -74,7 +74,7 @@ class HomeRankingContentCell: UICollectionViewCell, CellType {
     
     private func configureViewHierarchy() {
         self.contentView.clipsToBounds = true
-        self.contentView.addSubViews(
+        self.contentView.addSubviews(
             self.posterImageView,
             self.rankingLabel,
             self.mainTitleLabel,
@@ -86,7 +86,7 @@ class HomeRankingContentCell: UICollectionViewCell, CellType {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.posterImageView.backgroundColor = .lightGray
+        self.posterImageView.image = nil
         self.rankingLabel.text = ""
         self.mainTitleLabel.text = ""
         self.subTitleLabel.text = ""

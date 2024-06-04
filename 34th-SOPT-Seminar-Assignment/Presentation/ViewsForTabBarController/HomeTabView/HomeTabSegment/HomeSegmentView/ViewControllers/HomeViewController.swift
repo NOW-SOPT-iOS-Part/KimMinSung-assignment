@@ -61,13 +61,13 @@ class HomeViewController: UIViewController {
             guard let self else { return }
             
             array.forEach { apiModel in
-                var releaseDts = apiModel.openDate
-                releaseDts = releaseDts.replacingOccurrences(of: "-", with: "")
+                let releaseDts = apiModel.openDate
+                let convertedReleaseDts = releaseDts.replacingOccurrences(of: "-", with: "")
                 guard let movieCode = Int(apiModel.movieCode) else { fatalError("movieCode is not Int format") }
                 guard let ranking = Int(apiModel.ranking) else { fatalError("ranking is not Int format") }
                 guard let audienceAccumulated = Int(apiModel.audienceAccumulated) else { fatalError("audience count in not Int format") }
                 
-                APINetworkingManager.shared.getMoviePoster(title: apiModel.movieName, releaseDts: releaseDts) { [weak self] image in
+                APINetworkingManager.shared.getMoviePoster(title: apiModel.movieName, releaseDts: convertedReleaseDts) { [weak self] image in
                     guard let self else { return }
                     let movieContent = BoxOfficeContent(
                         movieName: apiModel.movieName,
@@ -228,13 +228,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? HomeBoxOfficeCell else { fatalError() }
             
-            boxOfficeCell.posterImageView.backgroundColor = .lightGray
-            boxOfficeCell.rankingLabel.text = nil
-            boxOfficeCell.mainTitleLabel.text = nil
-            boxOfficeCell.subTitleLabel.text = nil
-            boxOfficeCell.metricLabel.text = nil
-            
-            if self.boxOfficeData.count == 10 {
+            if !self.boxOfficeData.isEmpty {
                 boxOfficeCell.configureData(with: self.boxOfficeData[indexPath.item])
             }
             

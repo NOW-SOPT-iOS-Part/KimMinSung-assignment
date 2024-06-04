@@ -57,6 +57,7 @@ final class APINetworkingManager {
     /// - Parameters:
     ///   - dayBeforeToday: 특정 날짜가 오늘로부터 며칠 전인지 정하는 값. 항상 양수가 들어와야 한다. 예를 들어 이 값이  1이면 어제의 박스오피스, 2이면 그저께의 박스오피스를 요청한다.
     ///   - contentsNum: 한 번에 요청할 박스오피스 순위의 값. 최대값은 10. 10보다 큰 값을 입력할 경우, 10개만 받아옴.
+    ///   - completion: 클로저의 첫 번째 매개변수가 [DailyBoxOfficeMovie] 타입. 네트워크 통신 실패 시 빈 배열.
     func getKOBISAPI(dateDistance: DateDistanceFromToday, contentsNum: Int = 10, completion: @escaping ([DailyBoxOfficeMovie]) -> Void) {
         let currentDate = Date.now
         guard let targetDate = Calendar(identifier: .gregorian).date(byAdding: .day, value: -Int(dateDistance.rawValue), to: currentDate) else { fatalError() }
@@ -94,10 +95,18 @@ final class APINetworkingManager {
                 
             case .failure(let error):
                 print(error.localizedDescription)
+                Toast.show(type: .warnLimitCompare, animationType: .pushFromBottom)
+                completion([])
             }
         }
     }
     
+    
+    /// KMDB Open API를 통해 영화 정보(포스터)를 가져옴
+    /// - Parameters:
+    ///   - title: 영화 제목
+    ///   - releaseDts: 영화의 개봉 날짜. yyyyMMdd 형식 문자열
+    ///   - completion: completion의 첫 번째 매개변수가 가져온 포스터. 네트워크 통신 실패 시 nil
     func getMoviePoster(title: String, releaseDts: String, completion: @escaping (UIImage?) -> Void ) {
         
         /*
@@ -128,6 +137,8 @@ final class APINetworkingManager {
                 }
             case .failure(let error):
                 print(error.localizedDescription)
+                Toast.show(type: .warnLimitCompare, animationType: .pushFromBottom)
+                completion(nil)
             }
         }
     }
