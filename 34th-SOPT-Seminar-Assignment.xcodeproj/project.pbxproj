@@ -29,6 +29,8 @@
 		4E3328E42C0DF28D00B9ACEB /* RankingCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328E32C0DF28D00B9ACEB /* RankingCellType.swift */; };
 		4E3328E62C0DFB6800B9ACEB /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328E52C0DFB6800B9ACEB /* CellType.swift */; };
 		4E3328E82C0DFF9900B9ACEB /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328E72C0DFF9900B9ACEB /* UIViewExtensions.swift */; };
+		4E3328EB2C0E0C3600B9ACEB /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328EA2C0E0C3600B9ACEB /* Toast.swift */; };
+		4E3328ED2C0E0C3C00B9ACEB /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328EC2C0E0C3C00B9ACEB /* ToastView.swift */; };
 		4E3AB97E2BDC85530021C436 /* HomeVerticalRectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3AB97D2BDC85530021C436 /* HomeVerticalRectCell.swift */; };
 		4E3AB9802BDCA2470021C436 /* HomeRankingContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3AB97F2BDCA2470021C436 /* HomeRankingContentCell.swift */; };
 		4E3D804C2BEC7EE000042145 /* APINetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3D804B2BEC7EE000042145 /* APINetworkingManager.swift */; };
@@ -120,6 +122,8 @@
 		4E3328E32C0DF28D00B9ACEB /* RankingCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCellType.swift; sourceTree = "<group>"; };
 		4E3328E52C0DFB6800B9ACEB /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		4E3328E72C0DFF9900B9ACEB /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		4E3328EA2C0E0C3600B9ACEB /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		4E3328EC2C0E0C3C00B9ACEB /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		4E3AB97D2BDC85530021C436 /* HomeVerticalRectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVerticalRectCell.swift; sourceTree = "<group>"; };
 		4E3AB97F2BDCA2470021C436 /* HomeRankingContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRankingContentCell.swift; sourceTree = "<group>"; };
 		4E3D804B2BEC7EE000042145 /* APINetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetworkingManager.swift; sourceTree = "<group>"; };
@@ -304,6 +308,15 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		4E3328E92C0E0C2500B9ACEB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4E3328EA2C0E0C3600B9ACEB /* Toast.swift */,
+				4E3328EC2C0E0C3C00B9ACEB /* ToastView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		4E591A012BEE48D500156FAB /* HomeRankingContentCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,9 +331,9 @@
 		4E7016212BDBEE11008B2F37 /* HomeSegmentView */ = {
 			isa = PBXGroup;
 			children = (
-				4EEDE4552C03976700EAC5EF /* Cells */,
-				4EEDE4542C03976300EAC5EF /* Views */,
 				4EEDE4532C03975D00EAC5EF /* ViewControllers */,
+				4EEDE4542C03976300EAC5EF /* Views */,
+				4EEDE4552C03976700EAC5EF /* Cells */,
 			);
 			path = HomeSegmentView;
 			sourceTree = "<group>";
@@ -423,6 +436,7 @@
 		4EEDE4492C03873600EAC5EF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				4E3328E92C0E0C2500B9ACEB /* Common */,
 				4EBDEC172BCACFA10061986D /* InitialViewController.swift */,
 				4EBDEC1B2BCACFB80061986D /* WelcomeViewController.swift */,
 				4EEF9CD32BDF863F00F4E957 /* LoginView */,
@@ -746,7 +760,9 @@
 				4ED005E42C075BF400D964B3 /* TVINGLoginButton.swift in Sources */,
 				4EBDEBDD2BCAC2720061986D /* AppDelegate.swift in Sources */,
 				4E14B08F2BDE44B10036F639 /* MainViewController.swift in Sources */,
+				4E3328ED2C0E0C3C00B9ACEB /* ToastView.swift in Sources */,
 				4E3AB97E2BDC85530021C436 /* HomeVerticalRectCell.swift in Sources */,
+				4E3328EB2C0E0C3600B9ACEB /* Toast.swift in Sources */,
 				4E3D80522BED16FD00042145 /* NetworkingManager.swift in Sources */,
 				4E2EBB3D2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift in Sources */,
 				4E3328D42C0B70E500B9ACEB /* LoginViewController_MVVM.swift in Sources */,
