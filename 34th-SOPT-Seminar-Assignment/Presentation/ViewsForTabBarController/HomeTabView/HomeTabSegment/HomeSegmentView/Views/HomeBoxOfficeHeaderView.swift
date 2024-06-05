@@ -68,9 +68,6 @@ final class HomeBoxOfficeHeaderView: UICollectionReusableView {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
         let button = UIButton(configuration: configuration)
-        //let button = UIButton()
-        //button.setImage(.init(systemName: "arrowtriangle.left.fill"), for: .normal)
-        //button.tintColor = .lightGray
         button.tag = -1
         return button
     }()
@@ -98,9 +95,6 @@ final class HomeBoxOfficeHeaderView: UICollectionReusableView {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
         let button = UIButton(configuration: configuration)
-        //let button = UIButton()
-        //button.setImage(.init(systemName: "arrowtriangle.left.fill"), for: .normal)
-        //button.tintColor = .lightGray
         button.tag = 1
         return button
     }()
