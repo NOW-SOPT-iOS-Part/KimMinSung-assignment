@@ -14,7 +14,7 @@
 		4E07B13A2BEA7524001EA480 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 4E07B1392BEA7524001EA480 /* RxMoya */; };
 		4E07B1402BEA77A7001EA480 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07B13F2BEA77A7001EA480 /* BundleExtensions.swift */; };
 		4E07B1412BEA8628001EA480 /* MoyaTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07B13D2BEA75C6001EA480 /* MoyaTargetType.swift */; };
-		4E14B08F2BDE44B10036F639 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B08E2BDE44B10036F639 /* MainViewController.swift */; };
+		4E14B08F2BDE44B10036F639 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B08E2BDE44B10036F639 /* HomeTabViewController.swift */; };
 		4E14B0912BDE5A670036F639 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B0902BDE5A670036F639 /* LiveViewController.swift */; };
 		4E14B0932BDE5E2E0036F639 /* TVProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B0922BDE5E2E0036F639 /* TVProgramViewController.swift */; };
 		4E14B0952BDE5E680036F639 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14B0942BDE5E680036F639 /* MovieViewController.swift */; };
@@ -109,7 +109,7 @@
 		4E07B1302BEA6E10001EA480 /* SecureData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecureData.plist; sourceTree = "<group>"; };
 		4E07B13D2BEA75C6001EA480 /* MoyaTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaTargetType.swift; sourceTree = "<group>"; };
 		4E07B13F2BEA77A7001EA480 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
-		4E14B08E2BDE44B10036F639 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4E14B08E2BDE44B10036F639 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
 		4E14B0902BDE5A670036F639 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		4E14B0922BDE5E2E0036F639 /* TVProgramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVProgramViewController.swift; sourceTree = "<group>"; };
 		4E14B0942BDE5E680036F639 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				4E14B0982BDE67C50036F639 /* SegmentStackView.swift */,
-				4E14B08E2BDE44B10036F639 /* MainViewController.swift */,
+				4E14B08E2BDE44B10036F639 /* HomeTabViewController.swift */,
 				4EEB1AAD2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift */,
 				4E1428662BDF7E530059A7BD /* HomeTabSegment */,
 			);
@@ -765,7 +765,7 @@
 				4EEF9CDC2BE0B51A00F4E957 /* HomeQuickVODCell.swift in Sources */,
 				4ED005E42C075BF400D964B3 /* TVINGLoginButton.swift in Sources */,
 				4EBDEBDD2BCAC2720061986D /* AppDelegate.swift in Sources */,
-				4E14B08F2BDE44B10036F639 /* MainViewController.swift in Sources */,
+				4E14B08F2BDE44B10036F639 /* HomeTabViewController.swift in Sources */,
 				4E3328ED2C0E0C3C00B9ACEB /* ToastView.swift in Sources */,
 				4EC0D91F2C10A5C2007231D2 /* ReusableViewType.swift in Sources */,
 				4E3AB97E2BDC85530021C436 /* HomeVerticalRectCell.swift in Sources */,

@@ -14,7 +14,7 @@ extension UITabBarController {
         
         let tabBarCon = UITabBarController()
         //let homeNaviCon = UINavigationController(rootViewController: HomeViewController())
-        let homeNaviCon = UINavigationController(rootViewController: MainViewController())
+        let homeNaviCon = UINavigationController(rootViewController: HomeTabViewController())
         
         tabBarCon.setViewControllers([
                 homeNaviCon,

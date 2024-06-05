@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MainViewController: UIViewController {
+class HomeTabViewController: UIViewController {
     
     // segmentStackView.topAnchor의 constraint는 스크롤함에 따라 constatn 값을 바꿔주기 위해 별도의 상수로 정의
     lazy var segmentStackViewTopConstraint = self.segmentStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0)
@@ -246,7 +246,7 @@ class MainViewController: UIViewController {
 }
 
 
-extension MainViewController: UIPageViewControllerDataSource {
+extension HomeTabViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = self.vcArray.firstIndex(of: viewController) else { return nil }
@@ -264,7 +264,7 @@ extension MainViewController: UIPageViewControllerDataSource {
     
 }
 
-extension MainViewController: UIPageViewControllerDelegate {
+extension HomeTabViewController: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let index = self.vcArray.firstIndex(of: self.pageVC.viewControllers![0])!
