@@ -45,7 +45,7 @@ final class APINetworkingManager {
      (한 번에 많은 양의 캐시데이터를 불러오는 게 부담스러울 것 같으면 접근 시마다 코어데이터에 있는지 확인하고 캐시데이터로 복사해 오던가 등등...의 방법으로도 구현할 수 있을 것 같다.)
      */
     
-    let moyaProvider = MoyaProvider<MoyaTargetType>()
+    let moyaProvider = MoyaProvider<MoyaTargetType>(plugins: [MoyaLoggingPlugin()])
     var boxOfficeDataCache: [String: [DailyBoxOfficeMovie]] = [:] // 키는 "yyyyMMdd" 포맷의 문자열, 값은 DailyBoxOfficeMovie타입을 요소로 갖는 딕셔너리
     var moviePosterCache: [String: UIImage] = [:]
     
@@ -124,7 +124,7 @@ final class APINetworkingManager {
                 let responseData = result.data
                 do {
                     let decodedNetworkingResult = try JSONDecoder().decode(KMDBAPIResult.self, from: responseData)
-                    let postersURL = decodedNetworkingResult.data[0].result[0].posters
+                    let postersURL = decodedNetworkingResult.data[0].KMDBResult[0].posters
                     let posterURLArray: [URL] = postersURL.components(separatedBy: "|").map( { URL(string: $0)!} )
                     NetworkingManager.shared.getImage(using: posterURLArray[0]) { image in
                         self.moviePosterCache[title] = image

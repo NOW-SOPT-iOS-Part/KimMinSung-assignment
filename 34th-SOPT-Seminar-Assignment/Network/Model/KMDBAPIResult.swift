@@ -25,18 +25,18 @@ struct KMDBAPIResult: Codable {
 struct Datum: Codable {
     let collName: String
     let totalCount, count: Int
-    let result: [Result]
+    let KMDBResult: [KMDBResult]
 
     enum CodingKeys: String, CodingKey {
         case collName = "CollName"
         case totalCount = "TotalCount"
         case count = "Count"
-        case result = "Result"
+        case KMDBResult = "Result"
     }
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct KMDBResult: Codable {
     let docid, movieID, movieSeq, title: String
     let titleEng, titleOrg, titleEtc, prodYear: String
     let directors: Directors

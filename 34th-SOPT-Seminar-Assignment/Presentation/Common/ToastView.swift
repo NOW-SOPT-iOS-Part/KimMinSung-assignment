@@ -54,9 +54,7 @@ final class ToastView: UIView {
     
     private func setConstraints() {
         
-        self.blurView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        self.blurView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
         self.messageLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
