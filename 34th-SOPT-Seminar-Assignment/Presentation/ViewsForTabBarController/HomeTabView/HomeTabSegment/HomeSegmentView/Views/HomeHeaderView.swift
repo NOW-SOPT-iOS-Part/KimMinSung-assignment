@@ -8,11 +8,7 @@
 import UIKit
 
 
-final class HomeHeaderView: UICollectionReusableView {
-    
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
+final class HomeHeaderView: UICollectionReusableView, ReusableViewType {
     
     private let headerLabel: UILabel = {
         let label = UILabel()
@@ -35,8 +31,6 @@ final class HomeHeaderView: UICollectionReusableView {
         button.imageView?.contentMode = .scaleAspectFit
         button.imageEdgeInsets = UIEdgeInsets(top: 4, left: 3, bottom: 4, right: 0)
         
-        return button
-        
         /*
          아래와 같이 configuration으로 도 구현할까 생각해 보았는데,
          configuration은 세세한 크기를 조정하는 데에 한계가 있는 것 같아 보였습니다...!(제가 틀렸을 수도)
@@ -44,14 +38,29 @@ final class HomeHeaderView: UICollectionReusableView {
          (구현은 되고, 문제도 없는데 은근 찝찝함)
          혹시 다른 방법으로 해결하신 분이 있을까요~?
          */
-        //var btnConfig = UIButton.Configuration.plain()
-        //btnConfig.imagePlacement = .trailing
-        //btnConfig.baseForegroundColor = .gray2
-        //btnConfig.title = "전체보기"
-        //btnConfig.buttonSize = .mini
-        //btnConfig.imagePadding = 5
-        //btnConfig.image = UIImage(systemName: "chevron.right")
-        //let button = UIButton(configuration: btnConfig)
+        
+//        let transformer = UIConfigurationTextAttributesTransformer { incoming in
+//            var outgoing = incoming
+//            outgoing.font = UIFont.pretendardFont(ofSize: 11, weight: 500)
+//            outgoing.foregroundColor = .black
+//            return outgoing
+//        }
+//
+//        var btnConfig = UIButton.Configuration.plain()
+//        btnConfig.titleTextAttributesTransformer = transformer
+//        btnConfig.imagePlacement = .trailing
+//        btnConfig.baseForegroundColor = .gray2
+//        btnConfig.title = "전체보기"
+//        btnConfig.buttonSize = .mini
+//        btnConfig.imagePadding = 3
+//        btnConfig.image = UIImage(systemName: "chevron.right")
+//        btnConfig.contentInsets = NSDirectionalEdgeInsets(top: 7, leading: 0, bottom: 7, trailing: 0)
+//        let button = UIButton(configuration: btnConfig)
+//        button.imageView?.contentMode = .scaleAspectFill
+//        //button.setImage(UIImage(systemName: "chevron.right"), for: UIControl.State.normal)
+//        button.imageEdgeInsets = UIEdgeInsets(top: 4, left: 3, bottom: 4, right: 0)
+        
+        return button
         
     }()
     
@@ -77,8 +86,9 @@ final class HomeHeaderView: UICollectionReusableView {
         }
         
         self.viewAllButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
             make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview()
+            //make.height.equalTo(20)
         }
     }
     

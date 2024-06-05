@@ -9,10 +9,6 @@ import UIKit
 
 class HomeVerticalRectCell: UICollectionViewCell, CellType {
     
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-    
     let posterImageView: UIImageView = {
         let imageView = UIImageView(image: nil)
         imageView.contentMode = .scaleAspectFill

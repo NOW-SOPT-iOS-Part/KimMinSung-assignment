@@ -9,11 +9,6 @@ import UIKit
 
 class HomePosterPagingCell: UICollectionViewCell, CellType {
     
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-    
-    
     var vcArray: [UIViewController]? {
         didSet {
             self.setPageVC()

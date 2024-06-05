@@ -17,11 +17,7 @@ enum DateDistanceFromToday: Int {
     case threeDaysAgo = 3
 }
 
-final class HomeBoxOfficeHeaderView: UICollectionReusableView {
-    
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
+final class HomeBoxOfficeHeaderView: UICollectionReusableView, ReusableViewType {
     
     /// 확인하고자 하는 박스오피스 날짜가 오늘로부터 며칠 전인지를 결정
     var boxOfficeSelectedDate: DateDistanceFromToday = .yesterday {

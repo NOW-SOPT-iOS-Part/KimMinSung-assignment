@@ -70,6 +70,7 @@
 		4EBDEC2F2BCBCAAB0061986D /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEC272BCBC5490061986D /* Pretendard-Medium.otf */; };
 		4EBDEC302BCBCAAB0061986D /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEC222BCBC5480061986D /* Pretendard-SemiBold.otf */; };
 		4EBDEC312BCBCAAB0061986D /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EBDEC232BCBC5490061986D /* Pretendard-Bold.otf */; };
+		4EC0D91F2C10A5C2007231D2 /* ReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0D91E2C10A5C2007231D2 /* ReusableViewType.swift */; };
 		4ED005E42C075BF400D964B3 /* TVINGLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED005E32C075BF400D964B3 /* TVINGLoginButton.swift */; };
 		4ED52D132C0B3FE00033080E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED52D122C0B3FE00033080E /* LoginViewModel.swift */; };
 		4ED52D162C0B40030033080E /* ViewModelType_Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED52D152C0B40030033080E /* ViewModelType_Rx.swift */; };
@@ -166,6 +167,7 @@
 		4EBDEC262BCBC5490061986D /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		4EBDEC272BCBC5490061986D /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		4EBDEC282BCBC5490061986D /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		4EC0D91E2C10A5C2007231D2 /* ReusableViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewType.swift; sourceTree = "<group>"; };
 		4ED005E32C075BF400D964B3 /* TVINGLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVINGLoginButton.swift; sourceTree = "<group>"; };
 		4ED52D122C0B3FE00033080E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4ED52D152C0B40030033080E /* ViewModelType_Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType_Rx.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 			children = (
 				4ED52D152C0B40030033080E /* ViewModelType_Rx.swift */,
 				4E3328E52C0DFB6800B9ACEB /* CellType.swift */,
+				4EC0D91E2C10A5C2007231D2 /* ReusableViewType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 				4EBDEBDD2BCAC2720061986D /* AppDelegate.swift in Sources */,
 				4E14B08F2BDE44B10036F639 /* MainViewController.swift in Sources */,
 				4E3328ED2C0E0C3C00B9ACEB /* ToastView.swift in Sources */,
+				4EC0D91F2C10A5C2007231D2 /* ReusableViewType.swift in Sources */,
 				4E3AB97E2BDC85530021C436 /* HomeVerticalRectCell.swift in Sources */,
 				4E3328EB2C0E0C3600B9ACEB /* Toast.swift in Sources */,
 				4E3D80522BED16FD00042145 /* NetworkingManager.swift in Sources */,
