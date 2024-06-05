@@ -61,9 +61,16 @@ final class HomeBoxOfficeHeaderView: UICollectionReusableView {
     }()
     
     private let dateLeftButton: UIButton = {
-        let button = UIButton()
-        button.setImage(.init(systemName: "arrowtriangle.left.fill"), for: .normal)
-        button.tintColor = .lightGray
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "arrowtriangle.left.fill")
+        configuration.baseForegroundColor = .lightGray
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        
+        let button = UIButton(configuration: configuration)
+        //let button = UIButton()
+        //button.setImage(.init(systemName: "arrowtriangle.left.fill"), for: .normal)
+        //button.tintColor = .lightGray
         button.tag = -1
         return button
     }()
@@ -85,9 +92,15 @@ final class HomeBoxOfficeHeaderView: UICollectionReusableView {
     }()
     
     private let dateRightButton: UIButton = {
-        let button = UIButton()
-        button.setImage(.init(systemName: "arrowtriangle.right.fill"), for: .normal)
-        button.tintColor = .lightGray
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "arrowtriangle.right.fill")
+        configuration.baseForegroundColor = .lightGray
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        
+        let button = UIButton(configuration: configuration)
+        //let button = UIButton()
+        //button.setImage(.init(systemName: "arrowtriangle.left.fill"), for: .normal)
+        //button.tintColor = .lightGray
         button.tag = 1
         return button
     }()
@@ -125,13 +138,13 @@ final class HomeBoxOfficeHeaderView: UICollectionReusableView {
         
         self.boxOfficeDateLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalTo(self.dateRightButton.snp.leading).offset(-10)
+            make.trailing.equalTo(self.dateRightButton.snp.leading)
             make.width.equalTo(110)
         }
         
         self.dateLeftButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalTo(self.boxOfficeDateLabel.snp.leading).offset(-10)
+            make.trailing.equalTo(self.boxOfficeDateLabel.snp.leading)
         }
     }
     
