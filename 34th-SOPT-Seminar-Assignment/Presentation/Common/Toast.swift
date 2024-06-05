@@ -11,12 +11,7 @@ import SnapKit
 
 @frozen
 enum ToastType {
-    case soldout
-    case deinitLike
-    case addHotelLike
-    case addRoomLike
-    case addCompare
-    case warnLimitCompare
+    case networkError
 }
 
 enum ToastAnimationType {
@@ -32,7 +27,6 @@ final class Toast {
     static let animatorForDismissing = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.7)
     
     static var toastView: ToastView!
-    static var toastWidth: CGFloat!
     static var toastHeight: CGFloat!
     static var toastViewBottomConstraint: NSLayoutConstraint!
     
@@ -51,23 +45,7 @@ final class Toast {
         window.addSubview(toastView)
         
         switch type {
-        case .soldout:
-            self.toastWidth = 184
-            self.toastHeight = 42
-        case .deinitLike:
-            self.toastWidth = 235
-            self.toastHeight = 44
-        case .addHotelLike:
-            self.toastWidth = 314
-            self.toastHeight = 60
-        case .addCompare:
-            self.toastWidth = 336
-            self.toastHeight = 48
-        case .addRoomLike:
-            self.toastWidth = 297
-            self.toastHeight = 48
-        case .warnLimitCompare:
-            self.toastWidth = 199
+        case .networkError:
             self.toastHeight = 48
         }
         
@@ -78,7 +56,6 @@ final class Toast {
         toastView.snp.makeConstraints {
             //$0.bottom.equalToSuperview().inset(120)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(toastWidth)
             $0.height.equalTo(toastHeight)
         }
         

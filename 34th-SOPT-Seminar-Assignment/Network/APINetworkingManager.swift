@@ -88,14 +88,14 @@ final class APINetworkingManager {
                         self.boxOfficeDataCache[dateInString] = decodedNetworkingResult.boxOfficeResult.dailyBoxOfficeList
                     }
                     completion(decodedNetworkingResult.boxOfficeResult.dailyBoxOfficeList)
-                    
+                    Toast.show(type: .networkError, animationType: .pushFromBottom)
                 } catch {
                     fatalError("decoding data failed")
                 }
                 
             case .failure(let error):
                 print(error.localizedDescription)
-                Toast.show(type: .warnLimitCompare, animationType: .pushFromBottom)
+                Toast.show(type: .networkError, animationType: .pushFromBottom)
                 completion([])
             }
         }
@@ -137,7 +137,7 @@ final class APINetworkingManager {
                 }
             case .failure(let error):
                 print(error.localizedDescription)
-                Toast.show(type: .warnLimitCompare, animationType: .pushFromBottom)
+                Toast.show(type: .networkError, animationType: .pushFromBottom)
                 completion(nil)
             }
         }
