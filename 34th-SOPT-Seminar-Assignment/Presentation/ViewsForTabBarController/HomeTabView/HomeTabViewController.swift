@@ -15,7 +15,7 @@ class HomeTabViewController: UIViewController {
     // segmentStackView.topAnchor의 constraint는 스크롤함에 따라 constatn 값을 바꿔주기 위해 별도의 상수로 정의
     lazy var segmentStackViewTopConstraint = self.segmentStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0)
 
-    let segmentStackView: SegmentStackView = SegmentStackView.getDefault()
+    let segmentStackView: SegmentStackView = SegmentStackView(titles: ["홈", "실시간", "TV프로그램", "영화", "파라마운트"])
     let vcArray = [HomeViewController(), LiveViewController(), TVProgramViewController(), MovieViewController(), ParamountPlusViewController()]
     let pageVC: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     
@@ -36,10 +36,10 @@ class HomeTabViewController: UIViewController {
         super.viewDidLoad()
         
         self.configureViewHierarchy()
-        self.setAutoLayout()
+        self.setConstraints()
         self.setPageVC()
         self.setDelegates()
-        self.setButtonsAction()
+        self.setSegmentButtonsAction()
         self.setNaviBar()
         
         //MARK: binding using RxCocoa
@@ -48,16 +48,9 @@ class HomeTabViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        /*
-         상단 segmentStackView의 언더비 초기 위치를 설정하기 위해서 호출.
-         setUnderbarHorizontalLayout 함수가 각 버튼(의 titleLabel)의 frame에 접근하는데, 아마 그것 때문인지
-         view가 그려지기 전에는 해당 함수를 호출해도 언더바가 맞게 그려지지 않더라구요..(viewWillAppear에서도 안됐음...
-         viewDidAppear에 그려지는 것이 약간 찜찜한데(약간의 시간차가 있음), 혹시 더 좋은 위치가 있으면 그곳에서 호출하면 좋을 것 같음!
-         */
+        //상단 segmentStackView의 언더비 초기 위치를 설정하기 위해서 호출.
         guard let currentIndex =  self.vcArray.firstIndex(of: self.pageVC.viewControllers![0]) else { return }
-        
-        self.segmentStackView.setUnderbarHorizontalLayout(to: currentIndex)
+        self.segmentStackView.moveUnderbarPosition(to: currentIndex)
     }
     
     override func viewSafeAreaInsetsDidChange() {
@@ -75,8 +68,7 @@ class HomeTabViewController: UIViewController {
         }
     }
     
-    private func setAutoLayout() {
-        
+    private func setConstraints() {
         self.naviBackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.segmentStackView)
@@ -91,7 +83,7 @@ class HomeTabViewController: UIViewController {
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(56)
         }
-        self.segmentStackView.setAutoLayout()
+        //self.segmentStackView.setAutoLayout()
     }
     
     private func setPageVC() {
@@ -103,42 +95,19 @@ class HomeTabViewController: UIViewController {
         self.pageVC.delegate = self
     }
     
-    private func setButtonsAction() {
+    private func setSegmentButtonsAction() {
         self.segmentStackView.arrangedSubviews.forEach { view in
             guard let button = view as? UIButton else { return }
-            button.addTarget(self, action: #selector(segmentButtonDidTapped(sender:)), for: .touchUpInside)
+            button.rx.tap.subscribe(onNext: { [unowned self] in
+                var isForward: UIPageViewController.NavigationDirection {
+                    let currentIndex = self.vcArray.firstIndex(of: self.pageVC.viewControllers![0])!
+                    return (currentIndex <= button.tag) ? .forward : .reverse
+                }
+                self.pageVC.setViewControllers([self.vcArray[button.tag]], direction: isForward, animated: true)
+                self.segmentStackView.select(at: button.tag)
+            }).disposed(by: self.disposeBag)
         }
     }
-    
-    @objc private func segmentButtonDidTapped(sender: UIButton) {
-        var isForward: UIPageViewController.NavigationDirection {
-            let currentIndex = self.vcArray.firstIndex(of: self.pageVC.viewControllers![0])!
-            if currentIndex <= sender.tag {
-                return .forward
-            } else {
-                return .reverse
-            }
-        }
-        
-        switch sender.tag {
-        case 0:
-            self.pageVC.setViewControllers([self.vcArray[0]], direction: isForward, animated: true)
-        case 1:
-            self.pageVC.setViewControllers([self.vcArray[1]], direction: isForward, animated: true)
-        case 2:
-            self.pageVC.setViewControllers([self.vcArray[2]], direction: isForward, animated: true)
-        case 3:
-            self.pageVC.setViewControllers([self.vcArray[3]], direction: isForward, animated: true)
-        case 4:
-            self.pageVC.setViewControllers([self.vcArray[4]], direction: isForward, animated: true)
-        default:
-            return
-        }
-        
-        self.segmentStackView.select(at: sender.tag)
-        
-    }
-    
     
     private func setNaviBar() {
         
@@ -151,7 +120,6 @@ class HomeTabViewController: UIViewController {
              navigation bar의 왼쪽에 들어갈 로고의 크기 조절
              UIBarButtonItem의 customView로 UIButton 인스턴스를 넣고,
              해당 UIButton의 인스턴스에 NSLayoutConstraint를 적용하여 오토레이아웃 적용하였음. (SnapKit으로 구현)
-             *혹시 더 좋은 코드가 있다면 알려주세요~
              */
             button.snp.makeConstraints { make in
                 make.width.equalTo(99)
@@ -200,14 +168,8 @@ class HomeTabViewController: UIViewController {
         let homeCollectionView = homeVC.rootView.collectionView
         
         homeCollectionView.rx.didScroll
-            .subscribe(
-                onNext: {
-                    self.scrollViewDidScroll(homeCollectionView)
-                },
-                onError: { error in print(error.localizedDescription) },
-                onCompleted: { print("onCompleted") },
-                onDisposed: { print("onDisposed") }
-            ).disposed(by: self.disposeBag)
+            .subscribe(onNext: { self.scrollViewDidScroll(homeCollectionView) }
+        ).disposed(by: self.disposeBag)
     }
     
     private func scrollViewDidScroll(_ scrollView: UIScrollView) {

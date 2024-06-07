@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SegmentStackView: UIStackView {
+final class SegmentStackView: UIStackView, CustomSegmentedControlType {
     
-    var currentIndex: Int = 0
+    private(set) var currentIndex: Int = 0
     
     let underbar: UIView = {
         let view = UIView()
@@ -24,11 +24,23 @@ class SegmentStackView: UIStackView {
         return view
     }()
     
+    var buttons: [UIView] {
+        self.arrangedSubviews
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.setStackViewLayout()
         self.configureViewHierarchy()
-        self.setAutoLayout()
+        self.setConstraints()
+    }
+    
+    convenience init(titles: [String]) {
+        guard Set(titles).count == titles.count else { fatalError() } //titles 배열에 중복되는 이름이 있는 지 확인
+        let buttonsArray = titles.map({ SegmentStackButton(title: $0, tag: titles.firstIndex(of: $0)!)})
+//        self.init(frame: .zero)
+        self.init(arrangedSubviews: buttonsArray)
     }
     
     private lazy var underbarLeadingConstraint = self.underbar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0)
@@ -42,8 +54,13 @@ class SegmentStackView: UIStackView {
         [self.separator, self.underbar].forEach { self.addSubview($0) }
     }
     
-    func setAutoLayout() {
-        
+    func setStackViewLayout() {
+        self.axis = .horizontal
+        self.distribution = .fillProportionally
+        self.spacing = 5
+    }
+    
+    func setConstraints() {
         self.separator.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(1)
@@ -68,13 +85,12 @@ class SegmentStackView: UIStackView {
         // 언더바 위치 설정하는 애니메이션 설정
         let animator = UIViewPropertyAnimator(duration: 0.3, dampingRatio: 1)
         animator.addAnimations {
-            self.setUnderbarHorizontalLayout(to: index)
+            self.moveUnderbarPosition(to: index)
         }
         animator.startAnimation()
     }
     
-    
-    func setUnderbarHorizontalLayout(to index: Int) {
+    func moveUnderbarPosition(to index: Int) {
         guard let selectedButton = self.arrangedSubviews[index] as? UIButton else { fatalError() }
         guard let buttonLabel = selectedButton.titleLabel else { return }
         let buttonLabelFrame = selectedButton.convert(buttonLabel.frame, to: self)
