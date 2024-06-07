@@ -216,7 +216,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E1428662BDF7E530059A7BD /* HomeTabSegment */ = {
+		4E1428662BDF7E530059A7BD /* HomeTabSegments */ = {
 			isa = PBXGroup;
 			children = (
 				4E7016212BDBEE11008B2F37 /* HomeSegmentView */,
@@ -225,7 +225,7 @@
 				4E3328DE2C0D86AE00B9ACEB /* MovieSegmentView */,
 				4E3328E02C0D86CE00B9ACEB /* ParamountPlusSegmentView */,
 			);
-			path = HomeTabSegment;
+			path = HomeTabSegments;
 			sourceTree = "<group>";
 		};
 		4E1428672BDF7E840059A7BD /* HomeTabView */ = {
@@ -234,7 +234,7 @@
 				4E14B0982BDE67C50036F639 /* SegmentStackView.swift */,
 				4E14B08E2BDE44B10036F639 /* HomeTabViewController.swift */,
 				4EEB1AAD2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift */,
-				4E1428662BDF7E530059A7BD /* HomeTabSegment */,
+				4E1428662BDF7E530059A7BD /* HomeTabSegments */,
 			);
 			path = HomeTabView;
 			sourceTree = "<group>";
