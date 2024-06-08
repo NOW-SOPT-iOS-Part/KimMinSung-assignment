@@ -12,31 +12,42 @@ import RxCocoa
 
 class HomeTabViewController: UIViewController {
     
-    // segmentStackView.topAnchor의 constraint는 스크롤함에 따라 constatn 값을 바꿔주기 위해 별도의 상수로 정의
-    lazy var segmentStackViewTopConstraint = self.segmentStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0)
-
-    let segmentStackView: SegmentStackView = SegmentStackView(titles: ["홈", "실시간", "TV프로그램", "영화", "파라마운트"])
-    let vcArray = [HomeViewController(), LiveViewController(), TVProgramViewController(), MovieViewController(), ParamountPlusViewController()]
-    let pageVC: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    let rootView = HomeTabView()
     
+    // segmentStackView.topAnchor의 constraint는 스크롤함에 따라 constatn 값을 바꿔주기 위해 별도의 상수로 정의
+//    lazy var segmentStackViewTopConstraint = self.segmentStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0)
+
+//    let segmentStackView: SegmentStackView = SegmentStackView(titles: ["홈", "실시간", "TV프로그램", "영화", "파라마운트"])
+    let vcArray = [HomeViewController(), LiveViewController(), TVProgramViewController(), MovieViewController(), ParamountPlusViewController()]
+//    let pageVC: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    
+    lazy var segmentStackViewTopConstraint = self.rootView.segmentStackViewTopConstraint
+    lazy var segmentStackView: SegmentStackView = self.rootView.segmentStackView
+    lazy var pageVC = self.rootView.pageVC
+    
+    lazy var naviBackView = self.rootView.naviBackView
     // 스크롤 시 navigation bar 부분의 배경을 어둡게 하기 위해 UIView()를 배치하였음.
-    let naviBackView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
+//    let naviBackView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .clear
+//        return view
+//    }()
     
     
     //MARK: RxSwift
     let disposeBag: DisposeBag = DisposeBag()
     
     
+    override func loadView() {
+        self.view = self.rootView
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.configureViewHierarchy()
-        self.setConstraints()
+//        self.configureViewHierarchy()
+//        self.setConstraints()
         self.setPageVC()
         self.setDelegates()
         self.setSegmentButtonsAction()
@@ -60,31 +71,31 @@ class HomeTabViewController: UIViewController {
         homeVC.rootView.setCollectionViewContentInset(inset: inset)
     }
     
-    private func configureViewHierarchy() {
-        
-        // 베열 순서 주의!
-        [self.pageVC.view, self.naviBackView, self.segmentStackView].forEach { view in
-            self.view.addSubview(view)
-        }
-    }
+//    private func configureViewHierarchy() {
+//        
+//        // 베열 순서 주의!
+//        [self.pageVC.view, self.naviBackView, self.segmentStackView].forEach { view in
+//            self.view.addSubview(view)
+//        }
+//    }
     
-    private func setConstraints() {
-        self.naviBackView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(self.segmentStackView)
-        }
-        
-        self.pageVC.view.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        self.segmentStackViewTopConstraint.isActive = true
-        self.segmentStackView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(56)
-        }
-        //self.segmentStackView.setAutoLayout()
-    }
+//    private func setConstraints() {
+//        self.naviBackView.snp.makeConstraints { make in
+//            make.top.leading.trailing.equalToSuperview()
+//            make.bottom.equalTo(self.segmentStackView)
+//        }
+//        
+//        self.pageVC.view.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
+//        
+//        self.segmentStackViewTopConstraint.isActive = true
+//        self.segmentStackView.snp.makeConstraints { make in
+//            make.horizontalEdges.equalToSuperview()
+//            make.height.equalTo(56)
+//        }
+//        //self.segmentStackView.setAutoLayout()
+//    }
     
     private func setPageVC() {
         self.pageVC.setViewControllers([self.vcArray[0]], direction: .forward, animated: false)

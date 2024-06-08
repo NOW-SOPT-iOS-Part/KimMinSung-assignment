@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E05F8262C137D990095C1DB /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E05F8252C137D990095C1DB /* HomeTabView.swift */; };
 		4E07B1312BEA6E10001EA480 /* SecureData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E07B1302BEA6E10001EA480 /* SecureData.plist */; };
 		4E07B1342BEA7524001EA480 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 4E07B1332BEA7524001EA480 /* CombineMoya */; };
 		4E07B1362BEA7524001EA480 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 4E07B1352BEA7524001EA480 /* Moya */; };
@@ -108,6 +109,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E05F8252C137D990095C1DB /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		4E07B1302BEA6E10001EA480 /* SecureData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecureData.plist; sourceTree = "<group>"; };
 		4E07B13D2BEA75C6001EA480 /* MoyaTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaTargetType.swift; sourceTree = "<group>"; };
 		4E07B13F2BEA77A7001EA480 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				4EC0D9282C1327AC007231D2 /* SegmentStackButton.swift */,
 				4E14B0982BDE67C50036F639 /* SegmentStackView.swift */,
 				4E14B08E2BDE44B10036F639 /* HomeTabViewController.swift */,
+				4E05F8252C137D990095C1DB /* HomeTabView.swift */,
 				4EEB1AAD2BE0FCC30035DEF1 /* ProfileSettingsViewController.swift */,
 				4E1428662BDF7E530059A7BD /* HomeTabSegments */,
 			);
@@ -778,6 +781,7 @@
 				4E3AB97E2BDC85530021C436 /* HomeVerticalRectCell.swift in Sources */,
 				4E3328EB2C0E0C3600B9ACEB /* Toast.swift in Sources */,
 				4E3D80522BED16FD00042145 /* NetworkingManager.swift in Sources */,
+				4E05F8262C137D990095C1DB /* HomeTabView.swift in Sources */,
 				4EC0D9292C1327AC007231D2 /* SegmentStackButton.swift in Sources */,
 				4E2EBB3D2BCEA17F00EA5EE6 /* FindPasswordWebViewController.swift in Sources */,
 				4E3328D42C0B70E500B9ACEB /* LoginViewController_MVVM.swift in Sources */,
