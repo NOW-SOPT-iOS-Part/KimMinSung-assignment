@@ -7,22 +7,20 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class SegmentStackButton: UIButton {
     
+    //버튼 선택 시 폰트를 굵게 설정
     override var isSelected: Bool {
         didSet {
-            switch isSelected {
-            case true:
-                self.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: 600)
-            case false:
-                self.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: 400)
-            }
+            let weight: CGFloat = self.isSelected ? 600 : 400
+            self.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: weight)
         }
     }
     
-    
-    
-    override init(frame: CGRect) {
+    private override init(frame: CGRect) {
         super.init(frame: frame)
         self.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: 400)
     }
@@ -37,19 +35,4 @@ final class SegmentStackButton: UIButton {
         self.tag = tag
     }
     
-    
-    
-    
-    
-    
-    
 }
-
-
-let segmentButton0: UIButton = {
-    let button = UIButton()
-    button.setTitle("홈", for: .normal)
-    button.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: 400)
-    button.tag = 0
-    return button
-}()

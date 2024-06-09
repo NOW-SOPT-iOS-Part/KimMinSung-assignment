@@ -7,9 +7,16 @@
 
 import UIKit
 
+import SnapKit
+import RxSwift
+import RxCocoa
+
 final class SegmentStackView: UIStackView, CustomSegmentedControlType {
     
-    private(set) var currentIndex: Int = 0
+    typealias ConcreteType = SegmentStackView
+    
+    var viewModel: HomeTabViewModel!
+    var currentIndex: Int { self.viewModel.currentIndex }
     
     let underbar: UIView = {
         let view = UIView()
@@ -24,43 +31,35 @@ final class SegmentStackView: UIStackView, CustomSegmentedControlType {
         return view
     }()
     
-    var buttons: [UIView] {
-        self.arrangedSubviews
-    }
+    lazy var underbarLeadingConstraint = self.underbar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0)
+    lazy var underbarTrailingConstraint = self.underbar.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    convenience init(titles: [String], viewModel: HomeTabViewModel) {
+        
+        guard Set(titles).count == titles.count else { fatalError() } //titles 배열에 중복되는 이름이 있는 지 확인
+        let buttonsArray = titles.map({ SegmentStackButton(title: $0, tag: titles.firstIndex(of: $0)!) })
+//        self.init(frame: .zero)
+        self.init(arrangedSubviews: buttonsArray)
+        self.viewModel = viewModel
         
         self.setStackViewLayout()
         self.configureViewHierarchy()
         self.setConstraints()
+        self.subscribeButtons()
+        
     }
     
-    convenience init(titles: [String]) {
-        guard Set(titles).count == titles.count else { fatalError() } //titles 배열에 중복되는 이름이 있는 지 확인
-        let buttonsArray = titles.map({ SegmentStackButton(title: $0, tag: titles.firstIndex(of: $0)!)})
-//        self.init(frame: .zero)
-        self.init(arrangedSubviews: buttonsArray)
-    }
-    
-    private lazy var underbarLeadingConstraint = self.underbar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0)
-    private lazy var underbarTrailingConstraint = self.underbar.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0)
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configureViewHierarchy() {
-        [self.separator, self.underbar].forEach { self.addSubview($0) }
-    }
-    
-    func setStackViewLayout() {
+    private func setStackViewLayout() {
         self.axis = .horizontal
         self.distribution = .fillProportionally
         self.spacing = 5
     }
     
-    func setConstraints() {
+    private func configureViewHierarchy() {
+        self.addSubviews(self.separator, self.underbar)
+    }
+    
+    private func setConstraints() {
         self.separator.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(1)
@@ -72,95 +71,19 @@ final class SegmentStackView: UIStackView, CustomSegmentedControlType {
         self.underbar.heightAnchor.constraint(equalToConstant: 3).isActive = true
     }
     
-    func select(at index: Int) {
-        let buttonCount = self.arrangedSubviews.count
-        guard buttonCount > 0 else { return }
-        for i in 0..<buttonCount {
-            guard let button = self.arrangedSubviews[i] as? UIButton else { return }
-            button.isSelected = i == index ? true : false
-            button.titleLabel?.font = button.isSelected ? UIFont.pretendardFont(ofSize: 17, weight: 600) : UIFont.pretendardFont(ofSize: 17, weight: 400)
+    private func subscribeButtons() {
+        self.arrangedSubviews.forEach { view in
+            let button = view as! UIButton
+            button.rx.tap.subscribe(onNext: { [unowned self] in
+                button.isSelected.toggle()
+                var isForward: UIPageViewController.NavigationDirection {
+                    return (self.currentIndex <= button.tag) ? .forward : .reverse
+                }
+                //pageViewController 스와이프 동작
+                self.viewModel.pageVC.setViewControllers([self.viewModel.vcArray[button.tag]], direction: isForward, animated: true)
+                self.updateSegmentState(selectedIndex: button.tag)
+            }).disposed(by: self.viewModel.disposeBag)
         }
-        self.currentIndex = index
-        
-        // 언더바 위치 설정하는 애니메이션 설정
-        let animator = UIViewPropertyAnimator(duration: 0.3, dampingRatio: 1)
-        animator.addAnimations {
-            self.moveUnderbarPosition(to: index)
-        }
-        animator.startAnimation()
-    }
-    
-    func moveUnderbarPosition(to index: Int) {
-        guard let selectedButton = self.arrangedSubviews[index] as? UIButton else { fatalError() }
-        guard let buttonLabel = selectedButton.titleLabel else { return }
-        let buttonLabelFrame = selectedButton.convert(buttonLabel.frame, to: self)
-        self.underbarLeadingConstraint.constant = buttonLabelFrame.origin.x
-        self.underbarTrailingConstraint.constant = buttonLabelFrame.origin.x + buttonLabel.bounds.width
-        self.layoutIfNeeded() // 애니메이션 구현하기 위함
-    }
-    
-}
-
-
-extension SegmentStackView {
-    
-    static func getDefault() -> SegmentStackView {
-        
-        let segmentButton0: UIButton = {
-            let button = UIButton()
-            button.setTitle("홈", for: .normal)
-            button.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: 400)
-            button.tag = 0
-            return button
-        }()
-        
-        let segmentButton1: UIButton = {
-            let button = UIButton()
-            button.setTitle("실시간", for: .normal)
-            button.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: 400)
-            button.tag = 1
-            return button
-        }()
-        
-        let segmentButton2: UIButton = {
-            let button = UIButton()
-            button.setTitle("TV프로그램", for: .normal)
-            button.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: 400)
-            button.tag = 2
-            return button
-        }()
-        
-        let segmentButton3: UIButton = {
-            let button = UIButton()
-            button.setTitle("영화", for: .normal)
-            button.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: 400)
-            button.tag = 3
-            return button
-        }()
-        
-        let segmentButton4: UIButton = {
-            let button = UIButton()
-            button.setTitle("파라마운트+", for: .normal)
-            button.titleLabel?.font = UIFont.pretendardFont(ofSize: 17, weight: 400)
-            button.tag = 4
-            return button
-        }()
-        
-        let stackView = SegmentStackView(
-            arrangedSubviews: [
-                segmentButton0,
-                segmentButton1,
-                segmentButton2,
-                segmentButton3,
-                segmentButton4
-            ]
-        )
-        
-        stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 5
-        return stackView
-        
     }
     
 }

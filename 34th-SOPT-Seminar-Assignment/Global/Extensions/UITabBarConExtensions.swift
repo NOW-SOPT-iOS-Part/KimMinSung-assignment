@@ -13,8 +13,15 @@ extension UITabBarController {
     static func getMainTabBarCon() -> UITabBarController {
         
         let tabBarCon = UITabBarController()
-        //let homeNaviCon = UINavigationController(rootViewController: HomeViewController())
-        let homeNaviCon = UINavigationController(rootViewController: HomeTabViewController())
+        
+        let viewModel = HomeTabViewModel()
+        let segmentStackView = SegmentStackView(
+            titles: ["홈", "실시간", "TV프로그램", "영화", "파라마운트"],
+            viewModel: viewModel
+        )
+        let homeNaviCon = UINavigationController(
+            rootViewController: HomeTabViewController(viewModel: viewModel, segmentedControl: segmentStackView)
+        )
         
         tabBarCon.setViewControllers([
                 homeNaviCon,

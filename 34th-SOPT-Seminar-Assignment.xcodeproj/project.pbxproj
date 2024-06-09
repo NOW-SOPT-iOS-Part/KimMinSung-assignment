@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E05F8262C137D990095C1DB /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E05F8252C137D990095C1DB /* HomeTabView.swift */; };
+		4E05F82A2C1491330095C1DB /* HomeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E05F8292C1491330095C1DB /* HomeTabViewModel.swift */; };
 		4E07B1312BEA6E10001EA480 /* SecureData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E07B1302BEA6E10001EA480 /* SecureData.plist */; };
 		4E07B1342BEA7524001EA480 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 4E07B1332BEA7524001EA480 /* CombineMoya */; };
 		4E07B1362BEA7524001EA480 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 4E07B1352BEA7524001EA480 /* Moya */; };
@@ -110,6 +111,7 @@
 
 /* Begin PBXFileReference section */
 		4E05F8252C137D990095C1DB /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		4E05F8292C1491330095C1DB /* HomeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewModel.swift; sourceTree = "<group>"; };
 		4E07B1302BEA6E10001EA480 /* SecureData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecureData.plist; sourceTree = "<group>"; };
 		4E07B13D2BEA75C6001EA480 /* MoyaTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaTargetType.swift; sourceTree = "<group>"; };
 		4E07B13F2BEA77A7001EA480 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		4E1428672BDF7E840059A7BD /* HomeTabView */ = {
 			isa = PBXGroup;
 			children = (
+				4EB33F762C15E18E0004A8DE /* viewModel */,
 				4EC0D9282C1327AC007231D2 /* SegmentStackButton.swift */,
 				4E14B0982BDE67C50036F639 /* SegmentStackView.swift */,
 				4E14B08E2BDE44B10036F639 /* HomeTabViewController.swift */,
@@ -358,6 +361,14 @@
 				4E70162F2BDBF53D008B2F37 /* HistoryViewController.swift */,
 			);
 			path = OtherViewsForTab;
+			sourceTree = "<group>";
+		};
+		4EB33F762C15E18E0004A8DE /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4E05F8292C1491330095C1DB /* HomeTabViewModel.swift */,
+			);
+			name = viewModel;
 			sourceTree = "<group>";
 		};
 		4EBDEBD02BCAC2710061986D = {
@@ -802,6 +813,7 @@
 				4E14B0932BDE5E2E0036F639 /* TVProgramViewController.swift in Sources */,
 				4EBDEC1C2BCACFB80061986D /* WelcomeViewController.swift in Sources */,
 				4EEF9CDA2BDFF0AD00F4E957 /* ContentProtocol.swift in Sources */,
+				4E05F82A2C1491330095C1DB /* HomeTabViewModel.swift in Sources */,
 				4E70162E2BDBF4EB008B2F37 /* SearchingViewController.swift in Sources */,
 				4ED9F3F62BDDDF1600712737 /* HomePosterViewController.swift in Sources */,
 				4EFDCA392BDE13A100CC5793 /* UIWindowExtensions.swift in Sources */,
