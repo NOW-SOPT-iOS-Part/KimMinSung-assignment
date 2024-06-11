@@ -88,7 +88,7 @@ final class APINetworkingManager {
                         self.boxOfficeDataCache[dateInString] = decodedNetworkingResult.boxOfficeResult.dailyBoxOfficeList
                     }
                     completion(decodedNetworkingResult.boxOfficeResult.dailyBoxOfficeList)
-                    Toast.show(type: .networkError, animationType: .pushFromBottom)
+                    Toast.show(type: .successFetching, animationType: .pushFromBottom)
                 } catch {
                     fatalError("decoding data failed")
                 }

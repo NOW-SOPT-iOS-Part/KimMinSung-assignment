@@ -12,6 +12,7 @@ import SnapKit
 @frozen
 enum ToastType {
     case networkError
+    case successFetching
 }
 
 enum ToastAnimationType {
@@ -44,10 +45,7 @@ final class Toast {
             .forEach { $0.removeFromSuperview() }
         window.addSubview(toastView)
         
-        switch type {
-        case .networkError:
-            self.toastHeight = 48
-        }
+        self.toastHeight = 48
         
         //makeCornerRound(radius: CGFloat(toastHeight)/2)
         toastView.clipsToBounds = true

@@ -67,6 +67,8 @@ final class ToastView: UIView {
         switch toastType {
         case .networkError:
             self.messageLabel.text = "네트워크 통신을 확인해 주세요"
+        case .successFetching:
+            self.messageLabel.text = "불러오기 성공!"
         }
     }
     
