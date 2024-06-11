@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomePosterPagingCell: UICollectionViewCell, CellType {
+class HomePosterPagingCell: UICollectionViewCell, ReusableViewType {
     
     var vcArray: [UIViewController]? {
         didSet {

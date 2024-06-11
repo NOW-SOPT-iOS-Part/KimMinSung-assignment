@@ -13,7 +13,7 @@
 
 import UIKit
 
-class HomeRankingContentCell: UICollectionViewCell, CellType {
+class HomeRankingContentCell: UICollectionViewCell, ReusableViewType {
     
     let posterImageView: UIImageView = {
         let imageView = UIImageView(image: nil)

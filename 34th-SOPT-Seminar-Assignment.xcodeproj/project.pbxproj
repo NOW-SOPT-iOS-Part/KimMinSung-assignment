@@ -29,7 +29,6 @@
 		4E2EBB3F2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */; };
 		4E3328D42C0B70E500B9ACEB /* LoginViewController_MVVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328D32C0B70E500B9ACEB /* LoginViewController_MVVM.swift */; };
 		4E3328E42C0DF28D00B9ACEB /* RankingCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328E32C0DF28D00B9ACEB /* RankingCellType.swift */; };
-		4E3328E62C0DFB6800B9ACEB /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328E52C0DFB6800B9ACEB /* CellType.swift */; };
 		4E3328E82C0DFF9900B9ACEB /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328E72C0DFF9900B9ACEB /* UIViewExtensions.swift */; };
 		4E3328EB2C0E0C3600B9ACEB /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328EA2C0E0C3600B9ACEB /* Toast.swift */; };
 		4E3328ED2C0E0C3C00B9ACEB /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3328EC2C0E0C3C00B9ACEB /* ToastView.swift */; };
@@ -128,7 +127,6 @@
 		4E2EBB3E2BCEA44400EA5EE6 /* MakeAccountWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAccountWebViewController.swift; sourceTree = "<group>"; };
 		4E3328D32C0B70E500B9ACEB /* LoginViewController_MVVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController_MVVM.swift; sourceTree = "<group>"; };
 		4E3328E32C0DF28D00B9ACEB /* RankingCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCellType.swift; sourceTree = "<group>"; };
-		4E3328E52C0DFB6800B9ACEB /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		4E3328E72C0DFF9900B9ACEB /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		4E3328EA2C0E0C3600B9ACEB /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		4E3328EC2C0E0C3C00B9ACEB /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -452,7 +450,6 @@
 			children = (
 				4EC0D92E2C133C1B007231D2 /* CustomSegmentedControlType.swift */,
 				4ED52D152C0B40030033080E /* ViewModelType_Rx.swift */,
-				4E3328E52C0DFB6800B9ACEB /* CellType.swift */,
 				4EC0D91E2C10A5C2007231D2 /* ReusableViewType.swift */,
 			);
 			path = Protocols;
@@ -780,7 +777,6 @@
 				4EEF9CD82BDF8C1800F4E957 /* DummyDataMaker.swift in Sources */,
 				4ED9F3F12BDD4D4300712737 /* HomeHeaderView.swift in Sources */,
 				4E3D804E2BEC885300042145 /* KOBISAPIResult.swift in Sources */,
-				4E3328E62C0DFB6800B9ACEB /* CellType.swift in Sources */,
 				4E7016292BDBEFD9008B2F37 /* UITabBarConExtensions.swift in Sources */,
 				4EEF9CDC2BE0B51A00F4E957 /* HomeQuickVODCell.swift in Sources */,
 				4ED005E42C075BF400D964B3 /* TVINGLoginButton.swift in Sources */,

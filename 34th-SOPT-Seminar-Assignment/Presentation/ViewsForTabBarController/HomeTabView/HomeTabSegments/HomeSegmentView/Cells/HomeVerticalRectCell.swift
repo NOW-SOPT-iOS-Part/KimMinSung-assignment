@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeVerticalRectCell: UICollectionViewCell, CellType {
+class HomeVerticalRectCell: UICollectionViewCell, ReusableViewType {
     
     let posterImageView: UIImageView = {
         let imageView = UIImageView(image: nil)

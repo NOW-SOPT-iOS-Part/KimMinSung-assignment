@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeQuickVODCell: UICollectionViewCell, CellType {
+class HomeQuickVODCell: UICollectionViewCell, ReusableViewType {
     
     let posterImageView: UIImageView = {
         let imageView = UIImageView(image: nil)
